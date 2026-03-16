@@ -164,7 +164,13 @@ class _SoundsPageState extends State<SoundsPage>
                             setState(() => _selectedCatIndex = i),
                         filtered: _filtered(state),
                       ),
-                      _AiMoodTab(controller: _aiController, state: state),
+                      _AiMoodTab(
+                        controller: _aiController,
+                        state: state,
+                        onSubmit: () => context
+                            .read<SoundsCubit>()
+                            .askAiForSounds(_aiController.text),
+                      ),
                     ],
                   ),
                 ),
@@ -322,10 +328,15 @@ class _SoundsLibraryTab extends StatelessWidget {
 // ─── YZ Mod Müziği Tab ────────────────────────────────────────────────────────
 
 class _AiMoodTab extends StatelessWidget {
-  const _AiMoodTab({required this.controller, required this.state});
+  const _AiMoodTab({
+    required this.controller,
+    required this.state,
+    required this.onSubmit,
+  });
 
   final TextEditingController controller;
   final SoundsState state;
+  final VoidCallback onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -366,19 +377,26 @@ class _AiMoodTab extends StatelessWidget {
                 TextField(
                   controller: controller,
                   maxLines: 3,
+                  textInputAction: TextInputAction.send,
                   style: const TextStyle(color: AppColors.textPrimary),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText:
                         'Örn: "Yagmurlu bir aksamda yorgun hissediyorum..."',
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      icon: const Icon(
+                        Icons.send_rounded,
+                        color: AppColors.primaryLight,
+                      ),
+                      onPressed: state.isAiLoading ? null : onSubmit,
+                    ),
                   ),
+                  onSubmitted: (_) => state.isAiLoading ? null : onSubmit(),
                 ),
                 const SizedBox(height: AppSizes.md),
                 GradientButton(
                   label: 'YZ\'ye Sor',
-                  onPressed: () {
-                    context.read<SoundsCubit>().askAiForSounds(controller.text);
-                  },
+                  onPressed: state.isAiLoading ? null : onSubmit,
                   isLoading: state.isAiLoading,
                   icon: Icons.auto_awesome_rounded,
                 ),
