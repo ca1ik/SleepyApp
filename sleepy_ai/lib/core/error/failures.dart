@@ -31,8 +31,8 @@ class AuthFailure extends Failure {
 
 class UnauthorizedFailure extends Failure {
   const UnauthorizedFailure(
-    [String message = 'Oturumunuz sona erdi. Lutfen tekrar giris yapin.'],
-  ) : super(message);
+      [String message = 'Oturumunuz sona erdi. Lutfen tekrar giris yapin.'])
+      : super(message);
 }
 
 class ValidationFailure extends Failure {
@@ -49,6 +49,6 @@ class PlatformFailure extends Failure {
 
 class UnknownFailure extends Failure {
   const UnknownFailure(
-    [String message = 'Beklenmeyen bir hata olustu. Lutfen tekrar deneyin.'],
-  ) : super(message);
+      [String message = 'Beklenmeyen bir hata olustu. Lutfen tekrar deneyin.'])
+      : super(message);
 }

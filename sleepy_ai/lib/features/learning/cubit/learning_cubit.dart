@@ -1,4 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+﻿import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sleepy_ai/features/learning/cubit/learning_state.dart';
 import 'package:sleepy_ai/shared/models/app_models.dart';
 
@@ -11,99 +11,84 @@ class LearningCubit extends Cubit<LearningState> {
     const SleepTipModel(
       id: '1',
       title: 'Sirkadiyen Ritim Nedir?',
-      description:
-          'Uyku-uyaniklik döngünüzü yöneten iç saatiniz hakkinda her sey.',
-      emoji: '⏰',
+      body: 'Uyku-uyaniklik dÃ¶ngÃ¼nÃ¼zÃ¼ yÃ¶neten iÃ§ saatiniz hakkinda her sey.',
       category: 'Biyoloji',
       readTimeMinutes: 5,
     ),
     const SleepTipModel(
       id: '2',
       title: 'Ekran Magarasi Sendromu',
-      description: 'Mavi isik uykuyu nasil etkiler ve nasil korunabilirsiniz.',
-      emoji: '📱',
+      body: 'Mavi isik uykuyu nasil etkiler ve nasil korunabilirsiniz.',
       category: 'Teknoloji',
       readTimeMinutes: 4,
     ),
     const SleepTipModel(
       id: '3',
       title: 'Derin Uyku Evreleri',
-      description: 'REM ve NREM uyku evrelerinde beyin ne yapar?',
-      emoji: '🧠',
+      body: 'REM ve NREM uyku evrelerinde beyin ne yapar?',
       category: 'Biyoloji',
       readTimeMinutes: 6,
     ),
     const SleepTipModel(
       id: '4',
       title: 'Kafein ve Uyku',
-      description: 'Kafein ne zaman kesilebilir? Yari omür nedir?',
-      emoji: '☕',
+      body: 'Kafein ne zaman kesilebilir? Yari omÃ¼r nedir?',
       category: 'Beslenme',
       readTimeMinutes: 3,
     ),
     const SleepTipModel(
       id: '5',
       title: 'Serin Ortamda Daha Iyi Uyu',
-      description: 'Ideal uyku odasi sicakligini nasil ayarlayabilirsiniz.',
-      emoji: '❄️',
+      body: 'Ideal uyku odasi sicakligini nasil ayarlayabilirsiniz.',
       category: 'Ortam',
       readTimeMinutes: 3,
     ),
     const SleepTipModel(
       id: '6',
       title: '4-7-8 Nefes Teknigi',
-      description: 'Birkaç dakikada uyumanizi saglayan güclü bir teknik.',
-      emoji: '🌬️',
+      body: 'BirkaÃ§ dakikada uyumanizi saglayan gÃ¼clÃ¼ bir teknik.',
       category: 'Teknik',
       readTimeMinutes: 4,
     ),
     const SleepTipModel(
       id: '7',
       title: 'Spor ve Uyku Kalitesi',
-      description: 'Hangi antrenman türü uyku kalitesini en çok arttirir?',
-      emoji: '🏃',
+      body: 'Hangi antrenman tÃ¼rÃ¼ uyku kalitesini en Ã§ok arttirir?',
       category: 'Spor',
       readTimeMinutes: 5,
     ),
     const SleepTipModel(
       id: '8',
-      title: 'Stres Uyku Düsmanı',
-      description: 'Kortizol seviyesi uyku üzerinde nasil olumsuz etki yapar?',
-      emoji: '😰',
+      title: 'Stres Uyku DÃ¼smanÄ±',
+      body: 'Kortizol seviyesi uyku Ã¼zerinde nasil olumsuz etki yapar?',
       category: 'Psikoloji',
       readTimeMinutes: 5,
     ),
     const SleepTipModel(
       id: '9',
       title: 'Melatonin Takviyesi',
-      description:
-          'Melatonin ne zaman ve nasil kullanilir? Dogal üretimi artirmanin yollari.',
-      emoji: '💊',
+      body: 'Melatonin ne zaman ve nasil kullanilir? Dogal Ã¼retimi artirmanin yollari.',
       category: 'Beslenme',
       readTimeMinutes: 4,
     ),
     const SleepTipModel(
       id: '10',
       title: 'Uyku Hijyeni 101',
-      description: 'Saglikli uyku aliniskanliklarinin temel kurallari.',
-      emoji: '🛏️',
+      body: 'Saglikli uyku aliniskanliklarinin temel kurallari.',
       category: 'Hijyen',
       readTimeMinutes: 6,
     ),
     const SleepTipModel(
       id: '11',
       title: 'Power Nap Bilimi',
-      description: '20 dakikalik bir uyku neden bu kadar etkilidir?',
-      emoji: '⚡',
+      body: '20 dakikalik bir uyku neden bu kadar etkilidir?',
       category: 'Teknik',
       readTimeMinutes: 3,
     ),
     const SleepTipModel(
       id: '12',
       title: 'Kisisel Uyku Profili',
-      description:
-          'Sabah insani mi gece kusu musunuz? Kronotipinizi kesfleyin.',
-      emoji: '🦉',
+      body: 'Sabah insani mi gece kusu musunuz? Kronotipinizi kesfleyin.',
       category: 'Biyoloji',
       readTimeMinutes: 4,
     ),
@@ -134,9 +119,10 @@ class LearningCubit extends Cubit<LearningState> {
               .where(
                 (a) =>
                     a.title.toLowerCase().contains(q) ||
-                    a.description.toLowerCase().contains(q),
+                    a.body.toLowerCase().contains(q),
               )
               .toList();
     emit(state.copyWith(filteredArticles: filtered, searchQuery: query));
   }
 }
+

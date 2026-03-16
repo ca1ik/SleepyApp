@@ -22,6 +22,9 @@ class InjectionContainer {
 
   static late SharedPreferences _prefs;
 
+  /// Exposed for widgets that need SharedPreferences directly (e.g. ThemeProvider)
+  static SharedPreferences get prefs => _prefs;
+
   /// Uygulama başlamadan önce çağrılmalıdır
   static Future<void> init() async {
     await Hive.initFlutter();

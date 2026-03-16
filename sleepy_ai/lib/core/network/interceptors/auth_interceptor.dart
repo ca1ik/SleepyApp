@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
+import 'package:sleepy_ai/core/network/api_constants.dart';
 
 /// Her isteğe Authorization header ekler.
 /// Token süresi dolmuşsa refresh yapar.
