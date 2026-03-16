@@ -69,11 +69,11 @@ class RewardsPage extends StatelessWidget {
                     sliver: SliverGrid(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: AppSizes.md,
-                            crossAxisSpacing: AppSizes.md,
-                            childAspectRatio: 0.9,
-                          ),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: AppSizes.md,
+                        crossAxisSpacing: AppSizes.md,
+                        childAspectRatio: 0.82,
+                      ),
                       delegate: SliverChildBuilderDelegate(
                         (ctx, i) => _BadgeCard(
                           badge: state.earnedBadges[i],
@@ -98,11 +98,11 @@ class RewardsPage extends StatelessWidget {
                   sliver: SliverGrid(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: AppSizes.md,
-                          crossAxisSpacing: AppSizes.md,
-                          childAspectRatio: 0.9,
-                        ),
+                      crossAxisCount: 2,
+                      mainAxisSpacing: AppSizes.md,
+                      crossAxisSpacing: AppSizes.md,
+                      childAspectRatio: 0.82,
+                    ),
                     delegate: SliverChildBuilderDelegate(
                       (ctx, i) => _BadgeCard(
                         badge: state.pendingBadges[i],
@@ -199,9 +199,8 @@ class _BadgeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: isEarned
-            ? AppColors.backgroundCard
-            : AppColors.backgroundCardLight,
+        color:
+            isEarned ? AppColors.backgroundCard : AppColors.backgroundCardLight,
         borderRadius: BorderRadius.circular(AppSizes.radiusLg),
         border: Border.all(
           color: isEarned ? AppColors.accentGold : AppColors.border,
