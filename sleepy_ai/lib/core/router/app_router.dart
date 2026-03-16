@@ -16,6 +16,8 @@ import 'package:sleepy_ai/features/games/presentation/breathing_game_page.dart';
 import 'package:sleepy_ai/features/games/presentation/games_hub_page.dart';
 import 'package:sleepy_ai/features/games/presentation/sleep_films_page.dart';
 import 'package:sleepy_ai/features/games/presentation/star_catcher_page.dart';
+import 'package:sleepy_ai/features/games/presentation/bubble_pop_page.dart';
+import 'package:sleepy_ai/features/games/presentation/sheep_counter_page.dart';
 import 'package:sleepy_ai/features/sounds/presentation/sounds_page.dart';
 
 /// GetX yönlendirme tablosu.
@@ -108,6 +110,16 @@ abstract final class AppRouter {
       name: AppStrings.routeSleepFilms,
       page: () => const SleepFilmsPage(),
       transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeBubblePop,
+      page: () => const BubblePopPage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeSheepCounter,
+      page: () => const SheepCounterPage(),
+      transition: Transition.downToUp,
     ),
   ];
 }
