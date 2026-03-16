@@ -12,6 +12,10 @@ import 'package:sleepy_ai/features/pro/presentation/sleepy_assistant_page.dart';
 import 'package:sleepy_ai/features/rewards/presentation/rewards_page.dart';
 import 'package:sleepy_ai/features/settings/presentation/settings_page.dart';
 import 'package:sleepy_ai/features/sleep_tracking/presentation/sleep_tracking_page.dart';
+import 'package:sleepy_ai/features/games/presentation/breathing_game_page.dart';
+import 'package:sleepy_ai/features/games/presentation/games_hub_page.dart';
+import 'package:sleepy_ai/features/games/presentation/sleep_films_page.dart';
+import 'package:sleepy_ai/features/games/presentation/star_catcher_page.dart';
 import 'package:sleepy_ai/features/sounds/presentation/sounds_page.dart';
 
 /// GetX yönlendirme tablosu.
@@ -83,6 +87,26 @@ abstract final class AppRouter {
     GetPage(
       name: AppStrings.routeChatbot,
       page: () => const SleepyAssistantPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeGames,
+      page: () => const GamesHubPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeBreathingGame,
+      page: () => const BreathingGamePage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeStarCatcher,
+      page: () => const StarCatcherPage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeSleepFilms,
+      page: () => const SleepFilmsPage(),
       transition: Transition.rightToLeft,
     ),
   ];
