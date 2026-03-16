@@ -128,9 +128,8 @@ class ProPaywallPage extends StatelessWidget {
                         price: state.monthlyPrice,
                         subtitle: 'aylık',
                         badge: null,
-                        onTap: state.isPurchasing
-                            ? null
-                            : cubit.purchaseMonthly,
+                        onTap:
+                            state.isPurchasing ? null : cubit.purchaseMonthly,
                         isLoading: state.isPurchasing,
                       ),
                       const SizedBox(height: AppSizes.sm),
@@ -207,6 +206,11 @@ class ProPaywallPage extends StatelessWidget {
 }
 
 const _kFeatures = [
+  _ProFeature(
+    '🤖',
+    'Sleepy Assistant',
+    'YZ destekli kişisel uyku danışmanı',
+  ),
   _ProFeature(
     '🎵',
     'Sınırsız Ses & Karıştırıcı',

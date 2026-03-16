@@ -34,8 +34,13 @@ abstract final class AppColors {
   static const LinearGradient backgroundGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [Color(0xFF0A0118), Color(0xFF1A0533), Color(0xFF0A0118)],
-    stops: [0.0, 0.5, 1.0],
+    colors: [
+      Color(0xFF060012), // very dark midnight purple
+      Color(0xFF1A0845), // deep electric purple
+      Color(0xFF2D0A6B), // rich violet peak
+      Color(0xFF12042E), // dark indigo base
+    ],
+    stops: [0.0, 0.35, 0.65, 1.0],
   );
   static const LinearGradient cardGradient = LinearGradient(
     begin: Alignment.topLeft,

@@ -351,10 +351,10 @@ class _QuickActionsRow extends StatelessWidget {
         GridView.count(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 4,
+          crossAxisCount: 5,
           mainAxisSpacing: AppSizes.sm,
           crossAxisSpacing: AppSizes.sm,
-          childAspectRatio: 0.85,
+          childAspectRatio: 0.78,
           children: const [
             _QuickActionItem(
               icon: Icons.music_note_rounded,
@@ -379,6 +379,12 @@ class _QuickActionsRow extends StatelessWidget {
               label: 'Rozetler',
               color: AppColors.accent,
               route: AppStrings.routeRewards,
+            ),
+            _QuickActionItem(
+              icon: Icons.smart_toy_rounded,
+              label: 'Asistan',
+              color: AppColors.primaryLight,
+              route: AppStrings.routeChatbot,
             ),
           ],
         ),

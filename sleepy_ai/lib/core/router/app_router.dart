@@ -8,6 +8,7 @@ import 'package:sleepy_ai/features/dashboard/presentation/dashboard_page.dart';
 import 'package:sleepy_ai/features/feedback/presentation/feedback_page.dart';
 import 'package:sleepy_ai/features/learning/presentation/learning_page.dart';
 import 'package:sleepy_ai/features/pro/presentation/pro_paywall_page.dart';
+import 'package:sleepy_ai/features/pro/presentation/sleepy_assistant_page.dart';
 import 'package:sleepy_ai/features/rewards/presentation/rewards_page.dart';
 import 'package:sleepy_ai/features/settings/presentation/settings_page.dart';
 import 'package:sleepy_ai/features/sleep_tracking/presentation/sleep_tracking_page.dart';
@@ -77,6 +78,11 @@ abstract final class AppRouter {
     GetPage(
       name: AppStrings.routeSettings,
       page: () => const SettingsPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeChatbot,
+      page: () => const SleepyAssistantPage(),
       transition: Transition.rightToLeft,
     ),
   ];

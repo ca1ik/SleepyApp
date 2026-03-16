@@ -23,7 +23,8 @@ class LocalSoundsRepository implements SoundsRepository {
       name: 'Yoğun Yağmur',
       nameTr: 'Yoğun Yağmur',
       // Heavy_Rain_Loop by Rubaoliva (CC0) freesound#624645
-      streamUrl: 'https://cdn.freesound.org/previews/624/624645_12956617-lq.mp3',
+      streamUrl:
+          'https://cdn.freesound.org/previews/624/624645_12956617-lq.mp3',
       category: SoundCategory.nature,
       iconEmoji: '🌧️',
     ),
@@ -41,7 +42,8 @@ class LocalSoundsRepository implements SoundsRepository {
       name: 'Su Damlası',
       nameTr: 'Su Damlası',
       // Rain Slowly Passing by speakwithanimals (CC0) freesound#525046
-      streamUrl: 'https://cdn.freesound.org/previews/525/525046_10637780-lq.mp3',
+      streamUrl:
+          'https://cdn.freesound.org/previews/525/525046_10637780-lq.mp3',
       category: SoundCategory.nature,
       iconEmoji: '💧',
     ),
@@ -142,7 +144,8 @@ class LocalSoundsRepository implements SoundsRepository {
       name: 'Şömine',
       nameTr: 'Şömine',
       // Campfire 02 by HECKFRICKER (CC0) freesound#729396
-      streamUrl: 'https://cdn.freesound.org/previews/729/729396_12863902-lq.mp3',
+      streamUrl:
+          'https://cdn.freesound.org/previews/729/729396_12863902-lq.mp3',
       category: SoundCategory.ambient,
       iconEmoji: '🔥',
     ),
@@ -201,7 +204,8 @@ class LocalSoundsRepository implements SoundsRepository {
       name: 'Klasik Ninni',
       nameTr: 'Klasik Ninni',
       // Rain - RPG by colorsCrimsonTears (CC0) freesound#609027
-      streamUrl: 'https://cdn.freesound.org/previews/609/609027_11785387-lq.mp3',
+      streamUrl:
+          'https://cdn.freesound.org/previews/609/609027_11785387-lq.mp3',
       category: SoundCategory.lullaby,
       iconEmoji: '🍼',
     ),
@@ -229,7 +233,8 @@ class LocalSoundsRepository implements SoundsRepository {
       name: 'Akustik Gitar',
       nameTr: 'Akustik Gitar',
       // River Flow Loop by EminYILDIRIM (CC0) freesound#608141
-      streamUrl: 'https://cdn.freesound.org/previews/608/608141_10912485-lq.mp3',
+      streamUrl:
+          'https://cdn.freesound.org/previews/608/608141_10912485-lq.mp3',
       category: SoundCategory.instruments,
       iconEmoji: '🎸',
     ),
@@ -315,7 +320,8 @@ class LocalSoundsRepository implements SoundsRepository {
       name: 'Namaz Ambiyansı',
       nameTr: 'Namaz Ambiyansı',
       // Crackling Flames by NickTayloe (CC0) freesound#813328
-      streamUrl: 'https://cdn.freesound.org/previews/813/813328_11606594-lq.mp3',
+      streamUrl:
+          'https://cdn.freesound.org/previews/813/813328_11606594-lq.mp3',
       category: SoundCategory.prayer,
       iconEmoji: '🤲',
     ),
