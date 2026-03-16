@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
@@ -37,8 +36,7 @@ class InjectionContainer {
 
   // ── Repositories ─────────────────────────────────────────────────────
 
-  static AuthRepository get authRepository =>
-      FirebaseAuthRepository(FirebaseAuth.instance);
+  static AuthRepository get authRepository => MockAuthRepository();
 
   static SleepRepository get sleepRepository =>
       LocalSleepRepository(userId: '');
