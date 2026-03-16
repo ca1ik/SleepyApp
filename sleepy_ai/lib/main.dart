@@ -1,7 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:sleepy_ai/core/constants/app_constants.dart';
+import 'package:sleepy_ai/core/di/injection_container.dart';
+import 'package:sleepy_ai/core/router/app_router.dart';
+import 'package:sleepy_ai/core/theme/app_theme.dart';
+import 'package:sleepy_ai/core/theme/theme_provider.dart';
+import 'package:sleepy_ai/features/auth/bloc/auth_bloc.dart';
+import 'package:sleepy_ai/features/auth/bloc/auth_event.dart';
+import 'package:sleepy_ai/features/learning/cubit/learning_cubit.dart';
+import 'package:sleepy_ai/features/pro/cubit/pro_cubit.dart';
+import 'package:sleepy_ai/features/rewards/cubit/rewards_cubit.dart';
+import 'package:sleepy_ai/features/settings/cubit/settings_cubit.dart';
+import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_bloc.dart';
+import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 
-void main() {
-  runApp(const MyApp());
+// Uncomment after adding google-services.json:
+// import 'package:firebase_core/firebase_core.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock to portrait orientation
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  // Style the system UI to match dark theme
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Color(0xFF0A0118),
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
+  );
+
+  // Initialize Hive, SharedPreferences, repositories
+  await InjectionContainer.init();
+
+  // Uncomment when google-services.json is present:
+  // await Firebase.initializeApp();
+
+  runApp(const SleepyApp());
+}
+
+class SleepyApp extends StatelessWidget {
+  const SleepyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => ThemeProvider())],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthBloc>(
+            create: (_) =>
+                InjectionContainer.createAuthBloc()..add(AuthCheckRequested()),
+          ),
+          BlocProvider<SleepCycleBloc>(
+            create: (_) => InjectionContainer.createSleepBloc(),
+          ),
+          BlocProvider<SoundsCubit>(
+            create: (_) => InjectionContainer.createSoundsCubit(),
+          ),
+          BlocProvider<LearningCubit>(
+            create: (_) => InjectionContainer.createLearningCubit(),
+          ),
+          BlocProvider<RewardsCubit>(
+            create: (_) =>
+                InjectionContainer.createRewardsCubit()..loadBadges(),
+          ),
+          BlocProvider<SettingsCubit>(
+            create: (_) => InjectionContainer.createSettingsCubit(),
+          ),
+          BlocProvider<ProCubit>(
+            create: (_) =>
+                InjectionContainer.createProCubit()..checkProStatus(),
+          ),
+        ],
+        child: Consumer<ThemeProvider>(
+          builder: (_, themeProvider, __) => GetMaterialApp(
+            title: AppStrings.appName,
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.darkTheme,
+            initialRoute: AppStrings.routeSplash,
+            getPages: AppRouter.routes,
+            locale: const Locale('tr'),
+            fallbackLocale: const Locale('en'),
+            supportedLocales: const [Locale('tr'), Locale('en')],
+            // l10n delegates — enable after running `flutter gen-l10n`
+            // localizationsDelegates: AppLocalizations.localizationsDelegates,
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

@@ -1,0 +1,124 @@
+{
+  "@@locale": "en",
+  "appName": "SleepyApp",
+  "@appName": { "description": "The application name" },
+
+  "tagline": "Sleep Better. Live Better.",
+  "@tagline": { "description": "App tagline" },
+
+  "dashboard": "Dashboard",
+  "sounds": "Sounds",
+  "learning": "Learning",
+  "profile": "Profile",
+
+  "goodNight": "Good Night",
+  "goodMorning": "Good Morning",
+  "greeting": "Hello, {name}!",
+  "@greeting": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+
+  "sleepScore": "Sleep Score",
+  "sleepDuration": "Sleep Duration",
+  "sleepGoal": "Sleep Goal",
+  "avgSleep": "Weekly Average",
+  "sleepDebt": "Sleep Debt",
+  "trackSleep": "Track Sleep",
+  "stopTracking": "Stop Tracking",
+  "startTracking": "Start Tracking",
+  "tracking": "Tracking...",
+  "logSleep": "Log Sleep",
+  "sleepHistory": "Sleep History",
+  "noRecords": "No sleep records yet",
+
+  "soundLibrary": "Sound Library",
+  "aiMoodMusic": "AI Mood Music",
+  "mixer": "Mixer",
+  "noActiveTracks": "No active tracks",
+  "addSounds": "Add sounds to mixer",
+  "moodInputHint": "Describe your mood...",
+  "getRecommendations": "Get Recommendations",
+
+  "articles": "Articles",
+  "searchArticles": "Search articles...",
+  "all": "All",
+  "minRead": "{min} min read",
+  "@minRead": {
+    "placeholders": {
+      "min": { "type": "int" }
+    }
+  },
+
+  "rewards": "Rewards",
+  "myBadges": "My Badges",
+  "earned": "Earned",
+  "locked": "Locked",
+
+  "feedback": "Feedback",
+  "howWasApp": "How was SleepyApp?",
+  "ratingLabel": "Your Rating",
+  "messagePlaceholder": "Share your thoughts... (optional)",
+  "submit": "Submit",
+  "thankYou": "Thank You! 🙏",
+  "feedbackSent": "Your feedback was submitted successfully.",
+
+  "pro": "PRO",
+  "sleepyAppPro": "SleepyApp PRO",
+  "proTagline": "Premium experience for better sleep",
+  "monthly": "Monthly",
+  "yearly": "Yearly",
+  "perMonth": "per month",
+  "perYear": "per year ({discount}% off)",
+  "@perYear": {
+    "placeholders": {
+      "discount": { "type": "int" }
+    }
+  },
+  "restorePurchases": "Restore Purchases",
+  "subscriptionNote": "Subscription renews automatically. Cancel anytime.",
+  "proActive": "🎉 Welcome to PRO! All features unlocked.",
+
+  "settings": "Settings",
+  "language": "Language",
+  "notifications": "Notifications",
+  "sleepReminder": "Sleep Reminder",
+  "sleepReminderSub": "Get notified at bedtime",
+  "sleepSchedule": "Sleep Schedule",
+  "bedtime": "Bedtime",
+  "sleepGoalHours": "Sleep Goal",
+  "account": "Account",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "logout": "Logout",
+  "logoutConfirm": "Are you sure you want to logout?",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "version": "SleepyApp v{version}",
+  "@version": {
+    "placeholders": {
+      "version": { "type": "String" }
+    }
+  },
+
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "fullName": "Full Name",
+  "login": "Login",
+  "register": "Register",
+  "forgotPassword": "Forgot Password?",
+  "sendResetEmail": "Send Reset Email",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "signUp": "Sign Up",
+  "signIn": "Sign In",
+  "resetPasswordSent": "Password reset email sent. Check your inbox.",
+
+  "error": "Error",
+  "success": "Success",
+  "loading": "Loading...",
+  "retry": "Retry",
+  "back": "Back"
+}
