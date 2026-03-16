@@ -35,7 +35,6 @@ abstract class SleepRepository {
 class LocalSleepRepository implements SleepRepository {
   LocalSleepRepository({required this.userId});
 
-  @override
   final String userId;
 
   @override
@@ -47,12 +46,11 @@ class LocalSleepRepository implements SleepRepository {
   Future<Either<Failure, List<SleepEntity>>> getLast7DaysRecords() async {
     try {
       final cutoff = DateTime.now().subtract(const Duration(days: 7));
-      final records =
-          _box.values
-              .map((m) => SleepEntity.fromMap(Map<String, dynamic>.from(m)))
-              .where((r) => r.bedtime.isAfter(cutoff))
-              .toList()
-            ..sort((a, b) => b.bedtime.compareTo(a.bedtime));
+      final records = _box.values
+          .map((m) => SleepEntity.fromMap(Map<String, dynamic>.from(m)))
+          .where((r) => r.bedtime.isAfter(cutoff))
+          .toList()
+        ..sort((a, b) => b.bedtime.compareTo(a.bedtime));
       return Right(records);
     } catch (e) {
       return Left(CacheFailure('Uyku geçmişi yüklenemedi: $e'));

@@ -106,8 +106,7 @@ class _HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SleepCycleBloc, SleepCycleState>(
       builder: (context, state) {
-        final isLoaded = state is SleepHistoryLoaded;
-        final loaded = isLoaded ? state as SleepHistoryLoaded : null;
+        final loaded = state is SleepHistoryLoaded ? state : null;
 
         return CustomScrollView(
           slivers: [
@@ -129,7 +128,7 @@ class _HomeTab extends StatelessWidget {
                         child: MetricCardWidget(
                           icon: Icons.bar_chart_rounded,
                           title: 'Uyku Puanı',
-                          value: isLoaded ? '${loaded!.sleepScore}' : '--',
+                          value: loaded != null ? '${loaded.sleepScore}' : '--',
                           unit: '/100',
                           color: AppColors.primary,
                         ),
@@ -139,8 +138,8 @@ class _HomeTab extends StatelessWidget {
                         child: MetricCardWidget(
                           icon: Icons.schedule_rounded,
                           title: 'Haftalık Ort.',
-                          value: isLoaded
-                              ? loaded!.weeklyAverage.toStringAsFixed(1)
+                          value: loaded != null
+                              ? loaded.weeklyAverage.toStringAsFixed(1)
                               : '--',
                           unit: 'sa',
                           color: AppColors.accent,
@@ -151,11 +150,11 @@ class _HomeTab extends StatelessWidget {
                         child: MetricCardWidget(
                           icon: Icons.battery_alert_rounded,
                           title: 'Uyku Borcu',
-                          value: isLoaded
-                              ? loaded!.sleepDebt.toStringAsFixed(1)
+                          value: loaded != null
+                              ? loaded.sleepDebt.toStringAsFixed(1)
                               : '--',
                           unit: 'sa',
-                          color: isLoaded && loaded!.sleepDebt > 2
+                          color: loaded != null && loaded.sleepDebt > 2
                               ? AppColors.warning
                               : AppColors.success,
                         ),
@@ -164,9 +163,9 @@ class _HomeTab extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSizes.lg),
                   // Haftalık grafik
-                  if (isLoaded) ...[
+                  if (loaded != null) ...[
                     SleepChartWidget(
-                      sleepLogs: loaded!.records,
+                      sleepLogs: loaded.records,
                       targetHours: loaded.goalHours,
                     ),
                     const SizedBox(height: AppSizes.lg),

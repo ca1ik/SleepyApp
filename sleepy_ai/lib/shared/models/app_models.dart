@@ -97,13 +97,23 @@ class ActiveSoundTrack extends Equatable {
   List<Object?> get props => [sound, volume, isPlaying];
 }
 
+/// Badge kategorisi — uyku bazlı veya oyun/film bazlı
+enum BadgeCategory { sleep, game, film }
+
 /// Badge / ödül modeli
 enum BadgeType {
+  // Uyku rozetleri
   flexibleHours,
   mealCard,
   commuteCompensation,
   workingEquipment,
   paidBirthdayOff,
+  // Oyun rozetleri
+  cosmicBreather,
+  starCatcher,
+  dreamWeaver,
+  galaxyExplorer,
+  sleepSage,
 }
 
 class BadgeModel extends Equatable {
@@ -114,6 +124,7 @@ class BadgeModel extends Equatable {
     required this.description,
     required this.emoji,
     required this.requiredScore,
+    this.category = BadgeCategory.sleep,
     this.isEarned = false,
     this.earnedAt,
   });
@@ -123,7 +134,8 @@ class BadgeModel extends Equatable {
   final String titleTr;
   final String description;
   final String emoji;
-  final int requiredScore; // Ortalama uyku skoru eşiği
+  final int requiredScore; // Ortalama uyku skoru eşiği (oyun rozetleri için 0)
+  final BadgeCategory category;
   final bool isEarned;
   final DateTime? earnedAt;
 
@@ -135,6 +147,7 @@ class BadgeModel extends Equatable {
       description: description,
       emoji: emoji,
       requiredScore: requiredScore,
+      category: category,
       isEarned: isEarned ?? this.isEarned,
       earnedAt: earnedAt ?? this.earnedAt,
     );
@@ -146,6 +159,7 @@ class BadgeModel extends Equatable {
 
 /// Varsayılan badge listesi
 const List<BadgeModel> kDefaultBadges = [
+  // ── Uyku Rozetleri ──────────────────────────────────────────────────────
   BadgeModel(
     type: BadgeType.flexibleHours,
     title: 'Flexible Working Hours',
@@ -153,6 +167,7 @@ const List<BadgeModel> kDefaultBadges = [
     description: '7 gün üst üste düzenli uyku saati tut.',
     emoji: '⏰',
     requiredScore: 60,
+    category: BadgeCategory.sleep,
   ),
   BadgeModel(
     type: BadgeType.mealCard,
@@ -161,6 +176,7 @@ const List<BadgeModel> kDefaultBadges = [
     description: '14 gün boyunca 7 saat ve üzeri uyu.',
     emoji: '🍽️',
     requiredScore: 70,
+    category: BadgeCategory.sleep,
   ),
   BadgeModel(
     type: BadgeType.commuteCompensation,
@@ -169,6 +185,7 @@ const List<BadgeModel> kDefaultBadges = [
     description: 'Uyku kalite ortalamasını 75 üzerine çıkar.',
     emoji: '🚌',
     requiredScore: 75,
+    category: BadgeCategory.sleep,
   ),
   BadgeModel(
     type: BadgeType.workingEquipment,
@@ -177,16 +194,80 @@ const List<BadgeModel> kDefaultBadges = [
     description: '30 gün kesintisiz uyku takibi yap.',
     emoji: '💻',
     requiredScore: 80,
+    category: BadgeCategory.sleep,
   ),
   BadgeModel(
     type: BadgeType.paidBirthdayOff,
     title: 'Paid Birthday Off',
     titleTr: 'Doğum Günü İzni',
-    description: 'Tüm rozetleri kazandın. Efsanesin!',
+    description: 'Tüm uyku rozetlerini kazandın. Efsanesin!',
     emoji: '🎂',
     requiredScore: 90,
+    category: BadgeCategory.sleep,
+  ),
+  // ── Oyun & Film Rozetleri ───────────────────────────────────────────────
+  BadgeModel(
+    type: BadgeType.cosmicBreather,
+    title: 'Cosmic Breather',
+    titleTr: 'Kozmik Nefes',
+    description: 'Kozmik Nefes oyununda 5 tam döngü tamamla.',
+    emoji: '🌌',
+    requiredScore: 0,
+    category: BadgeCategory.game,
+  ),
+  BadgeModel(
+    type: BadgeType.starCatcher,
+    title: 'Star Catcher',
+    titleTr: 'Yıldız Avcısı',
+    description: 'Yıldız Avcısı oyununda 30+ yıldız topla.',
+    emoji: '⭐',
+    requiredScore: 0,
+    category: BadgeCategory.game,
+  ),
+  BadgeModel(
+    type: BadgeType.dreamWeaver,
+    title: 'Dream Weaver',
+    titleTr: 'Hayal Dokuyucu',
+    description: '3 uyku filmini baştan sona izle.',
+    emoji: '🎬',
+    requiredScore: 0,
+    category: BadgeCategory.film,
+  ),
+  BadgeModel(
+    type: BadgeType.galaxyExplorer,
+    title: 'Galaxy Explorer',
+    titleTr: 'Galaksi Gezgini',
+    description: 'Tüm 3 oyunu en az bir kez oyna.',
+    emoji: '🚀',
+    requiredScore: 0,
+    category: BadgeCategory.game,
+  ),
+  BadgeModel(
+    type: BadgeType.sleepSage,
+    title: 'Sleep Sage',
+    titleTr: 'Uyku Bilgesi',
+    description: 'Oyunlarda toplam 500+ puan topla.',
+    emoji: '🧙',
+    requiredScore: 0,
+    category: BadgeCategory.game,
   ),
 ];
+
+/// Oyun skoru kaydı
+class GameScoreRecord extends Equatable {
+  const GameScoreRecord({
+    required this.gameId,
+    required this.score,
+    required this.timestamp,
+  });
+
+  final String gameId; // 'breathing' | 'star_catcher' | 'galaxy'
+  final int score;
+  final DateTime timestamp;
+
+  @override
+  List<Object?> get props => [gameId, score, timestamp];
+}
 
 /// Öğrenme modeli uyku ipuçları için
 class SleepTipModel extends Equatable {

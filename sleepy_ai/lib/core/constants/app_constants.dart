@@ -46,6 +46,10 @@ abstract final class AppStrings {
   static const String routeChatbot = '/chatbot';
   static const String routeMoodMusic = '/mood-music';
   static const String routeCreateMusic = '/create-music';
+  static const String routeGames = '/games';
+  static const String routeBreathingGame = '/games/breathing';
+  static const String routeStarCatcher = '/games/star-catcher';
+  static const String routeSleepFilms = '/games/films';
 
   // ── Hive Box Names ───────────────────────────────────────────────────
   static const String boxSleepLogs = 'sleep_logs';

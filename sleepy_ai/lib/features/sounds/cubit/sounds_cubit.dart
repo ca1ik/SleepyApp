@@ -3,7 +3,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_state.dart';
 import 'package:sleepy_ai/features/sounds/data/sounds_repository.dart';
 import 'package:sleepy_ai/shared/models/app_models.dart';
-import 'package:uuid/uuid.dart';
 
 /// Çoklu ses parçasının eş zamanlı çalınmasını yöneten Cubit.
 /// Her ActiveSoundTrack kendi [AudioPlayer] örneğine sahiptir.
@@ -13,7 +12,6 @@ class SoundsCubit extends Cubit<SoundsState> {
   }
 
   final SoundsRepository repository;
-  final _uuid = const Uuid();
 
   /// soundId → AudioPlayer mapping (bellek içinde tutulur).
   final Map<String, AudioPlayer> _players = {};
@@ -81,9 +79,8 @@ class SoundsCubit extends Cubit<SoundsState> {
     await player?.stop();
     await player?.dispose();
 
-    final updated = state.activeTracks
-        .where((t) => t.sound.id != soundId)
-        .toList();
+    final updated =
+        state.activeTracks.where((t) => t.sound.id != soundId).toList();
 
     emit(
       state.copyWith(activeTracks: updated, isMixerVisible: updated.isNotEmpty),
@@ -110,9 +107,8 @@ class SoundsCubit extends Cubit<SoundsState> {
     for (final player in _players.values) {
       await player.pause();
     }
-    final updated = state.activeTracks
-        .map((t) => t.copyWith(isPlaying: false))
-        .toList();
+    final updated =
+        state.activeTracks.map((t) => t.copyWith(isPlaying: false)).toList();
     emit(state.copyWith(activeTracks: updated));
   }
 
@@ -120,9 +116,8 @@ class SoundsCubit extends Cubit<SoundsState> {
     for (final player in _players.values) {
       await player.play();
     }
-    final updated = state.activeTracks
-        .map((t) => t.copyWith(isPlaying: true))
-        .toList();
+    final updated =
+        state.activeTracks.map((t) => t.copyWith(isPlaying: true)).toList();
     emit(state.copyWith(activeTracks: updated));
   }
 
