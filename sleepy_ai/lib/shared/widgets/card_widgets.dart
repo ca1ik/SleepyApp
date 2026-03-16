@@ -124,7 +124,11 @@ class BadgeCardWidget extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.all(AppSizes.md),
+        clipBehavior: Clip.hardEdge,
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.md,
+          vertical: AppSizes.sm,
+        ),
         decoration: BoxDecoration(
           gradient: badge.isEarned
               ? AppColors.cardGradient
@@ -181,9 +185,8 @@ class BadgeCardWidget extends StatelessWidget {
             Text(
               badge.titleTr,
               style: TextStyle(
-                color: badge.isEarned
-                    ? AppColors.badgeGold
-                    : AppColors.textMuted,
+                color:
+                    badge.isEarned ? AppColors.badgeGold : AppColors.textMuted,
                 fontSize: AppSizes.fontSm,
                 fontWeight: FontWeight.w600,
               ),
