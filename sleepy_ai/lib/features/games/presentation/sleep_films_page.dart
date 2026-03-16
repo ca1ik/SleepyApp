@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 import 'package:get/get.dart';
 import 'package:sleepy_ai/features/rewards/cubit/rewards_cubit.dart';
 
@@ -246,11 +246,11 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
   @override
   void initState() {
     super.initState();
-    _anim = AnimationController(
-        vsync: this, duration: const Duration(seconds: 1))
-      ..repeat();
-    _particles = List.generate(
-        60, (i) => _Particle(_rng, 400, 700)); // approx size, refreshed in build
+    _anim =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1))
+          ..repeat();
+    _particles = List.generate(60,
+        (i) => _Particle(_rng, 400, 700)); // approx size, refreshed in build
     _anim.addListener(_tick);
   }
 
@@ -273,7 +273,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
     }
 
     // Advance scene
-    final newScene = (_timeSec / _sceneDuration).floor().clamp(0, _totalScenes - 1);
+    final newScene =
+        (_timeSec / _sceneDuration).floor().clamp(0, _totalScenes - 1);
     if (newScene != _sceneIndex) {
       _sceneIndex = newScene;
     }
@@ -332,8 +333,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
             duration: const Duration(seconds: 2),
             decoration: BoxDecoration(
               gradient: RadialGradient(
-                center: Alignment(
-                    math.sin(_timeSec * 0.2) * 0.5,
+                center: Alignment(math.sin(_timeSec * 0.2) * 0.5,
                     math.cos(_timeSec * 0.15) * 0.5),
                 radius: 1.5,
                 colors: [
@@ -373,8 +373,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                   fontWeight: FontWeight.w300,
                   shadows: [
                     Shadow(
-                        color: scene.accentColor.withAlpha(120),
-                        blurRadius: 12)
+                        color: scene.accentColor.withAlpha(120), blurRadius: 12)
                   ],
                 ),
               ),
@@ -384,8 +383,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
           // Top HUD
           SafeArea(
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -439,9 +437,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           height: 4,
-                          width:
-                              (MediaQuery.of(context).size.width - 40) *
-                                  totalProgress,
+                          width: (MediaQuery.of(context).size.width - 40) *
+                              totalProgress,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
@@ -474,9 +471,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                   width: i == _sceneIndex ? 20 : 6,
                   height: 6,
                   decoration: BoxDecoration(
-                    color: i == _sceneIndex
-                        ? scene.accentColor
-                        : Colors.white24,
+                    color:
+                        i == _sceneIndex ? scene.accentColor : Colors.white24,
                     borderRadius: BorderRadius.circular(3),
                   ),
                 ),
@@ -503,13 +499,11 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
       ),
       child: SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(widget.film.emoji,
-                  style: const TextStyle(fontSize: 80)),
+              Text(widget.film.emoji, style: const TextStyle(fontSize: 80)),
               const SizedBox(height: 20),
               Text(
                 widget.film.title,
@@ -521,18 +515,17 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
               const SizedBox(height: 8),
               Text(
                 'Film tamamlandı ✨',
-                style: TextStyle(
-                    color: Colors.white.withAlpha(150), fontSize: 16),
+                style:
+                    TextStyle(color: Colors.white.withAlpha(150), fontSize: 16),
               ),
               if (_badgeUnlocked) ...[
                 const SizedBox(height: 28),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 14),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                   decoration: BoxDecoration(
                     color: Colors.purple.withAlpha(40),
-                    border: Border.all(
-                        color: Colors.purple.withAlpha(120)),
+                    border: Border.all(color: Colors.purple.withAlpha(120)),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: const Row(
@@ -549,8 +542,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                                   fontWeight: FontWeight.bold)),
                           Text('Rüya Dokuyucu',
                               style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 13)),
+                                  color: Colors.white70, fontSize: 13)),
                         ],
                       ),
                     ],
@@ -563,10 +555,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                   Expanded(
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(
-                            color: Colors.white.withAlpha(80)),
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 16),
+                        side: BorderSide(color: Colors.white.withAlpha(80)),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                       ),
@@ -642,19 +632,15 @@ class SleepFilmsPage extends StatelessWidget {
               ),
             ),
           ),
-
           SliverToBoxAdapter(
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
                 '${_kFilms.length} adet huzur verici animasyon • 2-3 dakika',
-                style:
-                    const TextStyle(color: Colors.white38, fontSize: 13),
+                style: const TextStyle(color: Colors.white38, fontSize: 13),
               ),
             ),
           ),
-
           SliverPadding(
             padding: const EdgeInsets.all(16),
             sliver: SliverGrid(
@@ -670,7 +656,6 @@ class SleepFilmsPage extends StatelessWidget {
               ),
             ),
           ),
-
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
@@ -700,8 +685,7 @@ class _FilmCard extends StatelessWidget {
             ],
           ),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-              color: film.scenes[0].accentColor.withAlpha(60)),
+          border: Border.all(color: film.scenes[0].accentColor.withAlpha(60)),
           boxShadow: [
             BoxShadow(
               color: film.scenes[0].accentColor.withAlpha(30),
@@ -715,8 +699,7 @@ class _FilmCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(film.emoji,
-                  style: const TextStyle(fontSize: 40)),
+              Text(film.emoji, style: const TextStyle(fontSize: 40)),
               const Spacer(),
               Text(
                 film.title,
@@ -743,8 +726,7 @@ class _FilmCard extends StatelessWidget {
                   Text(
                     '~3 dk',
                     style: TextStyle(
-                        color: film.scenes[0].accentColor,
-                        fontSize: 12),
+                        color: film.scenes[0].accentColor, fontSize: 12),
                   ),
                 ],
               ),
