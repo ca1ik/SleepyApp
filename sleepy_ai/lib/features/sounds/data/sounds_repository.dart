@@ -327,27 +327,202 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
   ];
 
-  // ─── YZ keyword → ses ID'leri eşleşmesi (mock implementasyon) ─────────────
+  // ─── Küratörlü 5-ses karışımları ─────────────────────────────────────────
+  static const Map<String, List<String>> _mixPresets = {
+    'derin_uyku': [
+      'brown_noise',
+      'rain_light',
+      'ocean_waves',
+      'binaural_delta',
+      'meditation_om'
+    ],
+    'meditasyon': [
+      'meditation_om',
+      'tibetan_bowl',
+      'binaural_theta',
+      'piano_soft',
+      'fan'
+    ],
+    'stres_gider': [
+      'ocean_waves',
+      'white_noise',
+      'forest_birds',
+      'rain_light',
+      'tibetan_bowl'
+    ],
+    'odak': ['brown_noise', 'coffee_shop', 'library', 'fan', 'rain_light'],
+    'huzur': [
+      'forest_birds',
+      'river_stream',
+      'wind',
+      'rain_light',
+      'tibetan_bowl'
+    ],
+    'firtina': ['rain_heavy', 'thunder', 'wind', 'brown_noise', 'white_noise'],
+    'ninni': [
+      'lullaby_classic',
+      'lullaby_hum',
+      'piano_soft',
+      'rain_light',
+      'white_noise'
+    ],
+    'ortacag': [
+      'medieval_tavern',
+      'medieval_lute',
+      'medieval_forest',
+      'fireplace',
+      'rain_light'
+    ],
+    'romantik': [
+      'piano_soft',
+      'fireplace',
+      'rain_light',
+      'guitar_acoustic',
+      'purring_cat'
+    ],
+    'sabah': [
+      'forest_birds',
+      'gentle_chimes',
+      'river_stream',
+      'happy_birds',
+      'wind'
+    ],
+  };
 
+  // ─── YZ keyword → ses ID'leri eşleşmesi ──────────────────────────────────
   static const Map<String, List<String>> _moodKeywords = {
+    // Üzüntü
     'üzgün': ['rain_light', 'piano_soft', 'fireplace'],
     'sad': ['rain_light', 'piano_soft', 'fireplace'],
-    'stresli': ['white_noise', 'meditation_om', 'tibetan_bowl'],
+    'ağlıyorum': ['rain_light', 'piano_soft', 'fireplace'],
+    'kötü hissediyorum': ['rain_light', 'piano_soft', 'ocean_waves'],
+    'depresif': ['rain_light', 'piano_soft', 'fireplace', 'ocean_waves'],
+    // Stres & Anksiyete
+    'stresli': ['white_noise', 'meditation_om', 'tibetan_bowl', 'ocean_waves'],
+    'stres': ['white_noise', 'ocean_waves', 'tibetan_bowl', 'rain_light'],
     'stressed': ['white_noise', 'meditation_om', 'tibetan_bowl'],
+    'anksiyete': [
+      'brown_noise',
+      'ocean_waves',
+      'meditation_om',
+      'tibetan_bowl'
+    ],
+    'anxiety': ['brown_noise', 'ocean_waves', 'meditation_om'],
+    'panik': ['ocean_waves', 'white_noise', 'tibetan_bowl', 'rain_light'],
+    'gergin': ['ocean_waves', 'white_noise', 'meditation_om'],
+    'endişeli': ['ocean_waves', 'rain_light', 'tibetan_bowl'],
+    // Mutluluk
     'mutlu': ['happy_birds', 'forest_birds', 'gentle_chimes'],
     'happy': ['happy_birds', 'forest_birds', 'gentle_chimes'],
+    'neşeli': ['happy_birds', 'gentle_chimes', 'forest_birds'],
+    'keyifli': ['happy_birds', 'guitar_acoustic', 'gentle_chimes'],
+    // Yalnızlık
     'yalnız': ['fireplace', 'rain_heavy', 'purring_cat'],
     'lonely': ['fireplace', 'rain_heavy', 'purring_cat'],
+    'sessizlik': ['brown_noise', 'fan', 'white_noise'],
+    // Yorgunluk & Uyku
     'yorgun': ['brown_noise', 'ocean_waves', 'binaural_delta'],
     'tired': ['brown_noise', 'ocean_waves', 'binaural_delta'],
+    'uyuyamıyorum': [
+      'brown_noise',
+      'rain_light',
+      'ocean_waves',
+      'binaural_delta'
+    ],
+    'uykusuzluk': [
+      'brown_noise',
+      'binaural_delta',
+      'ocean_waves',
+      'rain_light'
+    ],
+    'insomnia': ['brown_noise', 'binaural_delta', 'ocean_waves'],
+    'derin uyku': [
+      'brown_noise',
+      'binaural_delta',
+      'rain_light',
+      'ocean_waves',
+      'meditation_om'
+    ],
+    'uyku': ['brown_noise', 'rain_light', 'ocean_waves', 'binaural_delta'],
+    'sleep': ['brown_noise', 'rain_light', 'ocean_waves', 'binaural_delta'],
+    // Odak & Çalışma
     'odaklanmak': ['coffee_shop', 'library', 'brown_noise'],
+    'odak': ['coffee_shop', 'library', 'brown_noise', 'fan'],
     'focus': ['coffee_shop', 'library', 'brown_noise'],
+    'çalışma': ['library', 'brown_noise', 'coffee_shop', 'fan'],
+    'study': ['library', 'brown_noise', 'coffee_shop'],
+    'konsantrasyon': ['brown_noise', 'library', 'fan'],
+    'ders': ['library', 'brown_noise', 'fan'],
+    // Meditasyon
     'meditasyon': ['meditation_om', 'tibetan_bowl', 'binaural_theta'],
     'meditation': ['meditation_om', 'tibetan_bowl', 'binaural_theta'],
+    'yoga': ['meditation_om', 'tibetan_bowl', 'piano_soft', 'gentle_chimes'],
+    'nefes': ['meditation_om', 'tibetan_bowl', 'ocean_waves'],
+    'mindfulness': ['meditation_om', 'tibetan_bowl', 'binaural_theta'],
+    'chakra': ['tibetan_bowl', 'meditation_om', 'binaural_theta'],
+    // Doğa
+    'doğa': ['forest_birds', 'river_stream', 'wind', 'rain_light'],
+    'nature': ['forest_birds', 'river_stream', 'wind'],
+    'yağmur': ['rain_heavy', 'rain_light', 'thunder'],
+    'rain': ['rain_heavy', 'rain_light', 'water_drop'],
+    'orman': ['forest_birds', 'wind', 'river_stream'],
+    'forest': ['forest_birds', 'wind', 'river_stream'],
+    'deniz': ['ocean_waves', 'wind', 'rain_light'],
+    'ocean': ['ocean_waves', 'wind'],
+    'fırtına': ['thunder', 'rain_heavy', 'wind'],
+    'storm': ['thunder', 'rain_heavy', 'wind'],
+    // Ninni & Bebek
     'ninni': ['lullaby_classic', 'lullaby_hum', 'piano_soft'],
     'lullaby': ['lullaby_classic', 'lullaby_hum', 'piano_soft'],
+    'bebek': ['lullaby_classic', 'lullaby_hum', 'white_noise', 'rain_light'],
+    'baby': ['lullaby_classic', 'lullaby_hum', 'white_noise'],
+    'çocuk': ['lullaby_hum', 'gentle_chimes', 'piano_soft'],
+    // Ortaçağ
     'ortaçağ': ['medieval_tavern', 'medieval_lute', 'medieval_forest'],
     'medieval': ['medieval_tavern', 'medieval_lute', 'medieval_forest'],
+    'savaş': ['medieval_tavern', 'medieval_forest', 'thunder'],
+    'fantasy': ['medieval_lute', 'medieval_forest', 'gentle_chimes'],
+    // Müzik zevki
+    'piyano': ['piano_soft', 'guitar_acoustic', 'rain_light'],
+    'piano': ['piano_soft', 'guitar_acoustic'],
+    'gitar': ['guitar_acoustic', 'piano_soft', 'fireplace'],
+    'müzik': ['piano_soft', 'guitar_acoustic', 'gentle_chimes'],
+    'flüt': ['flute_peaceful', 'forest_birds', 'river_stream'],
+    'kase': ['tibetan_bowl', 'meditation_om', 'binaural_theta'],
+    // Huzur
+    'huzur': ['ocean_waves', 'forest_birds', 'rain_light', 'tibetan_bowl'],
+    'peaceful': ['ocean_waves', 'forest_birds', 'rain_light'],
+    'sakin': ['brown_noise', 'ocean_waves', 'rain_light'],
+    'calm': ['brown_noise', 'ocean_waves', 'rain_light'],
+    'dingin': ['ocean_waves', 'tibetan_bowl', 'meditation_om'],
+    'rahatlamak': ['ocean_waves', 'rain_light', 'tibetan_bowl', 'piano_soft'],
+    'relax': ['ocean_waves', 'rain_light', 'tibetan_bowl'],
+    // Kedi ve ev ortamı
+    'kedi': ['purring_cat', 'fireplace', 'rain_light'],
+    'cat': ['purring_cat', 'fireplace'],
+    'cozy': ['fireplace', 'rain_light', 'purring_cat'],
+    'şömine': ['fireplace', 'rain_light', 'purring_cat'],
+    // Spesifik istekler
+    'zor': [
+      'brown_noise',
+      'binaural_delta',
+      'ocean_waves',
+      'rain_light',
+      'white_noise'
+    ],
+    'difficult': [
+      'brown_noise',
+      'binaural_delta',
+      'ocean_waves',
+      'white_noise'
+    ],
+    'karışık': ['brown_noise', 'ocean_waves', 'rain_light', 'tibetan_bowl'],
+    'namaz': ['prayer_ambient', 'tibetan_bowl', 'gentle_chimes'],
+    'dua': ['prayer_ambient', 'meditation_om', 'gentle_chimes'],
+    'gece': ['brown_noise', 'rain_light', 'binaural_delta', 'ocean_waves'],
+    'night': ['brown_noise', 'rain_light', 'binaural_delta'],
+    'sabah': ['forest_birds', 'gentle_chimes', 'river_stream', 'happy_birds'],
+    'morning': ['forest_birds', 'gentle_chimes', 'river_stream'],
   };
 
   @override
@@ -371,21 +546,79 @@ class LocalSoundsRepository implements SoundsRepository {
   Future<List<SoundModel>> getAiRecommendedSounds(
     String moodDescription,
   ) async {
-    // Gerçek projede bir LLM API'sine istek atılır; şimdilik keyword eşleme.
-    final query = moodDescription.toLowerCase();
-    final matchedIds = <String>{};
+    final q = moodDescription.toLowerCase().trim();
 
+    // 1. Küratörlü preset tespiti (karmaşık/zor istekler için 5 ses)
+    if (_matchAny(q, [
+      'derin uyku',
+      'uyuyamıyorum',
+      'uykusuzluk',
+      'insomnia',
+      'deep sleep'
+    ])) {
+      return _presetSounds('derin_uyku');
+    }
+    if (_matchAny(
+        q, ['meditasyon', 'meditation', 'yoga', 'chakra', 'mindfulness'])) {
+      return _presetSounds('meditasyon');
+    }
+    if (_matchAny(
+        q, ['stres', 'anksiyete', 'anxiety', 'panik', 'gergin', 'endişe'])) {
+      return _presetSounds('stres_gider');
+    }
+    if (_matchAny(
+        q, ['odak', 'focus', 'çalışma', 'study', 'konsantrasyon', 'ders'])) {
+      return _presetSounds('odak');
+    }
+    if (_matchAny(
+        q, ['huzur', 'sakin', 'dingin', 'calm', 'peaceful', 'rahatla'])) {
+      return _presetSounds('huzur');
+    }
+    if (_matchAny(q, ['fırtına', 'thunder', 'storm', 'gök gürültüsü'])) {
+      return _presetSounds('firtina');
+    }
+    if (_matchAny(q, ['ninni', 'bebek', 'baby', 'lullaby', 'çocuk uyut'])) {
+      return _presetSounds('ninni');
+    }
+    if (_matchAny(q, ['ortaçağ', 'medieval', 'savaş', 'fantasy', 'kale'])) {
+      return _presetSounds('ortacag');
+    }
+    if (_matchAny(q, ['romantik', 'romantic', 'sevgi', 'aşk', 'love'])) {
+      return _presetSounds('romantik');
+    }
+    if (_matchAny(q, ['sabah', 'morning', 'uyan', 'güne başla'])) {
+      return _presetSounds('sabah');
+    }
+
+    // 2. Keyword puanlama — en çok eşleşen sesler 5'e kadar döner
+    final idScores = <String, int>{};
     for (final entry in _moodKeywords.entries) {
-      if (query.contains(entry.key)) {
-        matchedIds.addAll(entry.value);
+      if (q.contains(entry.key)) {
+        for (final id in entry.value) {
+          idScores[id] = (idScores[id] ?? 0) + 1;
+        }
       }
     }
 
-    if (matchedIds.isEmpty) {
-      // Genel rahatlatıcı seçim
-      matchedIds.addAll(['ocean_waves', 'white_noise', 'piano_soft']);
+    if (idScores.isEmpty) {
+      return _presetSounds('derin_uyku'); // varsayılan: derin uyku karışımı
     }
 
-    return _catalog.where((s) => matchedIds.contains(s.id)).take(4).toList();
+    final sorted = idScores.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final topIds = sorted.map((e) => e.key).take(5).toSet();
+    return _catalog.where((s) => topIds.contains(s.id)).toList();
   }
+
+  /// İsim listesine göre [SoundModel] listesi döner.
+  List<SoundModel> _presetSounds(String presetKey) {
+    final ids = _mixPresets[presetKey]!;
+    return ids
+        .map((id) => _catalog.firstWhere((s) => s.id == id,
+            orElse: () => _catalog.first))
+        .toList();
+  }
+
+  static bool _matchAny(String query, List<String> terms) =>
+      terms.any((t) => query.contains(t));
 }

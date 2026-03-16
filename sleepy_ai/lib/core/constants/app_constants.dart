@@ -50,6 +50,8 @@ abstract final class AppStrings {
   static const String routeBreathingGame = '/games/breathing';
   static const String routeStarCatcher = '/games/star-catcher';
   static const String routeSleepFilms = '/games/films';
+  static const String routeBubblePop = '/games/bubbles';
+  static const String routeSheepCounter = '/games/sheep';
 
   // ── Hive Box Names ───────────────────────────────────────────────────
   static const String boxSleepLogs = 'sleep_logs';

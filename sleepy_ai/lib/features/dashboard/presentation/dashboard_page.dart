@@ -356,37 +356,37 @@ class _QuickActionsRow extends StatelessWidget {
           childAspectRatio: 0.85,
           children: const [
             _QuickActionItem(
-              icon: Icons.music_note_rounded,
+              icon: Icons.headphones_rounded,
               label: 'Sesler',
               color: AppColors.soundRain,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(
-              icon: Icons.auto_stories_rounded,
+              icon: Icons.import_contacts_rounded,
               label: 'Hikayeler',
               color: AppColors.soundMedieval,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(
-              icon: Icons.self_improvement_rounded,
+              icon: Icons.spa_rounded,
               label: 'Meditasyon',
               color: AppColors.accentTeal,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(
-              icon: Icons.stars_rounded,
+              icon: Icons.emoji_events_rounded,
               label: 'Rozetler',
               color: AppColors.accent,
               route: AppStrings.routeRewards,
             ),
             _QuickActionItem(
-              icon: Icons.smart_toy_rounded,
+              icon: Icons.psychology_rounded,
               label: 'Asistan',
               color: AppColors.primaryLight,
               route: AppStrings.routeChatbot,
             ),
             _QuickActionItem(
-              icon: Icons.rocket_launch_rounded,
+              icon: Icons.sports_esports_rounded,
               label: 'Oyunlar',
               color: AppColors.accentBlue,
               route: AppStrings.routeGames,

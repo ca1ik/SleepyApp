@@ -114,6 +114,8 @@ enum BadgeType {
   dreamWeaver,
   galaxyExplorer,
   sleepSage,
+  bubblePopper,
+  sleepySheep,
 }
 
 class BadgeModel extends Equatable {
@@ -248,6 +250,24 @@ const List<BadgeModel> kDefaultBadges = [
     titleTr: 'Uyku Bilgesi',
     description: 'Oyunlarda toplam 500+ puan topla.',
     emoji: '🧙',
+    requiredScore: 0,
+    category: BadgeCategory.game,
+  ),
+  BadgeModel(
+    type: BadgeType.bubblePopper,
+    title: 'Bubble Popper',
+    titleTr: 'Balon Patlatıcı',
+    description: 'Balon Bahçesi\'nde 50+ balon patlat.',
+    emoji: '🫧',
+    requiredScore: 0,
+    category: BadgeCategory.game,
+  ),
+  BadgeModel(
+    type: BadgeType.sleepySheep,
+    title: 'Sleepy Sheep',
+    titleTr: 'Uykulu Koyun',
+    description: 'Koyun Sayma\'da 30 koyun say.',
+    emoji: '🐑',
     requiredScore: 0,
     category: BadgeCategory.game,
   ),

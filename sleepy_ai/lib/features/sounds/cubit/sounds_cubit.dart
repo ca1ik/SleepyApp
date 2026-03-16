@@ -168,6 +168,16 @@ class SoundsCubit extends Cubit<SoundsState> {
     }
   }
 
+  /// Önerilen tüm sesleri durdurur ve yeni 4-5 parçalı karışımı başlatır.
+  Future<void> applyAiRecommendations() async {
+    final sounds = state.aiRecommendedSounds;
+    if (sounds.isEmpty) return;
+    await stopAll();
+    for (final sound in sounds) {
+      await addTrack(sound);
+    }
+  }
+
   // ─── Lifecycle ───────────────────────────────────────────────────────
 
   @override

@@ -239,6 +239,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
   int _sceneIndex = 0;
   bool _finished = false;
   bool _badgeUnlocked = false;
+  double _screenW = 400;
+  double _screenH = 800;
 
   int get _totalScenes => widget.film.scenes.length;
   int get _totalDuration => _totalScenes * _sceneDuration;
@@ -249,8 +251,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
     _anim =
         AnimationController(vsync: this, duration: const Duration(seconds: 1))
           ..repeat();
-    _particles = List.generate(60,
-        (i) => _Particle(_rng, 400, 700)); // approx size, refreshed in build
+    _particles = List.generate(
+        80, (i) => _Particle(_rng, 400, 800)); // increased for richer effect
     _anim.addListener(_tick);
   }
 
@@ -258,16 +260,16 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
     if (_finished) return;
     _timeSec += _dt;
 
-    // Update particles
+    // Update particles — gentle upward drift for dreamy feel
     for (final p in _particles) {
       p.x += p.vx * _dt;
-      p.y += p.vy * _dt;
-      p.life += _dt * 0.15;
+      p.y += (p.vy - 12) * _dt; // upward bias
+      p.life += _dt * 0.10; // slower fade = longer visible
       if (p.life >= 1) {
-        p.x = _rng.nextDouble() * 400;
-        p.y = _rng.nextDouble() * 700;
-        p.vx = ((_rng.nextDouble() - 0.5) * 40);
-        p.vy = ((_rng.nextDouble() - 0.5) * 40);
+        p.x = _rng.nextDouble() * _screenW;
+        p.y = _screenH + 8.0; // re-spawn at bottom
+        p.vx = (_rng.nextDouble() - 0.5) * 28;
+        p.vy = -8 - _rng.nextDouble() * 20; // upward
         p.life = 0;
       }
     }
@@ -298,6 +300,24 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
     setState(() {});
   }
 
+  /// Sağa kaydırıldığında bir sonraki sahneye atla.
+  void _advanceScene() {
+    if (_finished) return;
+    final next = _sceneIndex + 1;
+    if (next >= _totalScenes) {
+      _finishFilm();
+      return;
+    }
+    setState(() {
+      _sceneIndex = next;
+      _timeSec = (next * _sceneDuration).toDouble();
+    });
+  }
+
+  void _onSwipe(DragEndDetails d) {
+    if ((d.primaryVelocity ?? 0) > 250) _advanceScene();
+  }
+
   @override
   void dispose() {
     _anim.dispose();
@@ -307,12 +327,14 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    _screenW = size.width;
+    _screenH = size.height;
 
     // Refresh particle bounds
-    if (_particles.length == 60) {
+    if (_particles.length == 80) {
       for (final p in _particles) {
         if (p.x > size.width) p.x = _rng.nextDouble() * size.width;
-        if (p.y > size.height) p.y = _rng.nextDouble() * size.height;
+        if (p.y < 0 && p.vy < 0) p.y = size.height;
       }
     }
 
@@ -325,161 +347,192 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Animated gradient background
-          AnimatedContainer(
-            duration: const Duration(seconds: 2),
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                center: Alignment(math.sin(_timeSec * 0.2) * 0.5,
-                    math.cos(_timeSec * 0.15) * 0.5),
-                radius: 1.5,
-                colors: [
-                  widget.film.gradient[0]
-                      .withAlpha((180 + sceneProgress * 70).round()),
-                  widget.film.gradient[1],
-                  Colors.black,
-                ],
-              ),
-            ),
-          ),
-
-          // Floating particles
-          AnimatedBuilder(
-            animation: _anim,
-            builder: (_, __) => CustomPaint(
-              painter: _ParticlePainter(_particles, scene.accentColor),
-              size: size,
-            ),
-          ),
-
-          // Scene narration
-          Positioned(
-            bottom: 80,
-            left: 28,
-            right: 28,
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 800),
-              child: Text(
-                scene.narration,
-                key: ValueKey(_sceneIndex),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white.withAlpha(210),
-                  fontSize: 17,
-                  height: 1.6,
-                  fontWeight: FontWeight.w300,
-                  shadows: [
-                    Shadow(
-                        color: scene.accentColor.withAlpha(120), blurRadius: 12)
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onHorizontalDragEnd: _onSwipe,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Animated gradient background
+            AnimatedContainer(
+              duration: const Duration(seconds: 2),
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment(math.sin(_timeSec * 0.2) * 0.5,
+                      math.cos(_timeSec * 0.15) * 0.5),
+                  radius: 1.5,
+                  colors: [
+                    widget.film.gradient[0]
+                        .withAlpha((180 + sceneProgress * 70).round()),
+                    widget.film.gradient[1],
+                    Colors.black,
                   ],
                 ),
               ),
             ),
-          ),
 
-          // Top HUD
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Get.back(),
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withAlpha(20),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(Icons.close,
-                              color: Colors.white60, size: 20),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.film.title,
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Text(
-                              'Sahne ${_sceneIndex + 1}/$_totalScenes',
-                              style: const TextStyle(
-                                  color: Colors.white54, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        '${(_totalDuration - _timeSec).ceil()} sn',
-                        style: const TextStyle(
-                            color: Colors.white54, fontSize: 13),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: Stack(
-                      children: [
-                        Container(height: 4, color: Colors.white12),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          height: 4,
-                          width: (MediaQuery.of(context).size.width - 40) *
-                              totalProgress,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                scene.accentColor,
-                                scene.accentColor.withAlpha(180)
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+            // Floating particles
+            AnimatedBuilder(
+              animation: _anim,
+              builder: (_, __) => CustomPaint(
+                painter: _ParticlePainter(_particles, scene.accentColor),
+                size: size,
               ),
             ),
-          ),
 
-          // Scene dots
-          Positioned(
-            bottom: 52,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                _totalScenes,
-                (i) => AnimatedContainer(
-                  duration: const Duration(milliseconds: 400),
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: i == _sceneIndex ? 20 : 6,
-                  height: 6,
-                  decoration: BoxDecoration(
-                    color:
-                        i == _sceneIndex ? scene.accentColor : Colors.white24,
-                    borderRadius: BorderRadius.circular(3),
+            // Aurora wave bands — active dreamy effect
+            AnimatedBuilder(
+              animation: _anim,
+              builder: (_, __) => CustomPaint(
+                painter: _AuraPainter(_timeSec, scene.accentColor),
+                size: size,
+              ),
+            ),
+
+            // Scene narration
+            Positioned(
+              bottom: 80,
+              left: 28,
+              right: 28,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 800),
+                child: Text(
+                  scene.narration,
+                  key: ValueKey(_sceneIndex),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white.withAlpha(210),
+                    fontSize: 17,
+                    height: 1.6,
+                    fontWeight: FontWeight.w300,
+                    shadows: [
+                      Shadow(
+                          color: scene.accentColor.withAlpha(120),
+                          blurRadius: 12)
+                    ],
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+
+            // Top HUD
+            SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => Get.back(),
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withAlpha(20),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(Icons.close,
+                                color: Colors.white60, size: 20),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.film.title,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                'Sahne ${_sceneIndex + 1}/$_totalScenes',
+                                style: const TextStyle(
+                                    color: Colors.white54, fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          '${(_totalDuration - _timeSec).ceil()} sn',
+                          style: const TextStyle(
+                              color: Colors.white54, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: Stack(
+                        children: [
+                          Container(height: 4, color: Colors.white12),
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            height: 4,
+                            width: (MediaQuery.of(context).size.width - 40) *
+                                totalProgress,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  scene.accentColor,
+                                  scene.accentColor.withAlpha(180)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // Scene dots
+            Positioned(
+              bottom: 52,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  _totalScenes,
+                  (i) => AnimatedContainer(
+                    duration: const Duration(milliseconds: 400),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    width: i == _sceneIndex ? 20 : 6,
+                    height: 6,
+                    decoration: BoxDecoration(
+                      color:
+                          i == _sceneIndex ? scene.accentColor : Colors.white24,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // Swipe hint
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  'Sonraki sahne için sağa kaydır →',
+                  style: TextStyle(
+                      color: Colors.white.withAlpha(60),
+                      fontSize: 11,
+                      letterSpacing: 0.5),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -584,15 +637,46 @@ class _ParticlePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final p = Paint();
     for (final pt in particles) {
-      final alpha = ((1 - pt.life) * 100).round();
+      final alpha = ((1 - pt.life) * 110).round().clamp(0, 255);
       p.color = color.withAlpha(alpha);
-      p.maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
-      canvas.drawCircle(Offset(pt.x, pt.y), pt.r, p);
+      p.maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
+      canvas.drawCircle(Offset(pt.x, pt.y), pt.r + 0.5, p);
     }
   }
 
   @override
   bool shouldRepaint(_ParticlePainter old) => true;
+}
+
+// ── Aurora wave painter — active dreamy band effect ───────────────────────────
+
+class _AuraPainter extends CustomPainter {
+  _AuraPainter(this.t, this.color) : super(repaint: null);
+  final double t;
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..style = PaintingStyle.fill;
+    for (int i = 0; i < 6; i++) {
+      final phase = t * 0.6 + i * 1.1;
+      final cy = size.height * (0.15 + i * 0.15) +
+          math.sin(phase) * size.height * 0.06;
+      final alpha = (8 + 12 * ((math.sin(t * 0.8 + i * 0.7) + 1) / 2)).round();
+      paint.color = color.withAlpha(alpha.clamp(0, 60));
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: Offset(size.width * 0.5, cy),
+          width: size.width * (1.4 + math.sin(t * 0.4 + i) * 0.2),
+          height: 55.0 + math.sin(t * 0.5 + i * 0.9) * 18,
+        ),
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_AuraPainter old) => old.t != t;
 }
 
 // ── Films list page ───────────────────────────────────────────────────────────
