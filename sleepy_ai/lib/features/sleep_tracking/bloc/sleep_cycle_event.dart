@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:sleepy_ai/shared/models/entities.dart';
+import 'package:flutter/material.dart';
 
 abstract class SleepCycleEvent extends Equatable {
   const SleepCycleEvent();

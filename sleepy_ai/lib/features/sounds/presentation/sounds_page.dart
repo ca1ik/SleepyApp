@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
+import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_state.dart';
@@ -179,6 +180,38 @@ class _SoundsPageState extends State<SoundsPage>
   }
 }
 
+// ─── Yardımcı fonksiyon: Kategori → Renk ─────────────────────────────────────
+
+Color _soundCategoryColor(SoundCategory category) {
+  switch (category) {
+    case SoundCategory.rain:
+      return AppColors.soundRain;
+    case SoundCategory.nature:
+      return AppColors.soundForest;
+    case SoundCategory.ambient:
+      return AppColors.soundOcean;
+    case SoundCategory.medieval:
+      return AppColors.soundMedieval;
+    case SoundCategory.whiteNoise:
+      return AppColors.soundWind;
+    case SoundCategory.instrument:
+    case SoundCategory.instruments:
+      return AppColors.soundInstrument;
+    case SoundCategory.lullaby:
+      return AppColors.soundLullaby;
+    case SoundCategory.meditation:
+      return AppColors.primary;
+    case SoundCategory.healing:
+      return AppColors.accentTeal;
+    case SoundCategory.binaural:
+      return AppColors.accentBlue;
+    case SoundCategory.happy:
+      return AppColors.accent;
+    case SoundCategory.prayer:
+      return AppColors.badgeGold;
+  }
+}
+
 // ─── Ses Kütüphanesi Tab ──────────────────────────────────────────────────────
 
 class _SoundsLibraryTab extends StatelessWidget {
@@ -232,12 +265,10 @@ class _SoundsLibraryTab extends StatelessWidget {
                   child: Text(
                     categories[i],
                     style: TextStyle(
-                      color: isSelected
-                          ? Colors.white
-                          : AppColors.textSecondary,
-                      fontWeight: isSelected
-                          ? FontWeight.w700
-                          : FontWeight.normal,
+                      color:
+                          isSelected ? Colors.white : AppColors.textSecondary,
+                      fontWeight:
+                          isSelected ? FontWeight.w700 : FontWeight.normal,
                       fontSize: AppSizes.fontSm,
                     ),
                   ),
@@ -270,15 +301,15 @@ class _SoundsLibraryTab extends StatelessWidget {
                   itemBuilder: (ctx, i) {
                     final sound = filtered[i];
                     return SoundCardWidget(
-                      sound: sound,
-                      isActive: state.isTrackActive(sound.id),
-                      isFavorite: state.favorites.contains(sound.id),
+                      emoji: sound.iconEmoji,
+                      name: sound.nameTr,
+                      isPlaying: state.isTrackActive(sound.id),
+                      color: _soundCategoryColor(sound.category),
                       onTap: () {
                         context.read<SoundsCubit>().toggleSound(sound);
                       },
-                      onFavoriteTap: () {
-                        context.read<SoundsCubit>().toggleFavorite(sound.id);
-                      },
+                      isFavorite: state.favorites.contains(sound.id),
+                      isPro: sound.isPro,
                     );
                   },
                 ),
@@ -378,12 +409,13 @@ class _AiMoodTab extends StatelessWidget {
               itemBuilder: (ctx, i) {
                 final sound = state.aiRecommendedSounds[i];
                 return SoundCardWidget(
-                  sound: sound,
-                  isActive: state.isTrackActive(sound.id),
-                  isFavorite: state.favorites.contains(sound.id),
+                  emoji: sound.iconEmoji,
+                  name: sound.nameTr,
+                  isPlaying: state.isTrackActive(sound.id),
+                  color: _soundCategoryColor(sound.category),
                   onTap: () => context.read<SoundsCubit>().toggleSound(sound),
-                  onFavoriteTap: () =>
-                      context.read<SoundsCubit>().toggleFavorite(sound.id),
+                  isFavorite: state.favorites.contains(sound.id),
+                  isPro: sound.isPro,
                 );
               },
             ),

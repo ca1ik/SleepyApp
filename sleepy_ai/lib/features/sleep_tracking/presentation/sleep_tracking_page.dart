@@ -139,8 +139,8 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
               const SizedBox(height: AppSizes.lg),
               // Haftalık grafik
               SleepChartWidget(
-                records: state.records,
-                goalHours: state.goalHours,
+                sleepLogs: state.records,
+                targetHours: state.goalHours,
               ),
               const SizedBox(height: AppSizes.lg),
               // Takip etme butonu
@@ -306,9 +306,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
           ),
         ),
         const SizedBox(height: AppSizes.md),
-        ...state.records
-            .take(5)
-            .map(
+        ...state.records.take(5).map(
               (r) => Padding(
                 padding: const EdgeInsets.only(bottom: AppSizes.sm),
                 child: GlassCard(
@@ -329,14 +327,14 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              _formatDate(r.bedTime),
+                              _formatDate(r.bedtime),
                               style: const TextStyle(
                                 color: AppColors.textSecondary,
                                 fontSize: AppSizes.fontXs,
                               ),
                             ),
                             Text(
-                              '${_formatTime(r.bedTime)} → ${_formatTime(r.wakeTime)}',
+                              '${_formatTime(r.bedtime)} → ${_formatTime(r.wakeTime)}',
                               style: const TextStyle(
                                 color: AppColors.textPrimary,
                                 fontWeight: FontWeight.w600,
@@ -346,9 +344,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                         ),
                       ),
                       Text(
-                        '${r.durationHours.toStringAsFixed(1)}s',
+                        '${(r.duration.inMinutes / 60.0).toStringAsFixed(1)}s',
                         style: TextStyle(
-                          color: r.durationHours >= 7
+                          color: (r.duration.inMinutes / 60.0) >= 7
                               ? AppColors.success
                               : AppColors.warning,
                           fontWeight: FontWeight.w700,
@@ -360,7 +358,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                         children: List.generate(
                           5,
                           (i) => Icon(
-                            i < r.quality ? Icons.star : Icons.star_border,
+                            i < (r.qualityScore ~/ 20)
+                                ? Icons.star
+                                : Icons.star_border,
                             size: 12,
                             color: AppColors.accent,
                           ),
@@ -511,12 +511,12 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                     label: 'Kaydet',
                     onPressed: () {
                       context.read<SleepCycleBloc>().add(
-                        SaveSleepRecord(
-                          bedTime: bedTime,
-                          wakeTime: wakeTime,
-                          quality: quality,
-                        ),
-                      );
+                            SaveSleepRecord(
+                              bedTime: bedTime,
+                              wakeTime: wakeTime,
+                              quality: quality,
+                            ),
+                          );
                       Navigator.of(ctx).pop();
                     },
                     icon: Icons.save_rounded,

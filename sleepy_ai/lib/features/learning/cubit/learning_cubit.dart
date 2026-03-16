@@ -11,7 +11,7 @@ class LearningCubit extends Cubit<LearningState> {
     const SleepTipModel(
       id: '1',
       title: 'Sirkadiyen Ritim Nedir?',
-      body: 'Uyku-uyaniklik dÃ¶ngÃ¼nÃ¼zÃ¼ yÃ¶neten iÃ§ saatiniz hakkinda her sey.',
+      body: 'Uyku-uyaniklik dongununuzu yoneten ic saatiniz hakkinda her sey.',
       category: 'Biyoloji',
       readTimeMinutes: 5,
     ),
@@ -32,7 +32,7 @@ class LearningCubit extends Cubit<LearningState> {
     const SleepTipModel(
       id: '4',
       title: 'Kafein ve Uyku',
-      body: 'Kafein ne zaman kesilebilir? Yari omÃ¼r nedir?',
+      body: 'Kafein ne zaman kesilebilir? Yari omur nedir?',
       category: 'Beslenme',
       readTimeMinutes: 3,
     ),
@@ -46,28 +46,29 @@ class LearningCubit extends Cubit<LearningState> {
     const SleepTipModel(
       id: '6',
       title: '4-7-8 Nefes Teknigi',
-      body: 'BirkaÃ§ dakikada uyumanizi saglayan gÃ¼clÃ¼ bir teknik.',
+      body: 'Birkaç dakikada uyumanizi saglayan guclu bir teknik.',
       category: 'Teknik',
       readTimeMinutes: 4,
     ),
     const SleepTipModel(
       id: '7',
       title: 'Spor ve Uyku Kalitesi',
-      body: 'Hangi antrenman tÃ¼rÃ¼ uyku kalitesini en Ã§ok arttirir?',
+      body: 'Hangi antrenman turu uyku kalitesini en cok arttirir?',
       category: 'Spor',
       readTimeMinutes: 5,
     ),
     const SleepTipModel(
       id: '8',
-      title: 'Stres Uyku DÃ¼smanÄ±',
-      body: 'Kortizol seviyesi uyku Ã¼zerinde nasil olumsuz etki yapar?',
+      title: 'Stres Uyku Dusmani',
+      body: 'Kortizol seviyesi uyku uzerinde nasil olumsuz etki yapar?',
       category: 'Psikoloji',
       readTimeMinutes: 5,
     ),
     const SleepTipModel(
       id: '9',
       title: 'Melatonin Takviyesi',
-      body: 'Melatonin ne zaman ve nasil kullanilir? Dogal Ã¼retimi artirmanin yollari.',
+      body:
+          'Melatonin ne zaman ve nasil kullanilir? Dogal uretimi artirmanin yollari.',
       category: 'Beslenme',
       readTimeMinutes: 4,
     ),
@@ -125,4 +126,3 @@ class LearningCubit extends Cubit<LearningState> {
     emit(state.copyWith(filteredArticles: filtered, searchQuery: query));
   }
 }
-

@@ -128,7 +128,7 @@ class _HomeTab extends StatelessWidget {
                       Expanded(
                         child: MetricCardWidget(
                           icon: Icons.bar_chart_rounded,
-                          label: 'Uyku Puanı',
+                          title: 'Uyku Puanı',
                           value: isLoaded ? '${loaded!.sleepScore}' : '--',
                           unit: '/100',
                           color: AppColors.primary,
@@ -138,7 +138,7 @@ class _HomeTab extends StatelessWidget {
                       Expanded(
                         child: MetricCardWidget(
                           icon: Icons.schedule_rounded,
-                          label: 'Haftalık Ort.',
+                          title: 'Haftalık Ort.',
                           value: isLoaded
                               ? loaded!.weeklyAverage.toStringAsFixed(1)
                               : '--',
@@ -150,7 +150,7 @@ class _HomeTab extends StatelessWidget {
                       Expanded(
                         child: MetricCardWidget(
                           icon: Icons.battery_alert_rounded,
-                          label: 'Uyku Borcu',
+                          title: 'Uyku Borcu',
                           value: isLoaded
                               ? loaded!.sleepDebt.toStringAsFixed(1)
                               : '--',
@@ -166,8 +166,8 @@ class _HomeTab extends StatelessWidget {
                   // Haftalık grafik
                   if (isLoaded) ...[
                     SleepChartWidget(
-                      records: loaded!.records,
-                      goalHours: loaded.goalHours,
+                      sleepLogs: loaded!.records,
+                      targetHours: loaded.goalHours,
                     ),
                     const SizedBox(height: AppSizes.lg),
                   ],
@@ -371,7 +371,7 @@ class _QuickActionsRow extends StatelessWidget {
             _QuickActionItem(
               icon: Icons.self_improvement_rounded,
               label: 'Meditasyon',
-              color: AppColors.soundMeditate,
+              color: AppColors.accentTeal,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(

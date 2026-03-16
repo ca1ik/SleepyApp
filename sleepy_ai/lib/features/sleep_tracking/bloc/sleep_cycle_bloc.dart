@@ -29,15 +29,22 @@ class SleepCycleBloc extends Bloc<SleepCycleEvent, SleepCycleState> {
     final result = await repository.getLast7DaysRecords();
     result.fold((failure) => emit(SleepError(failure.message)), (records) {
       final goalHours = repository.getSleepGoalHours();
-      final weeklyAvg = SleepDurationCalculator.weeklyAverageHours(records);
-      final score = SleepDurationCalculator.calculateQualityScore(
-        records.isNotEmpty ? records.first : null,
-        goalHours,
+      final durations = records.map((r) => r.duration).toList();
+      final weeklyAvgDuration =
+          SleepDurationCalculator.calculateWeeklyAverage(durations);
+      final weeklyAvg = weeklyAvgDuration.inMinutes / 60.0;
+      final score = records.isNotEmpty
+          ? SleepDurationCalculator.calculateQualityScore(
+              sleepDuration: records.first.duration,
+              disturbanceCount: records.first.disturbanceCount,
+              hadDeepSleep: records.first.hadDeepSleep,
+            )
+          : 0;
+      final debtDuration = SleepDurationCalculator.calculateSleepDebt(
+        weeklyDurations: durations,
+        targetPerNight: Duration(minutes: (goalHours * 60).round()),
       );
-      final debt = SleepDurationCalculator.calculateSleepDebt(
-        records,
-        goalHours,
-      );
+      final debt = debtDuration.inMinutes / 60.0;
       emit(
         SleepHistoryLoaded(
           records: records,
@@ -64,9 +71,16 @@ class SleepCycleBloc extends Bloc<SleepCycleEvent, SleepCycleState> {
     final record = SleepEntity(
       id: _uuid.v4(),
       userId: repository.currentUserId,
-      bedTime: event.bedTime,
+      bedtime: event.bedTime,
       wakeTime: event.wakeTime,
-      quality: event.quality,
+      date: DateTime(
+        event.bedTime.year,
+        event.bedTime.month,
+        event.bedTime.day,
+      ),
+      qualityScore: event.quality * 20,
+      disturbanceCount: 0,
+      hadDeepSleep: event.quality >= 4,
       notes: event.notes,
     );
 
