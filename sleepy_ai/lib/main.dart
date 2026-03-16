@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -59,9 +60,8 @@ class SleepyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AuthBloc>(
-            create: (_) =>
-                InjectionContainer.createAuthBloc()
-                  ..add(const AuthCheckRequested()),
+            create: (_) => InjectionContainer.createAuthBloc()
+              ..add(const AuthCheckRequested()),
           ),
           BlocProvider<SleepCycleBloc>(
             create: (_) => InjectionContainer.createSleepBloc(),
@@ -94,8 +94,11 @@ class SleepyApp extends StatelessWidget {
             locale: const Locale('tr'),
             fallbackLocale: const Locale('en'),
             supportedLocales: const [Locale('tr'), Locale('en')],
-            // Enable after running `flutter gen-l10n`:
-            // localizationsDelegates: AppLocalizations.localizationsDelegates,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
           ),
         ),
       ),
