@@ -52,6 +52,7 @@ abstract final class AppStrings {
   static const String routeSleepFilms = '/games/films';
   static const String routeBubblePop = '/games/bubbles';
   static const String routeSheepCounter = '/games/sheep';
+  static const String routeSleepHero = '/sleep-hero';
 
   // ── Hive Box Names ───────────────────────────────────────────────────
   static const String boxSleepLogs = 'sleep_logs';
@@ -69,6 +70,7 @@ abstract final class AppStrings {
   static const String prefThemeMode = 'theme_mode';
   static const String prefLocale = 'locale';
   static const String prefIsPro = 'is_pro';
+  static const String prefSleepHeroData = 'sleep_hero_data';
   static const String prefNotificationsEnabled = 'notifications_enabled';
   static const String prefBedtimeHour = 'bedtime_hour';
   static const String prefBedtimeMinute = 'bedtime_minute';
