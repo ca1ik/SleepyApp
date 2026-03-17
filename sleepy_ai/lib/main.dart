@@ -17,6 +17,7 @@ import 'package:sleepy_ai/features/rewards/cubit/rewards_cubit.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_cubit.dart';
 import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_bloc.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
+import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
 
 // Uncomment after adding google-services.json:
 // import 'package:firebase_core/firebase_core.dart';
@@ -82,6 +83,9 @@ class SleepyApp extends StatelessWidget {
           BlocProvider<ProCubit>(
             create: (_) =>
                 InjectionContainer.createProCubit()..checkProStatus(),
+          ),
+          BlocProvider<LevelCubit>(
+            create: (_) => InjectionContainer.createLevelCubit()..loadHero(),
           ),
         ],
         child: Consumer<ThemeProvider>(
