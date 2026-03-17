@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
-import 'package:sleepy_ai/features/auth/bloc/auth_bloc.dart';
-import 'package:sleepy_ai/features/auth/bloc/auth_event.dart';
 import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_bloc.dart';
 import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_event.dart';
 import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_state.dart';
@@ -13,6 +11,10 @@ import 'package:sleepy_ai/shared/models/app_models.dart';
 import 'package:sleepy_ai/shared/widgets/card_widgets.dart';
 import 'package:sleepy_ai/shared/widgets/common_widgets.dart';
 import 'package:sleepy_ai/shared/widgets/sleep_chart_widget.dart';
+import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
+import 'package:sleepy_ai/features/level_system/cubit/level_state.dart';
+import 'package:sleepy_ai/features/level_system/domain/level_models.dart';
+import 'package:sleepy_ai/features/level_system/presentation/sleep_hero_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -42,8 +44,8 @@ class _DashboardPageState extends State<DashboardPage> {
             _SoundsTabPlaceholder(),
             // Learning tab
             _LearningTabPlaceholder(),
-            // Profil/Rewards tab
-            _ProfileTabPlaceholder(),
+            // Profil/Kahraman tab
+            SleepHeroPage(),
           ],
         ),
       ),
@@ -86,9 +88,9 @@ class _DashboardPageState extends State<DashboardPage> {
               label: 'Öğren',
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_outline_rounded),
-              selectedIcon: Icon(Icons.person_rounded),
-              label: 'Profil',
+              icon: Icon(Icons.auto_awesome_outlined),
+              selectedIcon: Icon(Icons.auto_awesome_rounded),
+              label: 'Kahraman',
             ),
           ],
         ),
@@ -120,6 +122,9 @@ class _HomeTab extends StatelessWidget {
                   const SizedBox(height: AppSizes.md),
                   // Greeting
                   _GreetingCard(loaded: loaded),
+                  const SizedBox(height: AppSizes.md),
+                  // Kahraman mini kart
+                  _HeroMiniCard(),
                   const SizedBox(height: AppSizes.lg),
                   // Quick metrics row
                   Row(
@@ -602,97 +607,159 @@ class _LearningTabPlaceholder extends StatelessWidget {
   }
 }
 
-class _ProfileTabPlaceholder extends StatelessWidget {
-  const _ProfileTabPlaceholder();
+// ─── Kahraman Mini Kartı (Ana Sekme) ──────────────────────────────────────────
 
+class _HeroMiniCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GradientBackground(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSizes.pagePaddingH),
-          child: Column(
-            children: [
-              const SizedBox(height: AppSizes.xxl),
-              const CircleAvatar(
-                radius: 48,
-                backgroundColor: AppColors.surfaceVariant,
-                child: Icon(
-                  Icons.person_rounded,
-                  size: 48,
-                  color: AppColors.primaryLight,
+    return BlocBuilder<LevelCubit, LevelState>(
+      builder: (ctx, state) {
+        if (state.status == LevelStatus.loading) return const SizedBox.shrink();
+        final hero = state.hero;
+        final titleInfo = LevelHelper.titleForLevel(hero.level);
+        final completed = state.dailyQuests.where((q) => !q.isCompleted).length;
+
+        return GestureDetector(
+          onTap: () => Get.toNamed(AppStrings.routeSleepHero),
+          child: GlassCard(
+            padding: const EdgeInsets.all(AppSizes.md),
+            child: Row(
+              children: [
+                // Mini level rozeti
+                Container(
+                  width: 52,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: titleInfo.color.withAlpha(28),
+                    border: Border.all(color: titleInfo.color, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: titleInfo.glowColor,
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Lv.',
+                          style: TextStyle(
+                            color: titleInfo.color,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          '${hero.level}',
+                          style: TextStyle(
+                            color: titleInfo.color,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            height: 1.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: AppSizes.xl),
-              GlassCard(
-                padding: const EdgeInsets.all(AppSizes.md),
-                child: Column(
+                const SizedBox(width: AppSizes.md),
+                // İsim + XP çubuğu
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            titleInfo.emoji,
+                            style: const TextStyle(fontSize: 13),
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            titleInfo.title,
+                            style: TextStyle(
+                              color: titleInfo.color,
+                              fontWeight: FontWeight.w700,
+                              fontSize: AppSizes.fontMd,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: LinearProgressIndicator(
+                          value: hero.levelProgress,
+                          backgroundColor: AppColors.backgroundCard,
+                          color: titleInfo.color,
+                          minHeight: 6,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        '${hero.currentLevelXp} / ${hero.xpToNextLevel} XP',
+                        style: const TextStyle(
+                          color: AppColors.textMuted,
+                          fontSize: AppSizes.fontXs,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: AppSizes.sm),
+                // Bekleyen görev rozeti
+                Column(
                   children: [
-                    _ProfileMenuItem(
-                      icon: Icons.stars_rounded,
-                      label: 'Rozetlerim',
-                      onTap: () => Get.toNamed(AppStrings.routeRewards),
+                    Container(
+                      width: 38,
+                      height: 38,
+                      decoration: BoxDecoration(
+                        color: completed > 0
+                            ? AppColors.primary.withAlpha(28)
+                            : AppColors.success.withAlpha(20),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: completed > 0
+                              ? AppColors.primary.withAlpha(60)
+                              : AppColors.success.withAlpha(60),
+                        ),
+                      ),
+                      child: Center(
+                        child: completed > 0
+                            ? Text(
+                                '$completed',
+                                style: const TextStyle(
+                                  color: AppColors.primaryLight,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 14,
+                                ),
+                              )
+                            : const Icon(
+                                Icons.check_rounded,
+                                color: AppColors.success,
+                                size: 18,
+                              ),
+                      ),
                     ),
-                    _ProfileMenuItem(
-                      icon: Icons.workspace_premium_rounded,
-                      label: 'PRO Üyelik',
-                      onTap: () => Get.toNamed(AppStrings.routePro),
-                    ),
-                    _ProfileMenuItem(
-                      icon: Icons.feedback_outlined,
-                      label: 'Geri Bildirim',
-                      onTap: () => Get.toNamed(AppStrings.routeFeedback),
-                    ),
-                    _ProfileMenuItem(
-                      icon: Icons.settings_outlined,
-                      label: 'Ayarlar',
-                      onTap: () => Get.toNamed(AppStrings.routeSettings),
+                    const SizedBox(height: 2),
+                    Text(
+                      completed > 0 ? 'görev' : 'tamam',
+                      style: const TextStyle(
+                        color: AppColors.textMuted,
+                        fontSize: AppSizes.fontXs,
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: AppSizes.lg),
-              GestureDetector(
-                onTap: () {
-                  context.read<AuthBloc>().add(const LogoutRequested());
-                },
-                child: const Text(
-                  'Çıkış Yap',
-                  style: TextStyle(
-                    color: AppColors.error,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ProfileMenuItem extends StatelessWidget {
-  const _ProfileMenuItem({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: AppColors.primaryLight),
-      title: Text(label, style: const TextStyle(color: AppColors.textPrimary)),
-      trailing: const Icon(
-        Icons.chevron_right_rounded,
-        color: AppColors.textMuted,
-      ),
-      onTap: onTap,
+        );
+      },
     );
   }
 }
