@@ -19,6 +19,7 @@ import 'package:sleepy_ai/features/games/presentation/star_catcher_page.dart';
 import 'package:sleepy_ai/features/games/presentation/bubble_pop_page.dart';
 import 'package:sleepy_ai/features/games/presentation/sheep_counter_page.dart';
 import 'package:sleepy_ai/features/sounds/presentation/sounds_page.dart';
+import 'package:sleepy_ai/features/level_system/presentation/sleep_hero_page.dart';
 
 /// GetX yönlendirme tablosu.
 /// Tüm sayfalar buraya kayıtlıdır ve [AppStrings] rotaları kullanılır.
@@ -119,6 +120,11 @@ abstract final class AppRouter {
     GetPage(
       name: AppStrings.routeSheepCounter,
       page: () => const SheepCounterPage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeSleepHero,
+      page: () => const SleepHeroPage(showBackButton: true),
       transition: Transition.downToUp,
     ),
   ];
