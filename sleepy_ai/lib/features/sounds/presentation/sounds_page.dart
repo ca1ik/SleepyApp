@@ -22,20 +22,20 @@ class _SoundsPageState extends State<SoundsPage>
   late TabController _tabController;
   final _aiController = TextEditingController();
 
-  static const _categories = [
-    (label: 'Tümü', category: null as SoundCategory?),
-    (label: 'Doğa', category: SoundCategory.nature),
-    (label: 'Yagmur', category: SoundCategory.rain),
-    (label: 'Gürültü', category: SoundCategory.whiteNoise),
-    (label: 'Ortam', category: SoundCategory.ambient),
-    (label: 'Orta Çağ', category: SoundCategory.medieval),
-    (label: 'Ninni', category: SoundCategory.lullaby),
-    (label: 'Enstrüman', category: SoundCategory.instrument),
-    (label: 'Meditasyon', category: SoundCategory.meditation),
-    (label: 'Binaural', category: SoundCategory.binaural),
-    (label: 'Mutlu', category: SoundCategory.happy),
-    (label: 'Dua', category: SoundCategory.prayer),
-    (label: 'Favoriler', category: null as SoundCategory?),
+  final _categories = [
+    (label: 'catAll'.tr, category: null as SoundCategory?),
+    (label: 'catNature'.tr, category: SoundCategory.nature),
+    (label: 'catRain'.tr, category: SoundCategory.rain),
+    (label: 'catWhiteNoise'.tr, category: SoundCategory.whiteNoise),
+    (label: 'catAmbient'.tr, category: SoundCategory.ambient),
+    (label: 'catMedieval'.tr, category: SoundCategory.medieval),
+    (label: 'catLullaby'.tr, category: SoundCategory.lullaby),
+    (label: 'catInstrument'.tr, category: SoundCategory.instrument),
+    (label: 'catMeditation'.tr, category: SoundCategory.meditation),
+    (label: 'catBinaural'.tr, category: SoundCategory.binaural),
+    (label: 'catHappy'.tr, category: SoundCategory.happy),
+    (label: 'catPrayer'.tr, category: SoundCategory.prayer),
+    (label: 'catFavorites'.tr, category: null as SoundCategory?),
   ];
 
   int _selectedCatIndex = 0;
@@ -89,10 +89,10 @@ class _SoundsPageState extends State<SoundsPage>
                             color: AppColors.textPrimary,
                           ),
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Text(
-                            'Sesler & Müzik 🎵',
-                            style: TextStyle(
+                            'soundsAndMusic'.tr,
+                            style: const TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: AppSizes.fontLg,
                               fontWeight: FontWeight.w800,
@@ -146,9 +146,9 @@ class _SoundsPageState extends State<SoundsPage>
                   indicatorColor: AppColors.primaryLight,
                   labelColor: AppColors.primaryLight,
                   unselectedLabelColor: AppColors.textSecondary,
-                  tabs: const [
-                    Tab(text: 'Ses Kütüphanesi'),
-                    Tab(text: 'YZ Mod Müzigi'),
+                  tabs: [
+                    Tab(text: 'soundLibrary'.tr),
+                    Tab(text: 'aiMoodMusic'.tr),
                   ],
                 ),
                 // Content
@@ -308,7 +308,7 @@ class _SoundsLibraryTab extends StatelessWidget {
                     final sound = filtered[i];
                     return SoundCardWidget(
                       emoji: sound.iconEmoji,
-                      name: sound.nameTr,
+                      name: sound.localeName,
                       isPlaying: state.isTrackActive(sound.id),
                       color: _soundCategoryColor(sound.category),
                       onTap: () {
@@ -350,13 +350,13 @@ class _AiMoodTab extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                Row(
                   children: [
-                    Text('🤖', style: TextStyle(fontSize: 24)),
-                    SizedBox(width: AppSizes.sm),
+                    const Text('🤖', style: TextStyle(fontSize: 24)),
+                    const SizedBox(width: AppSizes.sm),
                     Text(
-                      'YZ Mod Müziği',
-                      style: TextStyle(
+                      'aiMoodTitle'.tr,
+                      style: const TextStyle(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.w700,
                         fontSize: AppSizes.fontMd,
@@ -365,10 +365,9 @@ class _AiMoodTab extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSizes.sm),
-                const Text(
-                  'Simdiki ruh halini veya bulundugun ortami anlat, '
-                  'YZ sana özel bir ses karisiimi olusturusun.',
-                  style: TextStyle(
+                Text(
+                  'aiMoodDesc'.tr,
+                  style: const TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: AppSizes.fontSm,
                   ),
@@ -380,8 +379,7 @@ class _AiMoodTab extends StatelessWidget {
                   textInputAction: TextInputAction.send,
                   style: const TextStyle(color: AppColors.textPrimary),
                   decoration: InputDecoration(
-                    hintText:
-                        'Örn: "Yagmurlu bir aksamda yorgun hissediyorum..."',
+                    hintText: 'aiMoodHint'.tr,
                     border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: const Icon(
@@ -395,7 +393,7 @@ class _AiMoodTab extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSizes.md),
                 GradientButton(
-                  label: 'YZ\'ye Sor',
+                  label: 'askAi'.tr,
                   onPressed: state.isAiLoading ? null : onSubmit,
                   isLoading: state.isAiLoading,
                   icon: Icons.auto_awesome_rounded,
@@ -405,9 +403,9 @@ class _AiMoodTab extends StatelessWidget {
           ),
           if (state.aiRecommendedSounds.isNotEmpty) ...[
             const SizedBox(height: AppSizes.lg),
-            const Text(
-              'YZ Önerileri',
-              style: TextStyle(
+            Text(
+              'aiRecommendations'.tr,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: AppSizes.fontLg,
                 fontWeight: FontWeight.w700,
@@ -428,7 +426,7 @@ class _AiMoodTab extends StatelessWidget {
                 final sound = state.aiRecommendedSounds[i];
                 return SoundCardWidget(
                   emoji: sound.iconEmoji,
-                  name: sound.nameTr,
+                  name: sound.localeName,
                   isPlaying: state.isTrackActive(sound.id),
                   color: _soundCategoryColor(sound.category),
                   onTap: () => context.read<SoundsCubit>().toggleSound(sound),
@@ -534,7 +532,7 @@ class _MiniMixerPanel extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            track.sound.nameTr,
+                            track.sound.localeName,
                             style: const TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: AppSizes.fontSm,

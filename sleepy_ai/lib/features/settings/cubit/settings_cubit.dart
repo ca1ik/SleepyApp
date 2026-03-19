@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_state.dart';
@@ -12,7 +13,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   final SharedPreferences _prefs;
 
   void _loadSettings() {
-    final localeCode = _prefs.getString(AppStrings.prefLocale) ?? 'tr';
+    final localeCode = _prefs.getString(AppStrings.prefLocale) ?? 'en';
     final notificationsEnabled =
         _prefs.getBool(AppStrings.prefNotificationsEnabled) ?? true;
     final bedtimeHour = _prefs.getInt(AppStrings.prefBedtimeHour) ?? 23;
@@ -30,6 +31,7 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> setLocale(String languageCode) async {
     await _prefs.setString(AppStrings.prefLocale, languageCode);
+    Get.updateLocale(Locale(languageCode));
     emit(state.copyWith(locale: Locale(languageCode)));
   }
 

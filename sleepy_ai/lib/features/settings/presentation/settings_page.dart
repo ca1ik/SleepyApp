@@ -20,8 +20,8 @@ class SettingsPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const BackButton(color: AppColors.textPrimary),
-        title: const Text(
-          'Ayarlar',
+        title: Text(
+          'settings'.tr,
           style: TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
@@ -36,7 +36,7 @@ class SettingsPage extends StatelessWidget {
             padding: const EdgeInsets.all(AppSizes.md),
             children: [
               // Language section
-              _SectionHeader(label: 'Dil / Language'),
+              _SectionHeader(label: 'languageSection'.tr),
               _SettingsCard(
                 children: [
                   _LanguageTile(
@@ -57,19 +57,19 @@ class SettingsPage extends StatelessWidget {
               const SizedBox(height: AppSizes.md),
 
               // Notifications section
-              _SectionHeader(label: 'Bildirimler'),
+              _SectionHeader(label: 'notifications'.tr),
               _SettingsCard(
                 children: [
                   SwitchListTile(
                     value: state.notificationsEnabled,
                     onChanged: (val) => cubit.toggleNotifications(enabled: val),
-                    title: const Text(
-                      'Uyku Hatırlatıcı',
-                      style: TextStyle(color: AppColors.textPrimary),
+                    title: Text(
+                      'sleepReminder'.tr,
+                      style: const TextStyle(color: AppColors.textPrimary),
                     ),
-                    subtitle: const Text(
-                      'Yatma saatinde bildirim al',
-                      style: TextStyle(
+                    subtitle: Text(
+                      'sleepReminderSub'.tr,
+                      style: const TextStyle(
                         color: AppColors.textMuted,
                         fontSize: AppSizes.fontSm,
                       ),
@@ -85,7 +85,7 @@ class SettingsPage extends StatelessWidget {
               const SizedBox(height: AppSizes.md),
 
               // Bedtime section
-              _SectionHeader(label: 'Uyku Programı'),
+              _SectionHeader(label: 'sleepSchedule'.tr),
               _SettingsCard(
                 children: [
                   ListTile(
@@ -93,9 +93,9 @@ class SettingsPage extends StatelessWidget {
                       horizontal: AppSizes.md,
                     ),
                     leading: const Text('🌙', style: TextStyle(fontSize: 24)),
-                    title: const Text(
-                      'Yatma Saati',
-                      style: TextStyle(color: AppColors.textPrimary),
+                    title: Text(
+                      'bedtime'.tr,
+                      style: const TextStyle(color: AppColors.textPrimary),
                     ),
                     trailing: Text(
                       '${state.bedtimeHour.toString().padLeft(2, '0')}:${state.bedtimeMinute.toString().padLeft(2, '0')}',
@@ -139,13 +139,14 @@ class SettingsPage extends StatelessWidget {
                           children: [
                             const Text('⏱️', style: TextStyle(fontSize: 20)),
                             const SizedBox(width: AppSizes.sm),
-                            const Text(
-                              'Uyku Hedefi',
-                              style: TextStyle(color: AppColors.textPrimary),
+                            Text(
+                              'sleepGoal'.tr,
+                              style:
+                                  const TextStyle(color: AppColors.textPrimary),
                             ),
                             const Spacer(),
                             Text(
-                              '${state.sleepGoalHours.toStringAsFixed(1)} saat',
+                              '${state.sleepGoalHours.toStringAsFixed(1)} ${'hours'.tr}',
                               style: const TextStyle(
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.w600,
@@ -170,12 +171,12 @@ class SettingsPage extends StatelessWidget {
               const SizedBox(height: AppSizes.md),
 
               // Account section
-              _SectionHeader(label: 'Hesap'),
+              _SectionHeader(label: 'account'.tr),
               _SettingsCard(
                 children: [
                   _ActionTile(
                     emoji: '🔒',
-                    label: 'Gizlilik Politikası',
+                    label: 'privacyPolicy'.tr,
                     onTap: () {
                       /* TODO: open webview */
                     },
@@ -183,7 +184,7 @@ class SettingsPage extends StatelessWidget {
                   const Divider(color: AppColors.divider, height: 1),
                   _ActionTile(
                     emoji: '📋',
-                    label: 'Kullanım Koşulları',
+                    label: 'termsOfService'.tr,
                     onTap: () {
                       /* TODO: open webview */
                     },
@@ -191,27 +192,30 @@ class SettingsPage extends StatelessWidget {
                   const Divider(color: AppColors.divider, height: 1),
                   _ActionTile(
                     emoji: '🚪',
-                    label: 'Çıkış Yap',
+                    label: 'logout'.tr,
                     labelColor: AppColors.error,
                     onTap: () {
                       showDialog<void>(
                         context: context,
                         builder: (ctx) => AlertDialog(
                           backgroundColor: AppColors.backgroundCard,
-                          title: const Text(
-                            'Çıkış Yap',
-                            style: TextStyle(color: AppColors.textPrimary),
+                          title: Text(
+                            'logout'.tr,
+                            style:
+                                const TextStyle(color: AppColors.textPrimary),
                           ),
-                          content: const Text(
-                            'Hesabından çıkmak istediğine emin misin?',
-                            style: TextStyle(color: AppColors.textSecondary),
+                          content: Text(
+                            'logoutConfirm'.tr,
+                            style:
+                                const TextStyle(color: AppColors.textSecondary),
                           ),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.of(ctx).pop(),
-                              child: const Text(
-                                'İptal',
-                                style: TextStyle(color: AppColors.textMuted),
+                              child: Text(
+                                'cancel'.tr,
+                                style:
+                                    const TextStyle(color: AppColors.textMuted),
                               ),
                             ),
                             TextButton(
@@ -220,9 +224,9 @@ class SettingsPage extends StatelessWidget {
                                 context.read<AuthBloc>().add(LogoutRequested());
                                 Get.offAllNamed(AppStrings.routeLogin);
                               },
-                              child: const Text(
-                                'Çıkış Yap',
-                                style: TextStyle(color: AppColors.error),
+                              child: Text(
+                                'logout'.tr,
+                                style: const TextStyle(color: AppColors.error),
                               ),
                             ),
                           ],

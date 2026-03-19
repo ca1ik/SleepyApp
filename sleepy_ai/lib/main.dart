@@ -18,6 +18,8 @@ import 'package:sleepy_ai/features/settings/cubit/settings_cubit.dart';
 import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_bloc.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
+import 'package:sleepy_ai/core/l10n/app_translations.dart';
+import 'package:sleepy_ai/features/settings/cubit/settings_state.dart';
 
 // Uncomment after adding google-services.json:
 // import 'package:firebase_core/firebase_core.dart';
@@ -89,20 +91,24 @@ class SleepyApp extends StatelessWidget {
           ),
         ],
         child: Consumer<ThemeProvider>(
-          builder: (_, themeProvider, __) => GetMaterialApp(
-            title: AppStrings.appName,
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.darkTheme,
-            initialRoute: AppStrings.routeSplash,
-            getPages: AppRouter.routes,
-            locale: const Locale('tr'),
-            fallbackLocale: const Locale('en'),
-            supportedLocales: const [Locale('tr'), Locale('en')],
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+          builder: (_, themeProvider, __) =>
+              BlocBuilder<SettingsCubit, SettingsState>(
+            builder: (_, settingsState) => GetMaterialApp(
+              title: AppStrings.appName,
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.darkTheme,
+              initialRoute: AppStrings.routeSplash,
+              getPages: AppRouter.routes,
+              translations: AppTranslations(),
+              locale: settingsState.locale,
+              fallbackLocale: const Locale('en'),
+              supportedLocales: const [Locale('en'), Locale('tr')],
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+            ),
           ),
         ),
       ),

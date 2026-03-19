@@ -50,8 +50,8 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
             listener: (context, state) {
               if (state is SleepRecordSaved) {
                 Get.snackbar(
-                  'Kaydedildi 🌙',
-                  'Uyku kaydın başarıyla eklendi.',
+                  'saved'.tr,
+                  'sleepRecordAdded'.tr,
                   backgroundColor: AppColors.success.withAlpha(220),
                   colorText: Colors.white,
                   snackPosition: SnackPosition.TOP,
@@ -60,7 +60,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                 );
               } else if (state is SleepError) {
                 Get.snackbar(
-                  'Hata',
+                  'error'.tr,
                   state.message,
                   backgroundColor: AppColors.error.withAlpha(220),
                   colorText: Colors.white,
@@ -83,9 +83,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                 return _buildContent(context, state);
               }
 
-              return const Center(
+              return Center(
                 child: Text(
-                  'Uyku verisi yükleniyor...',
+                  'sleepDataLoading'.tr,
                   style: TextStyle(color: AppColors.textSecondary),
                 ),
               );
@@ -104,9 +104,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
           expandedHeight: 120,
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
-            title: const Text(
-              'Uyku Takibi',
-              style: TextStyle(
+            title: Text(
+              'sleepTracking'.tr,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w700,
               ),
@@ -124,7 +124,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                 Icons.music_note_rounded,
                 color: AppColors.textPrimary,
               ),
-              tooltip: 'Sesler',
+              tooltip: 'sounds'.tr,
             ),
           ],
         ),
@@ -168,9 +168,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Uyku Puanı',
-                  style: TextStyle(
+                Text(
+                  'sleepScore'.tr,
+                  style: const TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: AppSizes.fontSm,
                   ),
@@ -199,12 +199,12 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 _statRow(
-                  'Haftalık Ort.',
+                  'weeklyAvg'.tr,
                   '${state.weeklyAverage.toStringAsFixed(1)}s',
                 ),
                 const SizedBox(height: AppSizes.sm),
                 _statRow(
-                  'Uyku Borcu',
+                  'sleepDebt'.tr,
                   state.sleepDebt > 0
                       ? '+${state.sleepDebt.toStringAsFixed(1)}s'
                       : '0s',
@@ -213,7 +213,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                       : AppColors.success,
                 ),
                 const SizedBox(height: AppSizes.sm),
-                _statRow('Hedef', '${state.goalHours.toStringAsFixed(1)}s'),
+                _statRow('target'.tr, '${state.goalHours.toStringAsFixed(1)}s'),
               ],
             ),
           ),
@@ -250,7 +250,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
       return ScaleTransition(
         scale: _pulseAnimation,
         child: GradientButton(
-          label: 'Uykuyu Bitir',
+          label: 'endSleep'.tr,
           onPressed: () {
             context.read<SleepCycleBloc>().add(const StopSleepTracking());
           },
@@ -260,7 +260,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
     }
 
     return GradientButton(
-      label: 'Uyumaya Başla',
+      label: 'startSleep'.tr,
       onPressed: () {
         context.read<SleepCycleBloc>().add(StartSleepTracking(DateTime.now()));
       },
@@ -274,19 +274,19 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
       child: InkWell(
         onTap: () => _showAddSleepDialog(context),
         borderRadius: BorderRadius.circular(AppSizes.radiusMd),
-        child: const Row(
+        child: Row(
           children: [
-            Icon(Icons.edit_note_rounded, color: AppColors.primaryLight),
-            SizedBox(width: AppSizes.sm),
+            const Icon(Icons.edit_note_rounded, color: AppColors.primaryLight),
+            const SizedBox(width: AppSizes.sm),
             Text(
-              'El ile uyku kaydı ekle',
-              style: TextStyle(
+              'addManualRecord'.tr,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Spacer(),
-            Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
+            const Spacer(),
+            const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
           ],
         ),
       ),
@@ -297,9 +297,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Son Kayıtlar',
-          style: TextStyle(
+        Text(
+          'recentRecords'.tr,
+          style: const TextStyle(
             color: AppColors.textPrimary,
             fontSize: AppSizes.fontLg,
             fontWeight: FontWeight.w700,
@@ -397,9 +397,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Uyku Kaydı Ekle',
-                    style: TextStyle(
+                  Text(
+                    'addSleepRecord'.tr,
+                    style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: AppSizes.fontLg,
                       fontWeight: FontWeight.w700,
@@ -412,9 +412,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                       Icons.bedtime_outlined,
                       color: AppColors.primaryLight,
                     ),
-                    title: const Text(
-                      'Yatış Saati',
-                      style: TextStyle(color: AppColors.textSecondary),
+                    title: Text(
+                      'bedtimeLabel'.tr,
+                      style: const TextStyle(color: AppColors.textSecondary),
                     ),
                     subtitle: Text(
                       _formatTime(bedTime),
@@ -447,9 +447,9 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                       Icons.alarm_rounded,
                       color: AppColors.accent,
                     ),
-                    title: const Text(
-                      'Kalkış Saati',
-                      style: TextStyle(color: AppColors.textSecondary),
+                    title: Text(
+                      'wakeTimeLabel'.tr,
+                      style: const TextStyle(color: AppColors.textSecondary),
                     ),
                     subtitle: Text(
                       _formatTime(wakeTime),
@@ -484,9 +484,10 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Uyku Kalitesi',
-                          style: TextStyle(color: AppColors.textSecondary),
+                        Text(
+                          'sleepQuality'.tr,
+                          style:
+                              const TextStyle(color: AppColors.textSecondary),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -508,7 +509,7 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
                   ),
                   const SizedBox(height: AppSizes.md),
                   GradientButton(
-                    label: 'Kaydet',
+                    label: 'save'.tr,
                     onPressed: () {
                       context.read<SleepCycleBloc>().add(
                             SaveSleepRecord(
@@ -534,19 +535,19 @@ class _SleepTrackingPageState extends State<SleepTrackingPage>
   }
 
   String _formatDate(DateTime dt) {
-    const months = [
-      'Oca',
-      'Şub',
-      'Mar',
-      'Nis',
-      'May',
-      'Haz',
-      'Tem',
-      'Ağu',
-      'Eyl',
-      'Eki',
-      'Kas',
-      'Ara',
+    final months = [
+      'monthJan'.tr,
+      'monthFeb'.tr,
+      'monthMar'.tr,
+      'monthApr'.tr,
+      'monthMay'.tr,
+      'monthJun'.tr,
+      'monthJul'.tr,
+      'monthAug'.tr,
+      'monthSep'.tr,
+      'monthOct'.tr,
+      'monthNov'.tr,
+      'monthDec'.tr,
     ];
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}';
   }

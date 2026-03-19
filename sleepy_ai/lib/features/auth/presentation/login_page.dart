@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
           Get.offAllNamed(AppStrings.routeDashboard);
         } else if (state is AuthError) {
           Get.snackbar(
-            'Hata',
+            'error'.tr,
             state.message,
             backgroundColor: AppColors.error.withAlpha(220),
             colorText: Colors.white,
@@ -78,8 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 72,
                       decoration: BoxDecoration(
                         gradient: AppColors.primaryGradient,
-                        borderRadius:
-                            BorderRadius.circular(AppSizes.radiusXl),
+                        borderRadius: BorderRadius.circular(AppSizes.radiusXl),
                         boxShadow: [
                           BoxShadow(
                             color: AppColors.primary.withAlpha(100),
@@ -96,18 +95,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: AppSizes.xl),
-                  const Text(
-                    'Hoş Geldin! 🌙',
-                    style: TextStyle(
+                  Text(
+                    'welcomeBack'.tr,
+                    style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: AppSizes.fontTitle,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: AppSizes.sm),
-                  const Text(
-                    'Sağlıklı uyku alışkanlıkları için giriş yap.',
-                    style: TextStyle(
+                  Text(
+                    'welcomeBackSub'.tr,
+                    style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: AppSizes.fontMd,
                     ),
@@ -124,18 +123,18 @@ class _LoginPageState extends State<LoginPage> {
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           style: const TextStyle(color: AppColors.textPrimary),
-                          decoration: const InputDecoration(
-                            labelText: 'E-posta',
+                          decoration: InputDecoration(
+                            labelText: 'emailLabel'.tr,
                             prefixIcon: Icon(Icons.email_outlined),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'E-posta gerekli';
+                              return 'emailRequired'.tr;
                             }
                             if (!RegExp(
                               r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
                             ).hasMatch(value)) {
-                              return 'Geçerli bir e-posta girin';
+                              return 'emailInvalid'.tr;
                             }
                             return null;
                           },
@@ -149,9 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                           onFieldSubmitted: (_) => _onLoginPressed(),
                           style: const TextStyle(color: AppColors.textPrimary),
                           decoration: InputDecoration(
-                            labelText: 'Şifre',
-                            prefixIcon:
-                                const Icon(Icons.lock_outline_rounded),
+                            labelText: 'passwordLabel'.tr,
+                            prefixIcon: const Icon(Icons.lock_outline_rounded),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _obscurePassword
@@ -165,10 +163,10 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Şifre gerekli';
+                              return 'passwordRequired'.tr;
                             }
                             if (value.length < 6) {
-                              return 'Şifre en az 6 karakter olmalı';
+                              return 'passwordMin6'.tr;
                             }
                             return null;
                           },
@@ -179,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextButton(
                             onPressed: () =>
                                 Get.toNamed(AppStrings.routeForgotPassword),
-                            child: const Text('Şifremi Unuttum'),
+                            child: Text('forgotPasswordQ'.tr),
                           ),
                         ),
                         const SizedBox(height: AppSizes.md),
@@ -187,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                         BlocBuilder<AuthBloc, AuthState>(
                           builder: (context, state) {
                             return GradientButton(
-                              label: 'Giriş Yap',
+                              label: 'loginBtn'.tr,
                               onPressed: _onLoginPressed,
                               isLoading: state is AuthLoading,
                               icon: Icons.login_rounded,
@@ -201,13 +199,14 @@ class _LoginPageState extends State<LoginPage> {
                             const Expanded(
                               child: Divider(color: AppColors.divider),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: AppSizes.md,
                               ),
                               child: Text(
-                                'veya',
-                                style: TextStyle(color: AppColors.textMuted),
+                                'or'.tr,
+                                style:
+                                    const TextStyle(color: AppColors.textMuted),
                               ),
                             ),
                             const Expanded(
@@ -220,17 +219,17 @@ class _LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              'Hesabın yok mu? ',
-                              style:
-                                  TextStyle(color: AppColors.textSecondary),
+                            Text(
+                              'noAccount'.tr,
+                              style: const TextStyle(
+                                  color: AppColors.textSecondary),
                             ),
                             GestureDetector(
                               onTap: () =>
                                   Get.toNamed(AppStrings.routeRegister),
-                              child: const Text(
-                                'Kayıt Ol',
-                                style: TextStyle(
+                              child: Text(
+                                'signUpBtn'.tr,
+                                style: const TextStyle(
                                   color: AppColors.primaryLight,
                                   fontWeight: FontWeight.w700,
                                 ),

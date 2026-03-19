@@ -28,8 +28,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   void _onSendPressed() {
     if (_formKey.currentState?.validate() ?? false) {
       context.read<AuthBloc>().add(
-        ForgotPasswordRequested(email: _emailController.text.trim()),
-      );
+            ForgotPasswordRequested(email: _emailController.text.trim()),
+          );
     }
   }
 
@@ -39,8 +39,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       listener: (context, state) {
         if (state is AuthPasswordResetSent) {
           Get.snackbar(
-            'E-posta Gönderildi',
-            'Sifre sifirlama linki e-posta adresinize gönderildi.',
+            'emailSent'.tr,
+            'resetEmailSent'.tr,
             backgroundColor: AppColors.success.withAlpha(220),
             colorText: Colors.white,
             snackPosition: SnackPosition.TOP,
@@ -51,7 +51,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           Get.back();
         } else if (state is AuthError) {
           Get.snackbar(
-            'Hata',
+            'error'.tr,
             state.message,
             backgroundColor: AppColors.error.withAlpha(220),
             colorText: Colors.white,
@@ -93,18 +93,18 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     size: 52,
                   ),
                   const SizedBox(height: AppSizes.lg),
-                  const Text(
-                    'Sifre Sifirlama',
-                    style: TextStyle(
+                  Text(
+                    'resetPassword'.tr,
+                    style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: AppSizes.fontTitle,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: AppSizes.sm),
-                  const Text(
-                    'E-posta adresinize sifre sifirlama linki göndereceğiz.',
-                    style: TextStyle(
+                  Text(
+                    'resetPasswordSub'.tr,
+                    style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: AppSizes.fontMd,
                     ),
@@ -120,18 +120,18 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           textInputAction: TextInputAction.done,
                           onFieldSubmitted: (_) => _onSendPressed(),
                           style: const TextStyle(color: AppColors.textPrimary),
-                          decoration: const InputDecoration(
-                            labelText: 'E-posta',
+                          decoration: InputDecoration(
+                            labelText: 'emailLabel'.tr,
                             prefixIcon: Icon(Icons.email_outlined),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'E-posta gerekli';
+                              return 'emailRequired'.tr;
                             }
                             if (!RegExp(
                               r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
                             ).hasMatch(value)) {
-                              return 'Gecerli bir e-posta girin';
+                              return 'emailInvalid'.tr;
                             }
                             return null;
                           },
@@ -140,7 +140,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         BlocBuilder<AuthBloc, AuthState>(
                           builder: (context, state) {
                             return GradientButton(
-                              label: 'Gönder',
+                              label: 'send'.tr,
                               onPressed: _onSendPressed,
                               isLoading: state is AuthLoading,
                               icon: Icons.send_rounded,

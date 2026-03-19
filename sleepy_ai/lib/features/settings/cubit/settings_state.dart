@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SettingsState extends Equatable {
   const SettingsState({
-    this.locale = const Locale('tr'),
+    this.locale = const Locale('en'),
     this.notificationsEnabled = true,
     this.bedtimeHour = 23,
     this.bedtimeMinute = 0,
@@ -40,11 +40,11 @@ class SettingsState extends Equatable {
 
   @override
   List<Object?> get props => [
-    locale,
-    notificationsEnabled,
-    bedtimeHour,
-    bedtimeMinute,
-    sleepGoalHours,
-    isSaving,
-  ];
+        locale,
+        notificationsEnabled,
+        bedtimeHour,
+        bedtimeMinute,
+        sleepGoalHours,
+        isSaving,
+      ];
 }

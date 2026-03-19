@@ -20,7 +20,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Doğa ────────────────────────────────────────────────────────────────
     const SoundModel(
       id: 'rain_heavy',
-      name: 'Yoğun Yağmur',
+      name: 'Heavy Rain',
       nameTr: 'Yoğun Yağmur',
       // Heavy_Rain_Loop by Rubaoliva (CC0) freesound#624645
       streamUrl:
@@ -30,7 +30,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'rain_light',
-      name: 'Hafif Yağmur',
+      name: 'Light Rain',
       nameTr: 'Hafif Yağmur',
       // Rain from Indoors by samesamesame (CC0) freesound#242889
       streamUrl: 'https://cdn.freesound.org/previews/242/242889_4047489-lq.mp3',
@@ -39,7 +39,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'water_drop',
-      name: 'Su Damlası',
+      name: 'Water Drop',
       nameTr: 'Su Damlası',
       // Rain Slowly Passing by speakwithanimals (CC0) freesound#525046
       streamUrl:
@@ -49,7 +49,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'ocean_waves',
-      name: 'Okyanus Dalgaları',
+      name: 'Ocean Waves',
       nameTr: 'Okyanus Dalgaları',
       // Calm ocean waves by SamsterBirdies (CC0) freesound#578524
       streamUrl: 'https://cdn.freesound.org/previews/578/578524_5487341-lq.mp3',
@@ -58,7 +58,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'forest_birds',
-      name: 'Orman Kuşları',
+      name: 'Forest Birds',
       nameTr: 'Orman Kuşları',
       // Forest Ambient LOOP by Imjeax (CC-BY) freesound#427400
       streamUrl: 'https://cdn.freesound.org/previews/427/427400_5228642-lq.mp3',
@@ -67,7 +67,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'river_stream',
-      name: 'Şelale',
+      name: 'Waterfall',
       nameTr: 'Şelale',
       // Ambiance River Flow by Nox_Sound (CC0) freesound#479321
       streamUrl: 'https://cdn.freesound.org/previews/479/479321_9250976-lq.mp3',
@@ -76,7 +76,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'thunder',
-      name: 'Gök Gürültüsü',
+      name: 'Thunder',
       nameTr: 'Gök Gürültüsü',
       // Rain&Thunder Loop by plyboard9 (CC0) freesound#531873
       streamUrl: 'https://cdn.freesound.org/previews/531/531873_1059037-lq.mp3',
@@ -85,7 +85,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'wind',
-      name: 'Rüzgar',
+      name: 'Wind',
       nameTr: 'Rüzgar',
       // Ambiance Wind Forest Trees by Nox_Sound (CC0) freesound#530907
       streamUrl: 'https://cdn.freesound.org/previews/530/530907_9250976-lq.mp3',
@@ -95,7 +95,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Beyaz Gürültü ────────────────────────────────────────────────────────
     const SoundModel(
       id: 'white_noise',
-      name: 'Beyaz Gürültü',
+      name: 'White Noise',
       nameTr: 'Beyaz Gürültü',
       // 60 Minutes Ultra-Soft Noise by assett1 (CC0) freesound#403326
       streamUrl: 'https://cdn.freesound.org/previews/403/403326_2112696-lq.mp3',
@@ -104,7 +104,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'brown_noise',
-      name: 'Kahverengi Gürültü',
+      name: 'Brown Noise',
       nameTr: 'Kahverengi Gürültü',
       // 74 Minutes Relaxing Soft Noise by assett1 (CC0) freesound#132275
       streamUrl: 'https://cdn.freesound.org/previews/132/132275_2112696-lq.mp3',
@@ -113,7 +113,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'pink_noise',
-      name: 'Pembe Gürültü',
+      name: 'Pink Noise',
       nameTr: 'Pembe Gürültü',
       // Rain_Loop by Snoopy20111 (CC0) freesound#399072
       streamUrl: 'https://cdn.freesound.org/previews/399/399072_3710957-lq.mp3',
@@ -122,7 +122,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'fan',
-      name: 'Vantilatör',
+      name: 'Fan',
       nameTr: 'Vantilatör',
       // Dark Ambient Loop by goulven (CC0) freesound#371277
       streamUrl: 'https://cdn.freesound.org/previews/371/371277_6909831-lq.mp3',
@@ -132,7 +132,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Ortam / Mekan ────────────────────────────────────────────────────────
     const SoundModel(
       id: 'coffee_shop',
-      name: 'Kafe Ambiyansı',
+      name: 'Cafe Ambiance',
       nameTr: 'Kafe Ambiyansı',
       // Birds in the city by SamsterBirdies (CC0) freesound#560514
       streamUrl: 'https://cdn.freesound.org/previews/560/560514_5487341-lq.mp3',
@@ -141,7 +141,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'fireplace',
-      name: 'Şömine',
+      name: 'Fireplace',
       nameTr: 'Şömine',
       // Campfire 02 by HECKFRICKER (CC0) freesound#729396
       streamUrl:
@@ -151,7 +151,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'library',
-      name: 'Kütüphane',
+      name: 'Library',
       nameTr: 'Kütüphane',
       // Spring Birds 2019 by hargissssound (CC0) freesound#471891
       streamUrl: 'https://cdn.freesound.org/previews/471/471891_387219-lq.mp3',
@@ -160,7 +160,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'train',
-      name: 'Tren',
+      name: 'Train',
       nameTr: 'Tren',
       // SuburbRain OutdoorLoop by PhilllChabbb (CC0) freesound#238431
       streamUrl: 'https://cdn.freesound.org/previews/238/238431_4205952-lq.mp3',
@@ -170,7 +170,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Orta Çağ (Medieval) ──────────────────────────────────────────────────
     const SoundModel(
       id: 'medieval_tavern',
-      name: 'Ortaçağ Tavernası',
+      name: 'Medieval Tavern',
       nameTr: 'Ortaçağ Tavernası',
       // Forest Rainstorm by rifualk (CC0) freesound#648475
       streamUrl: 'https://cdn.freesound.org/previews/648/648475_2968542-lq.mp3',
@@ -180,7 +180,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'medieval_lute',
-      name: 'Ortaçağ Lütü',
+      name: 'Medieval Lute',
       nameTr: 'Ortaçağ Lütü',
       // Binaural Birds LOOP 2 by maarten91 (CC0) freesound#468448
       streamUrl: 'https://cdn.freesound.org/previews/468/468448_3405405-lq.mp3',
@@ -190,7 +190,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'medieval_forest',
-      name: 'Ortaçağ Ormanı',
+      name: 'Medieval Forest',
       nameTr: 'Ortaçağ Ormanı',
       // Spring Birds & Woodpeckers by Resaural (CC0) freesound#634511
       streamUrl: 'https://cdn.freesound.org/previews/634/634511_9662992-lq.mp3',
@@ -201,7 +201,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Ninni ────────────────────────────────────────────────────────────────
     const SoundModel(
       id: 'lullaby_classic',
-      name: 'Klasik Ninni',
+      name: 'Classic Lullaby',
       nameTr: 'Klasik Ninni',
       // Rain - RPG by colorsCrimsonTears (CC0) freesound#609027
       streamUrl:
@@ -211,7 +211,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'lullaby_hum',
-      name: 'Ninni Melodisi',
+      name: 'Lullaby Melody',
       nameTr: 'Ninni Melodisi',
       // Rain30s by acclivity (CC-BY) freesound#20417
       streamUrl: 'https://cdn.freesound.org/previews/20/20417_37876-lq.mp3',
@@ -221,7 +221,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Müzik Aletleri ───────────────────────────────────────────────────────
     const SoundModel(
       id: 'piano_soft',
-      name: 'Yumuşak Piyano',
+      name: 'Soft Piano',
       nameTr: 'Yumuşak Piyano',
       // Flowing water by cabled_mess (CC0) freesound#332250
       streamUrl: 'https://cdn.freesound.org/previews/332/332250_5450487-lq.mp3',
@@ -230,7 +230,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'guitar_acoustic',
-      name: 'Akustik Gitar',
+      name: 'Acoustic Guitar',
       nameTr: 'Akustik Gitar',
       // River Flow Loop by EminYILDIRIM (CC0) freesound#608141
       streamUrl:
@@ -240,7 +240,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'tibetan_bowl',
-      name: 'Tibet Kasesi',
+      name: 'Tibetan Bowl',
       nameTr: 'Tibet Kasesi',
       // Wind Chimes Water Droplets Ocean by DudeAwesome (CC0) freesound#790545
       streamUrl: 'https://cdn.freesound.org/previews/790/790545_6885640-lq.mp3',
@@ -249,7 +249,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'flute_peaceful',
-      name: 'Huzurlu Flüt',
+      name: 'Peaceful Flute',
       nameTr: 'Huzurlu Flüt',
       // EndlessOcean Venice Beach by stomachache (CC0) freesound#157881
       streamUrl: 'https://cdn.freesound.org/previews/157/157881_177850-lq.mp3',
@@ -259,7 +259,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Meditasyon ───────────────────────────────────────────────────────────
     const SoundModel(
       id: 'meditation_om',
-      name: 'Om Meditasyon',
+      name: 'Om Meditation',
       nameTr: 'Om Meditasyon',
       // EndlessOcean Venice Beach Rumbly by stomachache (CC0) freesound#157880
       streamUrl: 'https://cdn.freesound.org/previews/157/157880_177850-lq.mp3',
@@ -268,7 +268,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'binaural_delta',
-      name: 'Binaural Delta (Derin uyku)',
+      name: 'Binaural Delta (Deep Sleep)',
       nameTr: 'Binaural Delta (Derin uyku)',
       // oceanwaves-8 at Point Reyes by Rmutt (CC0) freesound#149079
       streamUrl: 'https://cdn.freesound.org/previews/149/149079_981371-lq.mp3',
@@ -278,7 +278,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'binaural_theta',
-      name: 'Binaural Theta (Rüya)',
+      name: 'Binaural Theta (Dream)',
       nameTr: 'Binaural Theta (Rüya)',
       // By the sea by OSFX (CC0) freesound#404696
       streamUrl: 'https://cdn.freesound.org/previews/404/404696_7583126-lq.mp3',
@@ -289,7 +289,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Mutlu Sesler ─────────────────────────────────────────────────────────
     const SoundModel(
       id: 'happy_birds',
-      name: 'Neşe Kuşları',
+      name: 'Happy Birds',
       nameTr: 'Neşe Kuşları',
       // Forest_Bird loop 01 by VKProduktion (CC0) freesound#223449
       streamUrl: 'https://cdn.freesound.org/previews/223/223449_4034520-lq.mp3',
@@ -298,7 +298,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'gentle_chimes',
-      name: 'Rüzgar Çanı',
+      name: 'Wind Chimes',
       nameTr: 'Rüzgar Çanı',
       // Ocean Waves Loop - Day by Koops (CC0) freesound#586117
       streamUrl: 'https://cdn.freesound.org/previews/586/586117_29508-lq.mp3',
@@ -307,7 +307,7 @@ class LocalSoundsRepository implements SoundsRepository {
     ),
     const SoundModel(
       id: 'purring_cat',
-      name: 'Kedi Mırıltısı',
+      name: 'Purring Cat',
       nameTr: 'Kedi Mırıltısı',
       // Forest Water Stream Loop by StormwaveAudio (CC0) freesound#614066
       streamUrl: 'https://cdn.freesound.org/previews/614/614066_3594951-lq.mp3',
@@ -317,7 +317,7 @@ class LocalSoundsRepository implements SoundsRepository {
     // ── Dua ─────────────────────────────────────────────────────────────────
     const SoundModel(
       id: 'prayer_ambient',
-      name: 'Namaz Ambiyansı',
+      name: 'Prayer Ambiance',
       nameTr: 'Namaz Ambiyansı',
       // Crackling Flames by NickTayloe (CC0) freesound#813328
       streamUrl:

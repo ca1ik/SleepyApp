@@ -71,26 +71,26 @@ class _DashboardPageState extends State<DashboardPage> {
             setState(() => _selectedNavIndex = index);
           },
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home_rounded),
-              label: 'Ana Sayfa',
+              icon: const Icon(Icons.home_outlined),
+              selectedIcon: const Icon(Icons.home_rounded),
+              label: 'home'.tr,
             ),
             NavigationDestination(
-              icon: Icon(Icons.music_note_outlined),
-              selectedIcon: Icon(Icons.music_note_rounded),
-              label: 'Sesler',
+              icon: const Icon(Icons.music_note_outlined),
+              selectedIcon: const Icon(Icons.music_note_rounded),
+              label: 'sounds'.tr,
             ),
             NavigationDestination(
-              icon: Icon(Icons.menu_book_outlined),
-              selectedIcon: Icon(Icons.menu_book_rounded),
-              label: 'Öğren',
+              icon: const Icon(Icons.menu_book_outlined),
+              selectedIcon: const Icon(Icons.menu_book_rounded),
+              label: 'learn'.tr,
             ),
             NavigationDestination(
-              icon: Icon(Icons.auto_awesome_outlined),
-              selectedIcon: Icon(Icons.auto_awesome_rounded),
-              label: 'Kahraman',
+              icon: const Icon(Icons.auto_awesome_outlined),
+              selectedIcon: const Icon(Icons.auto_awesome_rounded),
+              label: 'hero'.tr,
             ),
           ],
         ),
@@ -132,7 +132,7 @@ class _HomeTab extends StatelessWidget {
                       Expanded(
                         child: MetricCardWidget(
                           icon: Icons.bar_chart_rounded,
-                          title: 'Uyku Puanı',
+                          title: 'sleepScore'.tr,
                           value: loaded != null ? '${loaded.sleepScore}' : '--',
                           unit: '/100',
                           color: AppColors.primary,
@@ -142,7 +142,7 @@ class _HomeTab extends StatelessWidget {
                       Expanded(
                         child: MetricCardWidget(
                           icon: Icons.schedule_rounded,
-                          title: 'Haftalık Ort.',
+                          title: 'weeklyAvg'.tr,
                           value: loaded != null
                               ? loaded.weeklyAverage.toStringAsFixed(1)
                               : '--',
@@ -154,7 +154,7 @@ class _HomeTab extends StatelessWidget {
                       Expanded(
                         child: MetricCardWidget(
                           icon: Icons.battery_alert_rounded,
-                          title: 'Uyku Borcu',
+                          title: 'sleepDebt'.tr,
                           value: loaded != null
                               ? loaded.sleepDebt.toStringAsFixed(1)
                               : '--',
@@ -257,10 +257,10 @@ class _GreetingCard extends StatelessWidget {
 
   String get _greeting {
     final hour = DateTime.now().hour;
-    if (hour < 6) return 'Iyi Geceler';
-    if (hour < 12) return 'Günaydın';
-    if (hour < 18) return 'Iyi Günler';
-    return 'Iyi Aksam';
+    if (hour < 6) return 'goodNight'.tr;
+    if (hour < 12) return 'goodMorning'.tr;
+    if (hour < 18) return 'goodAfternoon'.tr;
+    return 'goodEvening'.tr;
   }
 
   @override
@@ -298,8 +298,9 @@ class _GreetingCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     loaded!.isTracking
-                        ? 'Uyku takibi aktif 😴'
-                        : 'Uyku puanın: ${loaded!.sleepScore}/100',
+                        ? 'trackingActive'.tr
+                        : 'sleepScoreIs'
+                            .trParams({'score': '${loaded!.sleepScore}'}),
                     style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w600,
@@ -321,9 +322,9 @@ class _GreetingCard extends StatelessWidget {
                 gradient: AppColors.primaryGradient,
                 borderRadius: BorderRadius.circular(AppSizes.radiusMd),
               ),
-              child: const Text(
-                'Takip Et',
-                style: TextStyle(
+              child: Text(
+                'trackBtn'.tr,
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                   fontSize: AppSizes.fontSm,
@@ -343,9 +344,9 @@ class _QuickActionsRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Hızlı Erişim',
-          style: TextStyle(
+        Text(
+          'quickAccess'.tr,
+          style: const TextStyle(
             color: AppColors.textPrimary,
             fontSize: AppSizes.fontLg,
             fontWeight: FontWeight.w700,
@@ -359,40 +360,40 @@ class _QuickActionsRow extends StatelessWidget {
           mainAxisSpacing: AppSizes.sm,
           crossAxisSpacing: AppSizes.sm,
           childAspectRatio: 0.85,
-          children: const [
+          children: [
             _QuickActionItem(
               icon: Icons.headphones_rounded,
-              label: 'Sesler',
+              label: 'sounds'.tr,
               color: AppColors.soundRain,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(
               icon: Icons.import_contacts_rounded,
-              label: 'Hikayeler',
+              label: 'stories'.tr,
               color: AppColors.soundMedieval,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(
               icon: Icons.spa_rounded,
-              label: 'Meditasyon',
+              label: 'meditation'.tr,
               color: AppColors.accentTeal,
               route: AppStrings.routeSounds,
             ),
             _QuickActionItem(
               icon: Icons.emoji_events_rounded,
-              label: 'Rozetler',
+              label: 'badges'.tr,
               color: AppColors.accent,
               route: AppStrings.routeRewards,
             ),
             _QuickActionItem(
               icon: Icons.psychology_rounded,
-              label: 'Asistan',
+              label: 'assistant'.tr,
               color: AppColors.primaryLight,
               route: AppStrings.routeChatbot,
             ),
             _QuickActionItem(
               icon: Icons.sports_esports_rounded,
-              label: 'Oyunlar',
+              label: 'games'.tr,
               color: AppColors.accentBlue,
               route: AppStrings.routeGames,
             ),
@@ -456,9 +457,9 @@ class _BadgesSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text(
-              'Rozetlerim',
-              style: TextStyle(
+            Text(
+              'myBadges'.tr,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: AppSizes.fontLg,
                 fontWeight: FontWeight.w700,
@@ -467,7 +468,7 @@ class _BadgesSection extends StatelessWidget {
             const Spacer(),
             TextButton(
               onPressed: () => Get.toNamed(AppStrings.routeRewards),
-              child: const Text('Tümünü Gör'),
+              child: Text('seeAll'.tr),
             ),
           ],
         ),
@@ -492,27 +493,25 @@ class _BadgesSection extends StatelessWidget {
 }
 
 class _SleepTipsSection extends StatelessWidget {
-  final _tips = const [
+  final _tips = [
     SleepTipModel(
       id: '1',
-      title: 'Tutarli Uyku Saati',
-      body:
-          'Her gun ayni saatte yatmak ve kalkmak sirkadiyen ritminizi duzenler.',
+      title: 'tipConsistentTitle'.tr,
+      body: 'tipConsistentBody'.tr,
       category: 'ritim',
       readTimeMinutes: 3,
     ),
     SleepTipModel(
       id: '2',
-      title: 'Ekrandan Uzak Dur',
-      body:
-          'Yatmadan 1 saat once telefon ve bilgisayar ekranlarindan uzak durun.',
+      title: 'tipScreenTitle'.tr,
+      body: 'tipScreenBody'.tr,
       category: 'hijyen',
       readTimeMinutes: 2,
     ),
     SleepTipModel(
       id: '3',
-      title: 'Serin Oda',
-      body: 'Ideal uyku odasi sicakligi 16-19 derece arasindadir.',
+      title: 'tipCoolRoomTitle'.tr,
+      body: 'tipCoolRoomBody'.tr,
       category: 'ortam',
       readTimeMinutes: 2,
     ),
@@ -525,9 +524,9 @@ class _SleepTipsSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text(
-              'Uyku Ipuçları',
-              style: TextStyle(
+            Text(
+              'sleepTips'.tr,
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: AppSizes.fontLg,
                 fontWeight: FontWeight.w700,
@@ -536,7 +535,7 @@ class _SleepTipsSection extends StatelessWidget {
             const Spacer(),
             TextButton(
               onPressed: () => Get.toNamed(AppStrings.routeLearning),
-              child: const Text('Daha Fazla'),
+              child: Text('more'.tr),
             ),
           ],
         ),
@@ -747,7 +746,7 @@ class _HeroMiniCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      completed > 0 ? 'görev' : 'tamam',
+                      completed > 0 ? 'quest'.tr : 'done'.tr,
                       style: const TextStyle(
                         color: AppColors.textMuted,
                         fontSize: AppSizes.fontXs,

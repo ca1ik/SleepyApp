@@ -37,12 +37,12 @@ class _RegisterPageState extends State<RegisterPage> {
   void _onRegisterPressed() {
     if (_formKey.currentState?.validate() ?? false) {
       context.read<AuthBloc>().add(
-        RegisterWithEmailRequested(
-          displayName: _nameController.text.trim(),
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-        ),
-      );
+            RegisterWithEmailRequested(
+              displayName: _nameController.text.trim(),
+              email: _emailController.text.trim(),
+              password: _passwordController.text,
+            ),
+          );
     }
   }
 
@@ -54,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Get.offAllNamed(AppStrings.routeDashboard);
         } else if (state is AuthError) {
           Get.snackbar(
-            'Kayıt Hatası',
+            'registerError'.tr,
             state.message,
             backgroundColor: AppColors.error.withAlpha(220),
             colorText: Colors.white,
@@ -90,18 +90,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: AppSizes.lg),
-                  const Text(
-                    'Hesap Oluştur ✨',
-                    style: TextStyle(
+                  Text(
+                    'createAccount'.tr,
+                    style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: AppSizes.fontTitle,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: AppSizes.sm),
-                  const Text(
-                    'Uyku yolculuğuna bugün başla.',
-                    style: TextStyle(
+                  Text(
+                    'startJourney'.tr,
+                    style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: AppSizes.fontMd,
                     ),
@@ -117,16 +117,16 @@ class _RegisterPageState extends State<RegisterPage> {
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.words,
                           style: const TextStyle(color: AppColors.textPrimary),
-                          decoration: const InputDecoration(
-                            labelText: 'Ad Soyad',
+                          decoration: InputDecoration(
+                            labelText: 'fullNameLabel'.tr,
                             prefixIcon: Icon(Icons.person_outline_rounded),
                           ),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
-                              return 'Ad soyad gerekli';
+                              return 'fullNameRequired'.tr;
                             }
                             if (value.trim().length < 2) {
-                              return 'En az 2 karakter girin';
+                              return 'fullNameMin'.tr;
                             }
                             return null;
                           },
@@ -138,18 +138,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           style: const TextStyle(color: AppColors.textPrimary),
-                          decoration: const InputDecoration(
-                            labelText: 'E-posta',
+                          decoration: InputDecoration(
+                            labelText: 'emailLabel'.tr,
                             prefixIcon: Icon(Icons.email_outlined),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'E-posta gerekli';
+                              return 'emailRequired'.tr;
                             }
                             if (!RegExp(
                               r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
                             ).hasMatch(value)) {
-                              return 'Gecerli bir e-posta girin';
+                              return 'emailInvalid'.tr;
                             }
                             return null;
                           },
@@ -162,7 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           textInputAction: TextInputAction.next,
                           style: const TextStyle(color: AppColors.textPrimary),
                           decoration: InputDecoration(
-                            labelText: 'Sifre',
+                            labelText: 'passwordLabel'.tr,
                             prefixIcon: const Icon(Icons.lock_outline_rounded),
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -177,16 +177,16 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Sifre gerekli';
+                              return 'passwordRequired'.tr;
                             }
                             if (value.length < 8) {
-                              return 'Sifre en az 8 karakter olmali';
+                              return 'passwordMin8'.tr;
                             }
                             if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                              return 'En az bir buyuk harf icermeli';
+                              return 'passwordUppercase'.tr;
                             }
                             if (!RegExp(r'[0-9]').hasMatch(value)) {
-                              return 'En az bir rakam icermeli';
+                              return 'passwordDigit'.tr;
                             }
                             return null;
                           },
@@ -200,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           onFieldSubmitted: (_) => _onRegisterPressed(),
                           style: const TextStyle(color: AppColors.textPrimary),
                           decoration: InputDecoration(
-                            labelText: 'Sifre Tekrar',
+                            labelText: 'confirmPasswordLabel'.tr,
                             prefixIcon: const Icon(Icons.lock_outline_rounded),
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -215,7 +215,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           validator: (value) {
                             if (value != _passwordController.text) {
-                              return 'Sifreler eslesmedi';
+                              return 'passwordsMismatch'.tr;
                             }
                             return null;
                           },
@@ -224,7 +224,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         BlocBuilder<AuthBloc, AuthState>(
                           builder: (context, state) {
                             return GradientButton(
-                              label: 'Kayıt Ol',
+                              label: 'registerBtn'.tr,
                               onPressed: _onRegisterPressed,
                               isLoading: state is AuthLoading,
                               icon: Icons.person_add_rounded,
@@ -236,15 +236,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              'Zaten hesabın var mı? ',
-                              style: TextStyle(color: AppColors.textSecondary),
+                            Text(
+                              'haveAccount'.tr,
+                              style: const TextStyle(
+                                  color: AppColors.textSecondary),
                             ),
                             GestureDetector(
                               onTap: () => Get.back(),
-                              child: const Text(
-                                'Giris Yap',
-                                style: TextStyle(
+                              child: Text(
+                                'signInBtn'.tr,
+                                style: const TextStyle(
                                   color: AppColors.primaryLight,
                                   fontWeight: FontWeight.w700,
                                 ),

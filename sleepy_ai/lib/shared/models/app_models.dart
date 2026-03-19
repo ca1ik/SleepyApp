@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 
 /// Ses kategorisi
 enum SoundCategory {
@@ -40,6 +41,9 @@ class SoundModel extends Equatable {
   final bool isPro;
   final bool isFavorite;
   final String? description;
+
+  /// Returns the sound name based on the current locale.
+  String get localeName => Get.locale?.languageCode == 'tr' ? nameTr : name;
 
   SoundModel copyWith({
     String? id,
