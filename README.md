@@ -2,6 +2,10 @@
 
 Welcome to the **SleepyApp** repository! This comprehensive Flutter application is designed to help users **improve their sleep quality** through intelligent tracking, ambient sound mixing, gamification, educational content, and relaxing mini-games. Built with **Clean Architecture**, powered by **BLoC/Cubit state management**, and fully functional offline.
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ebe309e3-cd63-4437-b685-d955c7c3a42e" width="280">
+</p>
+
 ---
 
 ## 🛠️ FEATURES (v1.0)
@@ -292,6 +296,21 @@ lib/
 This project is developed for private use.
 
 ---
+
+**IN APP:**
+
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/ebe309e3-cd63-4437-b685-d955c7c3a42e" width="280">
+    <img src="https://github.com/user-attachments/assets/6ed4b275-c260-46be-948c-78bb5eb7aefd" width="280" alt="screenshot2">
+    <img src="https://github.com/user-attachments/assets/411c3c6c-cfb1-4499-858c-e55adad3ddfb" width="280" alt="screenshot3">
+  <img src="https://github.com/user-attachments/assets/bae68ebd-d64e-4e1e-8d2a-56994afa8e16" width="280" alt="screenshot4">
+  <img src="https://github.com/user-attachments/assets/bbd517e9-a87e-4091-868f-0ef68f4c4dbd" width="280" alt="screenshot5">
+  <img src="https://github.com/user-attachments/assets/386e60f4-bfe5-4478-8b58-a00a6a75bbcc" width="280" alt="screenshot6">
+  <img src="https://github.com/user-attachments/assets/f51377c2-42b0-452e-a9ee-4c52e5d987f6" width="280" alt="screenshot7">
+  
+  
+</p>
 
 <p align="center">
   <b>🌙 SleepyApp</b> — Better sleep, better life.
