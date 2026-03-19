@@ -376,8 +376,8 @@ class _StarCatcherPageState extends State<StarCatcherPage>
               // Score
               Column(
                 children: [
-                  const Text('PUAN',
-                      style: TextStyle(
+                  Text('score'.tr,
+                      style: const TextStyle(
                           color: Colors.white54,
                           fontSize: 11,
                           letterSpacing: 1.5)),
@@ -393,8 +393,8 @@ class _StarCatcherPageState extends State<StarCatcherPage>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text('YAKALANDI',
-                      style: TextStyle(
+                  Text('caughtLabel'.tr,
+                      style: const TextStyle(
                           color: Colors.white54,
                           fontSize: 11,
                           letterSpacing: 1.2)),
@@ -433,13 +433,13 @@ class _StarCatcherPageState extends State<StarCatcherPage>
           ),
 
           const SizedBox(height: 4),
-          Text('$_secondsLeft sn',
+          Text('secondsLeft'.trParams({'sec': '$_secondsLeft'}),
               style: const TextStyle(color: Colors.white54, fontSize: 12)),
 
           const SizedBox(height: 8),
-          const Text(
-            'Yıldızlara dokun ve yakala!',
-            style: TextStyle(
+          Text(
+            'tapStars'.tr,
+            style: const TextStyle(
                 color: Colors.white38, fontSize: 12, letterSpacing: 0.5),
           ),
         ],
@@ -487,8 +487,8 @@ class _FinishedView extends StatelessWidget {
             children: [
               const Text('⭐', style: TextStyle(fontSize: 80)),
               const SizedBox(height: 20),
-              const Text(
-                'Yıldız Avcısı',
+              Text(
+                'starCatcherTitle'.tr,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 28,
@@ -496,24 +496,24 @@ class _FinishedView extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                'Oyun Bitti!',
+                'gameOver'.tr,
                 style:
                     TextStyle(color: Colors.white.withAlpha(150), fontSize: 16),
               ),
               const SizedBox(height: 40),
               _StatRow(
-                  label: 'Puan',
+                  label: 'score'.tr,
                   value: '$score',
                   color: const Color(0xFF9D64F5)),
               const SizedBox(height: 12),
               _StatRow(
-                  label: 'Yakalanan Yıldız',
+                  label: 'caughtStars'.tr,
                   value: '$caught ⭐',
                   color: Colors.amber),
               const SizedBox(height: 12),
               _StatRow(
-                  label: 'Hedef puan',
-                  value: '300 puan',
+                  label: 'targetScore'.tr,
+                  value: 'threeHundredPoints'.tr,
                   color: score >= 300 ? Colors.greenAccent : Colors.white38),
               if (badgeUnlocked) ...[
                 const SizedBox(height: 28),
@@ -525,20 +525,20 @@ class _FinishedView extends StatelessWidget {
                     border: Border.all(color: Colors.amber.withAlpha(100)),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('⭐', style: TextStyle(fontSize: 28)),
-                      SizedBox(width: 12),
+                      const Text('⭐', style: TextStyle(fontSize: 28)),
+                      const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Rozet Kazanıldı!',
-                              style: TextStyle(
+                          Text('badgeEarned'.tr,
+                              style: const TextStyle(
                                   color: Colors.amber,
                                   fontWeight: FontWeight.bold)),
-                          Text('Yıldız Avcısı',
-                              style: TextStyle(
+                          Text('starCatcherBadge'.tr,
+                              style: const TextStyle(
                                   color: Colors.white70, fontSize: 13)),
                         ],
                       ),
@@ -558,8 +558,8 @@ class _FinishedView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(16)),
                       ),
                       onPressed: () => Get.back(),
-                      child: const Text('Geri',
-                          style: TextStyle(color: Colors.white70)),
+                      child: Text('back'.tr,
+                          style: const TextStyle(color: Colors.white70)),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -573,8 +573,8 @@ class _FinishedView extends StatelessWidget {
                       ),
                       onPressed: () =>
                           Get.offAndToNamed(AppStrings.routeStarCatcher),
-                      child: const Text('Tekrar',
-                          style: TextStyle(
+                      child: Text('again'.tr,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
                     ),

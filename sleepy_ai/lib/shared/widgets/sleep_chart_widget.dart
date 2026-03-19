@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/shared/models/entities.dart';
@@ -17,13 +18,13 @@ class SleepChartWidget extends StatelessWidget {
   final double targetHours;
 
   static const List<String> _days = [
-    'Pzt',
-    'Sal',
-    'Çar',
-    'Per',
-    'Cum',
-    'Cmt',
-    'Paz',
+    'chartMon',
+    'chartTue',
+    'chartWed',
+    'chartThu',
+    'chartFri',
+    'chartSat',
+    'chartSun',
   ];
 
   @override
@@ -40,7 +41,7 @@ class SleepChartWidget extends StatelessWidget {
               getTooltipColor: (_) => AppColors.backgroundCard,
               getTooltipItem: (group, groupIndex, rod, rodIndex) {
                 return BarTooltipItem(
-                  '${rod.toY.toStringAsFixed(1)}sa\n${_days[groupIndex]}',
+                  '${rod.toY.toStringAsFixed(1)} ${'hoursShort'.tr}\n${_days[groupIndex].tr}',
                   const TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: AppSizes.fontSm,
@@ -61,7 +62,7 @@ class SleepChartWidget extends StatelessWidget {
                     return const SizedBox.shrink();
                   }
                   return Text(
-                    _days[index],
+                    _days[index].tr,
                     style: const TextStyle(
                       color: AppColors.textMuted,
                       fontSize: AppSizes.fontXs,
@@ -76,7 +77,7 @@ class SleepChartWidget extends StatelessWidget {
                 reservedSize: 32,
                 interval: 4,
                 getTitlesWidget: (value, meta) => Text(
-                  '${value.toInt()}sa',
+                  '${value.toInt()} ${'hoursShort'.tr}',
                   style: const TextStyle(
                     color: AppColors.textMuted,
                     fontSize: AppSizes.fontXs,
@@ -109,7 +110,8 @@ class SleepChartWidget extends StatelessWidget {
                 label: HorizontalLineLabel(
                   show: true,
                   alignment: Alignment.topRight,
-                  labelResolver: (_) => 'Hedef ${targetHours.toInt()}sa',
+                  labelResolver: (_) => 'targetHoursLabel'
+                      .trParams({'hours': '${targetHours.toInt()}'}),
                   style: const TextStyle(
                     color: AppColors.accentTeal,
                     fontSize: AppSizes.fontXs,

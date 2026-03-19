@@ -128,6 +128,7 @@ class BadgeModel extends Equatable {
     required this.title,
     required this.titleTr,
     required this.description,
+    required this.descriptionTr,
     required this.emoji,
     required this.requiredScore,
     this.category = BadgeCategory.sleep,
@@ -139,6 +140,7 @@ class BadgeModel extends Equatable {
   final String title;
   final String titleTr;
   final String description;
+  final String descriptionTr;
   final String emoji;
   final int requiredScore; // Ortalama uyku skoru eşiği (oyun rozetleri için 0)
   final BadgeCategory category;
@@ -151,6 +153,7 @@ class BadgeModel extends Equatable {
       title: title,
       titleTr: titleTr,
       description: description,
+      descriptionTr: descriptionTr,
       emoji: emoji,
       requiredScore: requiredScore,
       category: category,
@@ -158,6 +161,12 @@ class BadgeModel extends Equatable {
       earnedAt: earnedAt ?? this.earnedAt,
     );
   }
+
+  String get localizedTitle =>
+      Get.locale?.languageCode == 'tr' ? titleTr : title;
+
+  String get localizedDescription =>
+      Get.locale?.languageCode == 'tr' ? descriptionTr : description;
 
   @override
   List<Object?> get props => [type, isEarned, earnedAt];
@@ -170,7 +179,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.flexibleHours,
     title: 'Flexible Working Hours',
     titleTr: 'Esnek Çalışma Saatleri',
-    description: '7 gün üst üste düzenli uyku saati tut.',
+    description: 'Maintain a regular sleep schedule for 7 consecutive days.',
+    descriptionTr: '7 gün üst üste düzenli uyku saati tut.',
     emoji: '⏰',
     requiredScore: 60,
     category: BadgeCategory.sleep,
@@ -179,7 +189,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.mealCard,
     title: 'Meal Card',
     titleTr: 'Yemek Kartı',
-    description: '14 gün boyunca 7 saat ve üzeri uyu.',
+    description: 'Sleep 7 hours or more for 14 days.',
+    descriptionTr: '14 gün boyunca 7 saat ve üzeri uyu.',
     emoji: '🍽️',
     requiredScore: 70,
     category: BadgeCategory.sleep,
@@ -188,7 +199,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.commuteCompensation,
     title: 'Commute Compensation',
     titleTr: 'Yol Yardımı',
-    description: 'Uyku kalite ortalamasını 75 üzerine çıkar.',
+    description: 'Raise your average sleep quality above 75.',
+    descriptionTr: 'Uyku kalite ortalamasını 75 üzerine çıkar.',
     emoji: '🚌',
     requiredScore: 75,
     category: BadgeCategory.sleep,
@@ -197,7 +209,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.workingEquipment,
     title: 'Working Equipment',
     titleTr: 'Çalışma Ekipmanı',
-    description: '30 gün kesintisiz uyku takibi yap.',
+    description: 'Track your sleep for 30 consecutive days.',
+    descriptionTr: '30 gün kesintisiz uyku takibi yap.',
     emoji: '💻',
     requiredScore: 80,
     category: BadgeCategory.sleep,
@@ -206,7 +219,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.paidBirthdayOff,
     title: 'Paid Birthday Off',
     titleTr: 'Doğum Günü İzni',
-    description: 'Tüm uyku rozetlerini kazandın. Efsanesin!',
+    description: 'Earned all sleep badges. You\'re legendary!',
+    descriptionTr: 'Tüm uyku rozetlerini kazandın. Efsanesin!',
     emoji: '🎂',
     requiredScore: 90,
     category: BadgeCategory.sleep,
@@ -216,7 +230,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.cosmicBreather,
     title: 'Cosmic Breather',
     titleTr: 'Kozmik Nefes',
-    description: 'Kozmik Nefes oyununda 5 tam döngü tamamla.',
+    description: 'Complete 5 full cycles in the Cosmic Breath game.',
+    descriptionTr: 'Kozmik Nefes oyununda 5 tam döngü tamamla.',
     emoji: '🌌',
     requiredScore: 0,
     category: BadgeCategory.game,
@@ -225,7 +240,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.starCatcher,
     title: 'Star Catcher',
     titleTr: 'Yıldız Avcısı',
-    description: 'Yıldız Avcısı oyununda 30+ yıldız topla.',
+    description: 'Collect 30+ stars in the Star Catcher game.',
+    descriptionTr: 'Yıldız Avcısı oyununda 30+ yıldız topla.',
     emoji: '⭐',
     requiredScore: 0,
     category: BadgeCategory.game,
@@ -234,7 +250,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.dreamWeaver,
     title: 'Dream Weaver',
     titleTr: 'Hayal Dokuyucu',
-    description: '3 uyku filmini baştan sona izle.',
+    description: 'Watch 3 sleep films from start to finish.',
+    descriptionTr: '3 uyku filmini baştan sona izle.',
     emoji: '🎬',
     requiredScore: 0,
     category: BadgeCategory.film,
@@ -243,7 +260,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.galaxyExplorer,
     title: 'Galaxy Explorer',
     titleTr: 'Galaksi Gezgini',
-    description: 'Tüm 3 oyunu en az bir kez oyna.',
+    description: 'Play all 3 games at least once.',
+    descriptionTr: 'Tüm 3 oyunu en az bir kez oyna.',
     emoji: '🚀',
     requiredScore: 0,
     category: BadgeCategory.game,
@@ -252,7 +270,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.sleepSage,
     title: 'Sleep Sage',
     titleTr: 'Uyku Bilgesi',
-    description: 'Oyunlarda toplam 500+ puan topla.',
+    description: 'Collect 500+ total points across games.',
+    descriptionTr: 'Oyunlarda toplam 500+ puan topla.',
     emoji: '🧙',
     requiredScore: 0,
     category: BadgeCategory.game,
@@ -261,7 +280,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.bubblePopper,
     title: 'Bubble Popper',
     titleTr: 'Balon Patlatıcı',
-    description: 'Balon Bahçesi\'nde 50+ balon patlat.',
+    description: 'Pop 50+ bubbles in Bubble Garden.',
+    descriptionTr: 'Balon Bahçesi\'nde 50+ balon patlat.',
     emoji: '🫧',
     requiredScore: 0,
     category: BadgeCategory.game,
@@ -270,7 +290,8 @@ const List<BadgeModel> kDefaultBadges = [
     type: BadgeType.sleepySheep,
     title: 'Sleepy Sheep',
     titleTr: 'Uykulu Koyun',
-    description: 'Koyun Sayma\'da 30 koyun say.',
+    description: 'Count 30 sheep in Sheep Counting.',
+    descriptionTr: 'Koyun Sayma\'da 30 koyun say.',
     emoji: '🐑',
     requiredScore: 0,
     category: BadgeCategory.game,

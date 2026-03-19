@@ -378,7 +378,7 @@ class _SheepCounterPageState extends State<SheepCounterPage>
           left: 0,
           right: 0,
           child: Center(
-            child: Text('koyun sayıldı 🐑',
+            child: Text('countedSheepFooter'.tr,
                 style:
                     TextStyle(color: Colors.white.withAlpha(80), fontSize: 13)),
           ),
@@ -409,12 +409,12 @@ class _SheepCounterPageState extends State<SheepCounterPage>
                       const Icon(Icons.close, color: Colors.white60, size: 20),
                 ),
               ),
-              const Text('Koyun Sayma',
-                  style: TextStyle(
+              Text('sheepTitle'.tr,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
-              Text('$_secondsLeft sn',
+              Text('secondsLeft'.trParams({'sec': '$_secondsLeft'}),
                   style: const TextStyle(color: Colors.white54, fontSize: 13)),
             ],
           ),
@@ -440,8 +440,9 @@ class _SheepCounterPageState extends State<SheepCounterPage>
           const SizedBox(height: 8),
           Text(
             _counted < _badgeThreshold
-                ? '${_badgeThreshold - _counted} koyun daha say →  🏅'
-                : 'Rozet için yeterli! 🎉',
+                ? 'sheepMoreForBadge'
+                    .trParams({'count': '${_badgeThreshold - _counted}'})
+                : 'badgeEnough'.tr,
             style: TextStyle(
                 color: _counted >= _badgeThreshold
                     ? Colors.greenAccent.withAlpha(200)
@@ -470,29 +471,29 @@ class _SheepCounterPageState extends State<SheepCounterPage>
             children: [
               const Text('🐑', style: TextStyle(fontSize: 80)),
               const SizedBox(height: 16),
-              const Text('Koyun Sayma',
-                  style: TextStyle(
+              Text('sheepTitle'.tr,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28,
                       fontWeight: FontWeight.bold)),
               const SizedBox(height: 6),
-              Text('Uyku vakti… 💤',
+              Text('sleepTime'.tr,
                   style: TextStyle(
                       color: Colors.white.withAlpha(150), fontSize: 16)),
               const SizedBox(height: 36),
               _SheepStat(
-                  label: 'Sayılan Koyun',
+                  label: 'sheepCounted'.tr,
                   value: '$_counted 🐑',
                   color: const Color(0xFF9D64F5)),
               const SizedBox(height: 12),
               _SheepStat(
-                  label: 'Puan',
+                  label: 'score'.tr,
                   value: '${_counted * 10}',
                   color: Colors.amber),
               const SizedBox(height: 12),
               _SheepStat(
-                  label: 'Rozet Eşiği',
-                  value: '30 koyun',
+                  label: 'badgeThreshold'.tr,
+                  value: 'thirtySheep'.tr,
                   color: _counted >= 30 ? Colors.greenAccent : Colors.white38),
               if (_badgeUnlocked) ...[
                 const SizedBox(height: 24),
@@ -504,20 +505,20 @@ class _SheepCounterPageState extends State<SheepCounterPage>
                     border: Border.all(color: Colors.indigo.withAlpha(110)),
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('🐑', style: TextStyle(fontSize: 28)),
-                      SizedBox(width: 12),
+                      const Text('🐑', style: TextStyle(fontSize: 28)),
+                      const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Rozet Kazanıldı!',
-                              style: TextStyle(
+                          Text('badgeEarned'.tr,
+                              style: const TextStyle(
                                   color: Colors.indigoAccent,
                                   fontWeight: FontWeight.bold)),
-                          Text('Uykulu Koyun',
-                              style: TextStyle(
+                          Text('sleepySheep'.tr,
+                              style: const TextStyle(
                                   color: Colors.white70, fontSize: 13)),
                         ],
                       ),
@@ -537,8 +538,8 @@ class _SheepCounterPageState extends State<SheepCounterPage>
                             borderRadius: BorderRadius.circular(16)),
                       ),
                       onPressed: () => Get.back(),
-                      child: const Text('Geri',
-                          style: TextStyle(color: Colors.white70)),
+                      child: Text('back'.tr,
+                          style: const TextStyle(color: Colors.white70)),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -552,8 +553,8 @@ class _SheepCounterPageState extends State<SheepCounterPage>
                       ),
                       onPressed: () =>
                           Get.offAndToNamed(AppStrings.routeSheepCounter),
-                      child: const Text('Tekrar',
-                          style: TextStyle(
+                      child: Text('again'.tr,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
                     ),

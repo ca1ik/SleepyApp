@@ -72,6 +72,10 @@ class AppTranslations extends Translations {
     'goodAfternoon': 'Good Afternoon',
     'goodEvening': 'Good Evening',
     'sleepScore': 'Sleep Score',
+    'sleepExcellent': 'Excellent',
+    'sleepGood': 'Good',
+    'sleepFair': 'Fair',
+    'sleepPoor': 'Poor',
     'weeklyAvg': 'Weekly Avg.',
     'sleepDebt': 'Sleep Debt',
     'trackingActive': 'Sleep tracking active 😴',
@@ -186,6 +190,8 @@ class AppTranslations extends Translations {
     // ── Learning ──────────────────────────────────────────────────────
     'sleepGuide': 'Sleep Guide 📖',
     'searchArticles': 'Search articles...',
+    'noArticles': 'No articles found.',
+    'min': 'min',
     'catBiology': 'Biology',
     'catTechnology': 'Technology',
     'catNutrition': 'Nutrition',
@@ -231,9 +237,11 @@ class AppTranslations extends Translations {
     'noBadgesYet':
         'No badges earned yet.\nKeep sleeping well to unlock badges!',
     'locked': 'Locked',
+    'lockedCount': 'Locked (@count)',
     'yourSleepScore': 'Your Sleep Score',
     'earned': '✓ Earned',
     'earnedCount': 'Earned (@count)',
+    'scoreLabel': 'Score: @score+',
 
     // ── Feedback ──────────────────────────────────────────────────────
     'feedback': 'Feedback',
@@ -383,6 +391,22 @@ class AppTranslations extends Translations {
     'levelSub': 'Level @level  •  Sleep Hero',
     'dayStreak': '@days-day streak!',
     'newTitleEarned': '✨  New Title Earned',
+    'proContinue': 'Continue with PRO',
+    'proReachLv99': '✨ Reach Lv.99 with PRO!',
+    'nextLv': 'Next: Lv.@level',
+    'lv6ProRequired': 'PRO required for Lv.6',
+    'maxLevelReached': 'Maximum Level Reached!',
+    'dailyQuestsTitle': '📅  Daily Quests',
+    'levelPath': '🗺️  Level Path',
+    'myHero': '📊  My Hero',
+    'totalXpLabel': 'Total XP',
+    'streakLabel': 'Streak',
+    'activeDaysLabel': 'Active Days',
+    'levelUpTitle': 'LEVEL UP!',
+    'levelUpSub': 'Level @old  →  Level @new',
+    'levelUpContinue': 'Awesome!  Continue  ✨',
+    'proButtonSmall': 'GO PRO',
+    'streakDays': '@days Days',
 
     // ── Daily Quests ──────────────────────────────────────────────────
     'questDailyLogin': 'Daily Login',
@@ -416,8 +440,17 @@ class AppTranslations extends Translations {
     'sleepFilmsTitle': 'Sleep Films',
     'filmsAnimDesc': '8 animations • Space, ocean, aurora and more',
     'gameBadgesPlay': 'Earn badges by playing games and watching films!',
+    'playBtn': 'Play →',
 
     // ── Breathing Game ────────────────────────────────────────────────
+    'phaseInhale': 'Inhale',
+    'phaseHold': 'Hold',
+    'phaseExhale': 'Exhale',
+    'phaseRest': 'Rest',
+    'cyclesProgress': 'Cycle @current / @total',
+    'cosmicBreathIntro':
+        'Breathe with the universe using the 4-4-6-2 technique.\nEarn 500 points in 10 cycles.',
+    'startCosmicBreath': '🌌  Start',
     'awesome': 'Awesome!',
     'cyclesCompleted': '@cycles cycles completed',
     'points': 'POINTS',
@@ -428,6 +461,9 @@ class AppTranslations extends Translations {
     // ── Sheep Counter ─────────────────────────────────────────────────
     'sheepTitle': 'Sheep Counting',
     'sleepTime': 'Sleep time… 💤',
+    'countedSheepFooter': 'sheep counted 🐑',
+    'sheepMoreForBadge': '@count more sheep for badge →  🏅',
+    'badgeEnough': 'Enough for the badge! 🎉',
     'sheepCounted': 'Sheep Counted',
     'score': 'Score',
     'badgeThreshold': 'Badge Threshold',
@@ -437,6 +473,7 @@ class AppTranslations extends Translations {
     'again': 'Again',
 
     // ── Bubble Pop ────────────────────────────────────────────────────
+    'balloonCountLabel': 'BALLOON',
     'goalLabel': 'GOAL',
     'secondsLeft': '@sec sec',
     'tapBubbles': 'Tap and pop the bubbles 🫧',
@@ -449,6 +486,8 @@ class AppTranslations extends Translations {
     // ── Star Catcher ──────────────────────────────────────────────────
     'starCatcherTitle': 'Star Catcher',
     'gameOver': 'Game Over!',
+    'caughtLabel': 'CAUGHT',
+    'tapStars': 'Tap the stars and catch them!',
     'caughtStars': 'Caught Stars',
     'targetScore': 'Target score',
     'threeHundredPoints': '300 points',
@@ -457,10 +496,23 @@ class AppTranslations extends Translations {
     // ── Sleep Films ───────────────────────────────────────────────────
     'filmCompleted': 'Film completed ✨',
     'swipeForNext': 'Swipe right for next scene →',
+    'sceneLabel': 'Scene @current/@total',
+    'minutesShort': '~3 min',
     'dreamWeaver': 'Dream Weaver',
     'filmList': 'Film List',
     'sleepFilmsAppbar': 'Sleep Films',
     'filmsCount': '@count soothing animations • 2-3 minutes',
+
+    // ── Sleep Chart ───────────────────────────────────────────────────
+    'chartMon': 'Mon',
+    'chartTue': 'Tue',
+    'chartWed': 'Wed',
+    'chartThu': 'Thu',
+    'chartFri': 'Fri',
+    'chartSat': 'Sat',
+    'chartSun': 'Sun',
+    'hoursShort': 'h',
+    'targetHoursLabel': 'Target @hours h',
 
     // Film titles & subtitles
     'filmStarJourney': 'Star Journey',
@@ -659,6 +711,10 @@ class AppTranslations extends Translations {
     'goodAfternoon': 'İyi Günler',
     'goodEvening': 'İyi Akşamlar',
     'sleepScore': 'Uyku Puanı',
+    'sleepExcellent': 'Mükemmel',
+    'sleepGood': 'İyi',
+    'sleepFair': 'Orta',
+    'sleepPoor': 'Yetersiz',
     'weeklyAvg': 'Haftalık Ort.',
     'sleepDebt': 'Uyku Borcu',
     'trackingActive': 'Uyku takibi aktif 😴',
@@ -772,6 +828,8 @@ class AppTranslations extends Translations {
     // ── Learning ──────────────────────────────────────────────────────
     'sleepGuide': 'Uyku Rehberi 📖',
     'searchArticles': 'Makale ara...',
+    'noArticles': 'Makale bulunamadı.',
+    'min': 'dk',
     'catBiology': 'Biyoloji',
     'catTechnology': 'Teknoloji',
     'catNutrition': 'Beslenme',
@@ -818,9 +876,11 @@ class AppTranslations extends Translations {
     'noBadgesYet':
         'Henüz rozet kazanılmadı.\nDüzenli uyuyarak rozetleri kilitle!',
     'locked': 'Kilitli',
+    'lockedCount': 'Kilitli (@count)',
     'yourSleepScore': 'Uyku Puanın',
     'earned': '✓ Kazanıldı',
     'earnedCount': 'Kazanılanlar (@count)',
+    'scoreLabel': 'Skor: @score+',
 
     // ── Feedback ──────────────────────────────────────────────────────
     'feedback': 'Geri Bildirim',
@@ -912,6 +972,22 @@ class AppTranslations extends Translations {
     'levelSub': 'Seviye @level  •  Uyku Kahramanı',
     'dayStreak': '@days günlük dizi!',
     'newTitleEarned': '✨  Yeni Unvan Kazanıldı',
+    'proContinue': 'PRO ile devam et',
+    'proReachLv99': '✨ PRO ile Lv.99\'a Ulaş!',
+    'nextLv': 'Sonraki: Lv.@level',
+    'lv6ProRequired': 'Lv.6 için PRO gerekli',
+    'maxLevelReached': 'Maksimum Seviyeye Ulaştınız!',
+    'dailyQuestsTitle': '📅  Günlük Görevler',
+    'levelPath': '🗺️  Seviye Yolu',
+    'myHero': '📊  Kahramanım',
+    'totalXpLabel': 'Toplam XP',
+    'streakLabel': 'Dizi',
+    'activeDaysLabel': 'Aktif Gün',
+    'levelUpTitle': 'SEVİYE ATLADINIZ!',
+    'levelUpSub': 'Seviye @old  →  Seviye @new',
+    'levelUpContinue': 'Harika!  Devam Et  ✨',
+    'proButtonSmall': 'PRO OL',
+    'streakDays': '@days Gün',
 
     // ── Daily Quests ──────────────────────────────────────────────────
     'questDailyLogin': 'Günlük Giriş',
@@ -945,8 +1021,17 @@ class AppTranslations extends Translations {
     'sleepFilmsTitle': 'Uyku Filmleri',
     'filmsAnimDesc': '8 animasyon • Uzay, okyanus, aurora ve daha fazlası',
     'gameBadgesPlay': 'Oyun oynayarak ve film izleyerek rozet kazan!',
+    'playBtn': 'Oyna →',
 
     // ── Breathing Game ────────────────────────────────────────────────
+    'phaseInhale': 'Nefes Al',
+    'phaseHold': 'Tut',
+    'phaseExhale': 'Nefes Ver',
+    'phaseRest': 'Bekle',
+    'cyclesProgress': 'Döngü @current / @total',
+    'cosmicBreathIntro':
+        '4-4-6-2 nefes tekniğiyle evrenle uyum sağla.\n10 döngüde 500 puan kazan.',
+    'startCosmicBreath': '🌌  Başla',
     'awesome': 'Harika!',
     'cyclesCompleted': '@cycles döngü tamamladın',
     'points': 'PUAN',
@@ -957,6 +1042,9 @@ class AppTranslations extends Translations {
     // ── Sheep Counter ─────────────────────────────────────────────────
     'sheepTitle': 'Koyun Sayma',
     'sleepTime': 'Uyku vakti… 💤',
+    'countedSheepFooter': 'koyun sayıldı 🐑',
+    'sheepMoreForBadge': 'Rozet için @count koyun daha say →  🏅',
+    'badgeEnough': 'Rozet için yeterli! 🎉',
     'sheepCounted': 'Sayılan Koyun',
     'score': 'Puan',
     'badgeThreshold': 'Rozet Eşiği',
@@ -966,6 +1054,7 @@ class AppTranslations extends Translations {
     'again': 'Tekrar',
 
     // ── Bubble Pop ────────────────────────────────────────────────────
+    'balloonCountLabel': 'BALON',
     'goalLabel': 'HEDEF',
     'secondsLeft': '@sec sn',
     'tapBubbles': 'Baloncuklara dokun ve patlat 🫧',
@@ -978,6 +1067,8 @@ class AppTranslations extends Translations {
     // ── Star Catcher ──────────────────────────────────────────────────
     'starCatcherTitle': 'Yıldız Avcısı',
     'gameOver': 'Oyun Bitti!',
+    'caughtLabel': 'YAKALANDI',
+    'tapStars': 'Yıldızlara dokun ve yakala!',
     'caughtStars': 'Yakalanan Yıldız',
     'targetScore': 'Hedef puan',
     'threeHundredPoints': '300 puan',
@@ -986,10 +1077,23 @@ class AppTranslations extends Translations {
     // ── Sleep Films ───────────────────────────────────────────────────
     'filmCompleted': 'Film tamamlandı ✨',
     'swipeForNext': 'Sonraki sahne için sağa kaydır →',
+    'sceneLabel': 'Sahne @current/@total',
+    'minutesShort': '~3 dk',
     'dreamWeaver': 'Rüya Dokuyucu',
     'filmList': 'Film Listesi',
     'sleepFilmsAppbar': 'Uyku Filmleri',
     'filmsCount': '@count adet huzur verici animasyon • 2-3 dakika',
+
+    // ── Sleep Chart ───────────────────────────────────────────────────
+    'chartMon': 'Pzt',
+    'chartTue': 'Sal',
+    'chartWed': 'Çar',
+    'chartThu': 'Per',
+    'chartFri': 'Cum',
+    'chartSat': 'Cmt',
+    'chartSun': 'Paz',
+    'hoursShort': 'sa',
+    'targetHoursLabel': 'Hedef @hours sa',
 
     // Film titles & subtitles
     'filmStarJourney': 'Yıldız Yolculuğu',

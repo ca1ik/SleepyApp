@@ -47,8 +47,7 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
 
   late final List<_ChatMessage> _messages = [
     _ChatMessage(
-      text:
-          'Merhaba! Ben Sleepy Assistant 🌙\n\nUyku sorunlarınız, uyku rutinleri veya daha iyi dinlenme için ipuçları hakkındaki sorularınızı yanıtlamaya hazırım.\n\nNasıl yardımcı olabilirim?',
+      text: 'assistantGreeting'.tr,
       sender: _Sender.assistant,
     ),
   ];
@@ -99,111 +98,114 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
   String _generateResponse(String input) {
     final q = input.toLowerCase();
 
-    // Uyku düzeni / saat
-    if (_anyMatch(q, ['uyku', 'uyu', 'uyuya', 'uyumak', 'uyumam'])) {
-      if (_anyMatch(q, ['saat', 'kaç', 'ne zaman', 'süre', 'uzun', 'kısa'])) {
-        return 'Yetişkinlerin her gece **7-9 saat** uyuması önerilir.\n\n'
-            'Her gün aynı saatte yatıp kalkmak, vücudunuzun biyolojik saatini düzenler. '
-            'Hafta sonları bile bu rutinden sapmamaya çalışın. ⏰';
+    if (_anyMatch(q, ['sleep', 'uyku', 'uyu', 'uyumak'])) {
+      if (_anyMatch(q, ['hour', 'long', 'duration', 'saat', 'kaç', 'süre'])) {
+        return 'respSleepHours'.tr;
       }
       if (_anyMatch(
-          q, ['sorun', 'problem', 'uyuyamıyorum', 'zor', 'güç', 'düzensiz'])) {
-        return 'Uyku sorunları için birkaç öneri:\n\n'
-            '• **Tutarlı saat:** Her gün aynı saatte yat ve kalk.\n'
-            '• **Yatak odası**: Karanlık, serin (16–19°C) ve sessiz tutun.\n'
-            '• **Ekran süresi**: Yatmadan 1 saat önce telefon/bilgisayarı bırakın.\n'
-            '• **Kafein**: Öğleden sonra kahve/çay tüketimini azaltın. ☕\n\n'
-            'Sorunlar devam ederse bir doktora danışmanızı öneririm.';
+          q, ['problem', 'issue', 'can\'t', 'sorun', 'uyuyamıyorum', 'zor'])) {
+        return 'respSleepProblems'.tr;
       }
     }
 
-    // Meditasyon
+    if (_anyMatch(q, [
+      'meditation',
+      'breath',
+      'relax',
+      'stress',
+      'meditasyon',
+      'nefes',
+      'rahatlama',
+      'stres'
+    ])) {
+      return 'respMeditation'.tr;
+    }
+
+    if (_anyMatch(q, ['dream', 'nightmare', 'rem', 'rüya', 'kabus'])) {
+      return 'respDreams'.tr;
+    }
+
     if (_anyMatch(
-        q, ['meditasyon', 'nefes', 'rahatlama', 'stres', 'sakinleş'])) {
-      return '**4-7-8 Nefes Tekniği** uyku öncesi harika çalışır:\n\n'
-          '1. Burumdan 4 saniye nefes al.\n'
-          '2. 7 saniye nefesi tut.\n'
-          '3. Ağızdan 8 saniyede yavaşça ver.\n\n'
-          'Bunu 3-4 kez tekrarlamak parasempatik sinir sisteminizi aktive eder ve zihninizi sakinleştirir. 🧘';
+        q, ['alarm', 'wake', 'morning', 'uyan', 'sabah', 'kalk', 'zinde'])) {
+      return 'respAlarm'.tr;
     }
 
-    // Rüya
-    if (_anyMatch(q, ['rüya', 'rüyalar', 'kabus', 'rem'])) {
-      return 'Rüyalar genellikle **REM uykusu** sırasında görülür.\n\n'
-          '• Canlı rüyalar için B6 vitamini alımını artırabilirsiniz (muz, avokado).\n'
-          '• Kabuslar sıklaşıyorsa stres veya uyku düzensizliği işareti olabilir.\n'
-          '• Rüya günlüğü tutmak, rüyalarınızı hatırlamanıza yardımcı olur. 📓';
+    if (_anyMatch(q, [
+      'room',
+      'temperature',
+      'light',
+      'dark',
+      'noise',
+      'oda',
+      'sıcaklık',
+      'ışık',
+      'karanlık',
+      'gürültü'
+    ])) {
+      return 'respEnvironment'.tr;
     }
 
-    // Alarm / uyanma
-    if (_anyMatch(q, ['alarm', 'uyan', 'sabah', 'kalk', 'zinde'])) {
-      return 'Zinde uyanmak için uyku döngülerinizi hesaplayın:\n\n'
-          'Bir uyku döngüsü yaklaşık **90 dakika** sürer. '
-          '4.5, 6, 7.5 veya 9 saatlik uyku sürelerinde uyanmayı deneyin.\n\n'
-          'Doğal ışık alarmı veya güneş simülatörü de uyanışı kolaylaştırır. 🌅';
+    if (_anyMatch(q, [
+      'food',
+      'coffee',
+      'caffeine',
+      'alcohol',
+      'nutrition',
+      'yemek',
+      'beslen',
+      'kahve',
+      'kafein',
+      'alkol'
+    ])) {
+      return 'respNutrition'.tr;
     }
 
-    // Çevresel faktörler
-    if (_anyMatch(
-        q, ['oda', 'sıcaklık', 'ışık', 'karanlık', 'gürültü', 'ses'])) {
-      return 'İdeal uyku ortamı için:\n\n'
-          '🌡️ **Sıcaklık:** 16–19°C arası en uygun.\n'
-          '🌑 **Işık:** Tamamen karanlık ya da uyku maskesi.\n'
-          '🔇 **Ses:** Beyaz gürültü veya SleepyApp\'in ambient sesleri.\n'
-          '🛏️ **Yatak:** Kaliteli yatak ve yastık uyku kalitesini ciddi artırır.';
+    if (_anyMatch(q, [
+      'exercise',
+      'sport',
+      'walk',
+      'run',
+      'workout',
+      'spor',
+      'egzersiz',
+      'yürüyüş',
+      'koşu'
+    ])) {
+      return 'respExercise'.tr;
     }
 
-    // Beslenme
-    if (_anyMatch(
-        q, ['yemek', 'beslen', 'kahve', 'kafein', 'alkol', 'içki', 'su'])) {
-      return 'Uyku ve beslenme ilişkisi:\n\n'
-          '☕ **Kafein:** Yatmadan 6 saat önce kesin.\n'
-          '🍷 **Alkol:** Uyku kalitesini düşürür; REM uykunuzu bozar.\n'
-          '🍽️ **Ağır yemek:** Yatmadan 2-3 saat önce hafif bir şeyler yiyin.\n'
-          '🍌 **Magnezyum & Triptofan:** Muz, badem, süt—doğal uyku destekçileri.';
+    if (_anyMatch(q, [
+      'hygiene',
+      'routine',
+      'habit',
+      'tip',
+      'hijyen',
+      'rutin',
+      'alışkanlık',
+      'öneri',
+      'ipucu'
+    ])) {
+      return 'respHygiene'.tr;
     }
 
-    // Egzersiz
-    if (_anyMatch(q, ['spor', 'egzersiz', 'yürüyüş', 'hareket', 'koşu'])) {
-      return 'Egzersiz uyku kalitesini artırır, ancak zamanlama önemli:\n\n'
-          '✅ Sabah veya öğlen egzersizi ideáldır.\n'
-          '⚠️ Yatmadan 3 saat içinde yoğun egzersiz yapmaktan kaçının; '
-          'kortizol ve vücut ısısını yükseltir.\n'
-          '🧘 Yatmadan önce yoga veya hafif germe hareketleri ise mükemmel! 🌙';
+    if (_anyMatch(q, [
+      'hello',
+      'hi',
+      'hey',
+      'good morning',
+      'merhaba',
+      'selam',
+      'nasılsın',
+      'günaydın'
+    ])) {
+      return 'respGreeting'.tr;
     }
 
-    // Uyku hijyeni
-    if (_anyMatch(q, ['hijyen', 'rutin', 'alışkanlık', 'öneri', 'ipucu'])) {
-      return 'Altın uyku hijyeni kuralları:\n\n'
-          '1. 📱 Yatmadan 1 saat önce ekranları kapat.\n'
-          '2. 🛁 Sıcak duş sirkadyen ritmi destekler.\n'
-          '3. 📚 Hafif okuma veya meditasyon yap.\n'
-          '4. ☕ Öğleden sonra kafein alma.\n'
-          '5. 🌡️ Oda sıcaklığını 16–19°C\'ye ayarla.\n'
-          '6. ⏰ Her gün aynı saatte yat ve kalk.';
+    if (_anyMatch(q, ['thank', 'thanks', 'teşekkür', 'sağol', 'eyvallah'])) {
+      return 'respThanks'.tr;
     }
 
-    // Selam / teşekkür
-    if (_anyMatch(
-        q, ['merhaba', 'selam', 'nasılsın', 'iyi günler', 'günaydın'])) {
-      return 'Merhaba! 🌙 Ben Sleepy Assistant.\n\n'
-          'Uyku sağlığınız hakkında sorularınızı yanıtlamaya hazırım. '
-          'Uyku süreniz, rutinleriniz, meditasyon veya uyku ortamı hakkında ne öğrenmek istersiniz?';
-    }
-
-    if (_anyMatch(q, ['teşekkür', 'sağol', 'thanks', 'eyvallah'])) {
-      return 'Rica ederim! 😊\n\n'
-          'Daha iyi uyku için başka sorularınız olursa buradayım. '
-          'İyi geceler ve dinlendirici uykular dilerim. 🌙✨';
-    }
-
-    // Varsayılan
-    return 'Bu konuda şunu söyleyebilirim:\n\n'
-        'Kaliteli uyku, fiziksel ve mental sağlığın temel taşıdır. '
-        'Düzenli uyku saatleri, rahatlatıcı bir ortam ve stres yönetimi '
-        'uyku kalitenizi önemli ölçüde artırır. 🌙\n\n'
-        'Daha spesifik bir konuda yardımcı olmamı ister misiniz? '
-        'Örneğin: *uyku süresi*, *meditasyon teknikleri*, *uyku rutini* veya *uyku ortamı* hakkında sorabilirsiniz.';
+    return 'respDefault'.tr;
   }
 
   bool _anyMatch(String text, List<String> keywords) {
@@ -247,10 +249,10 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
                     ),
                   ),
                   const SizedBox(width: AppSizes.sm),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Sleepy Assistant',
                         style: TextStyle(
                           color: AppColors.textPrimary,
@@ -259,8 +261,8 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
                         ),
                       ),
                       Text(
-                        'YZ destekli uyku danışmanı',
-                        style: TextStyle(
+                        'aiSleepConsultant'.tr,
+                        style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 11,
                         ),
@@ -350,10 +352,10 @@ class _ProGateBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSizes.sm),
-            const Text(
-              'YZ destekli kişisel uyku danışmanınıza erişmek için PRO üye olun.',
+            Text(
+              'proGateDesc'.tr,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: AppSizes.fontMd,
                 height: 1.5,
@@ -362,21 +364,21 @@ class _ProGateBody extends StatelessWidget {
             const SizedBox(height: AppSizes.xl),
             _FeatureBadge(
               emoji: '💬',
-              text: 'Uyku sorunlarınız için kişisel tavsiyeler',
+              text: 'proGateFeature1'.tr,
             ),
             const SizedBox(height: AppSizes.sm),
             _FeatureBadge(
               emoji: '🧠',
-              text: 'Meditasyon ve nefes teknikleri rehberliği',
+              text: 'proGateFeature2'.tr,
             ),
             const SizedBox(height: AppSizes.sm),
             _FeatureBadge(
               emoji: '📊',
-              text: 'Uyku rutini oluşturma desteği',
+              text: 'proGateFeature3'.tr,
             ),
             const SizedBox(height: AppSizes.xxl),
             GradientButton(
-              label: '✨ PRO\'ya Geç',
+              label: 'goPro'.tr,
               onPressed: () => Get.toNamed(AppStrings.routePro),
               height: 52,
             ),
@@ -736,7 +738,7 @@ class _InputBar extends StatelessWidget {
                 maxLines: 3,
                 minLines: 1,
                 decoration: InputDecoration(
-                  hintText: 'Uyku hakkında bir şey sorun…',
+                  hintText: 'askAboutSleep'.tr,
                   hintStyle: const TextStyle(
                     color: AppColors.textMuted,
                     fontSize: AppSizes.fontSm,

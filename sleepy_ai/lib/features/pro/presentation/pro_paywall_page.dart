@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/pro/cubit/pro_cubit.dart';
@@ -14,9 +15,9 @@ class ProPaywallPage extends StatelessWidget {
       listener: (context, state) {
         if (state.isPro) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
-                '🎉 PRO\'ya hoş geldin! Tüm özellikler kilidini açtı.',
+                'proWelcome'.tr,
               ),
               backgroundColor: AppColors.success,
             ),
@@ -25,7 +26,7 @@ class ProPaywallPage extends StatelessWidget {
         } else if (state.status == ProStatus.error) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.error ?? 'Satın alma başarısız oldu.'),
+              content: Text(state.error ?? 'purchaseFailed'.tr),
               backgroundColor: AppColors.error,
             ),
           );
@@ -87,9 +88,9 @@ class ProPaywallPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: AppSizes.md),
-                            const Text(
-                              'Daha iyi uyku için premium deneyim',
-                              style: TextStyle(
+                            Text(
+                              'proPremiumExp'.tr,
+                              style: const TextStyle(
                                 color: AppColors.textSecondary,
                                 fontSize: AppSizes.fontLg,
                               ),
@@ -109,9 +110,9 @@ class ProPaywallPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'PRO ile neler kazanırsın?',
-                        style: TextStyle(
+                      Text(
+                        'proWhatYouGet'.tr,
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: AppSizes.fontXl,
                           fontWeight: FontWeight.bold,
@@ -123,9 +124,9 @@ class ProPaywallPage extends StatelessWidget {
 
                       // Pricing cards
                       _PricingCard(
-                        label: 'Aylık Plan',
+                        label: 'monthlyPlan'.tr,
                         price: state.monthlyPrice,
-                        subtitle: 'aylık',
+                        subtitle: 'monthlyLabel'.tr,
                         badge: null,
                         onTap:
                             state.isPurchasing ? null : cubit.purchaseMonthly,
@@ -133,10 +134,10 @@ class ProPaywallPage extends StatelessWidget {
                       ),
                       const SizedBox(height: AppSizes.sm),
                       _PricingCard(
-                        label: 'Yıllık Plan',
+                        label: 'yearlyPlan'.tr,
                         price: state.yearlyPrice,
-                        subtitle: 'yıllık (%33 indirim)',
-                        badge: 'EN AVANTAJLI',
+                        subtitle: 'yearlyLabel'.tr,
+                        badge: 'bestValue'.tr,
                         onTap: state.isPurchasing ? null : cubit.purchaseYearly,
                         isLoading: state.isPurchasing,
                       ),
@@ -148,19 +149,19 @@ class ProPaywallPage extends StatelessWidget {
                           onPressed: state.isPurchasing
                               ? null
                               : cubit.restorePurchases,
-                          child: const Text(
-                            'Satın Alımları Geri Yükle',
-                            style: TextStyle(color: AppColors.textMuted),
+                          child: Text(
+                            'restorePurchases'.tr,
+                            style: const TextStyle(color: AppColors.textMuted),
                           ),
                         ),
                       ),
 
                       // Legal
-                      const Center(
+                      Center(
                         child: Text(
-                          'Abonelik otomatik yenilenir. İstediğiniz zaman iptal edebilirsiniz.',
+                          'subscriptionNote'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColors.textDisabled,
                             fontSize: AppSizes.fontXs,
                           ),
@@ -204,30 +205,30 @@ class ProPaywallPage extends StatelessWidget {
   }
 }
 
-const _kFeatures = [
+final _kFeatures = [
   _ProFeature(
     '🤖',
-    'Sleepy Assistant',
-    'YZ destekli kişisel uyku danışmanı',
+    'proSleepyAssistant'.tr,
+    'proAssistantDesc'.tr,
   ),
   _ProFeature(
     '🎵',
-    'Sınırsız Ses & Karıştırıcı',
-    '6\'ya kadar eş zamanlı ses katmanı',
+    'proUnlimitedSounds'.tr,
+    'proUnlimitedSoundsDesc'.tr,
   ),
   _ProFeature(
     '🤖',
-    'YZ Mod Müziği',
-    'Ruh haline göre kişiselleştirilmiş müzik',
+    'proAiMoodMusic'.tr,
+    'proAiMoodMusicDesc'.tr,
   ),
-  _ProFeature('📚', 'Tüm İçerikler', 'Tüm uyku rehberi makaleleri'),
-  _ProFeature('🔔', 'Akıllı Alarm', 'Uyku döngüsüne göre uyanış alarmı'),
-  _ProFeature('📊', 'Gelişmiş Analiz', 'Detaylı uyku grafikleri ve raporlar'),
-  _ProFeature('🏆', 'Özel Rozetler', 'PRO üyelere özel ödüller'),
+  _ProFeature('📚', 'proAllContent'.tr, 'proAllContentDesc'.tr),
+  _ProFeature('🔔', 'proSmartAlarm'.tr, 'proSmartAlarmDesc'.tr),
+  _ProFeature('📊', 'proAdvancedAnalysis'.tr, 'proAdvancedAnalysisDesc'.tr),
+  _ProFeature('🏆', 'proSpecialBadges'.tr, 'proSpecialBadgesDesc'.tr),
   _ProFeature(
     '☁️',
-    'Bulut Senkronizasyon',
-    'Cihazlar arası uyku verisi senkronizasyonu',
+    'proCloudSync'.tr,
+    'proCloudSyncDesc'.tr,
   ),
 ];
 

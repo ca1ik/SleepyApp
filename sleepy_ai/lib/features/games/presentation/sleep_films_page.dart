@@ -34,170 +34,106 @@ class _SceneDef {
 const _kFilms = [
   _FilmDef(
     id: 'stars',
-    title: 'Yıldız Yolculuğu',
-    subtitle: 'Galaksi süvarisi ol',
+    title: 'filmStarJourney',
+    subtitle: 'filmStarJourneySub',
     emoji: '🌌',
     gradient: [Color(0xFF0D001A), Color(0xFF1A003A)],
     scenes: [
-      _SceneDef(
-          'Karanlık uzayın derinliklerinde süzülüyorsun. Yüzlerce yıldız seninle dans ediyor.',
-          Color(0xFF9D64F5)),
-      _SceneDef(
-          'Nebulalar arasından geçerken renk renk ışıklar seni sarıyor. Her nefeste daha da hafifleşiyorsun.',
-          Color(0xFF7C3AED)),
-      _SceneDef(
-          'Uzak galaksilerin ışıltısı seni huzura davet ediyor. Zihnin dinginleşiyor, beden gevşiyor.',
-          Color(0xFF4F46E5)),
-      _SceneDef(
-          'Evrenin sonsuzluğunda küçük ama değerli bir parcasısın. Bu anın keyfini çıkar.',
-          Color(0xFF06B6D4)),
+      _SceneDef('filmStar1', Color(0xFF9D64F5)),
+      _SceneDef('filmStar2', Color(0xFF7C3AED)),
+      _SceneDef('filmStar3', Color(0xFF4F46E5)),
+      _SceneDef('filmStar4', Color(0xFF06B6D4)),
     ],
   ),
   _FilmDef(
     id: 'nebula',
-    title: 'Nebula Bahçesi',
-    subtitle: 'Renklerin dans ettiği yer',
+    title: 'filmNebula',
+    subtitle: 'filmNebulaSub',
     emoji: '🎨',
     gradient: [Color(0xFF0A0015), Color(0xFF1E0030)],
     scenes: [
-      _SceneDef(
-          'Kırmızı, mor ve turuncu bulutlar yavaşça birbirine karışıyor. Doğanın resim sanatı.',
-          Color(0xFFEC4899)),
-      _SceneDef(
-          'Gaz bulutları arasında yeni yıldızlar doğuyor. Sen de her nefeste yeniden doğuyorsun.',
-          Color(0xFFEF4444)),
-      _SceneDef(
-          'Renk dalgaları beynini yavaşlatıyor. Beden ağırlaşıyor, gözler kapanmak istiyor.',
-          Color(0xFFF97316)),
-      _SceneDef(
-          'Tüm renkler tek bir beyaz ışıkta birleşiyor. Huzur bu ışık gibi seni sarıyor.',
-          Color(0xFFFBBF24)),
+      _SceneDef('filmNebula1', Color(0xFFEC4899)),
+      _SceneDef('filmNebula2', Color(0xFFEF4444)),
+      _SceneDef('filmNebula3', Color(0xFFF97316)),
+      _SceneDef('filmNebula4', Color(0xFFFBBF24)),
     ],
   ),
   _FilmDef(
     id: 'moon',
-    title: "Ay'a Doğru",
-    subtitle: 'Ay ışığında süzül',
+    title: 'filmMoon',
+    subtitle: 'filmMoonSub',
     emoji: '🌙',
     gradient: [Color(0xFF030B1A), Color(0xFF0A1A2E)],
     scenes: [
-      _SceneDef(
-          "Hilal ay yavaşça büyüyor. Ay'ın soğuk ışığı yüzüne vuruyor, kalbin sakinleşiyor.",
-          Color(0xFFBAE6FD)),
-      _SceneDef(
-          'Ay yüzeyindeki kraterleri fark ediyorsun. Her krater bir anı, her iz bir hikaye.',
-          Color(0xFF7DD3FC)),
-      _SceneDef(
-          "Ay'ın çekimiyle sürükleniyorsun. Ağırlık yok, sadece yavaş bir dans.",
-          Color(0xFF38BDF8)),
-      _SceneDef(
-          'Dünya uzaktan küçük bir mavi nokta. Bu sessizlikte sadece nefes var.',
-          Color(0xFF0EA5E9)),
+      _SceneDef('filmMoon1', Color(0xFFBAE6FD)),
+      _SceneDef('filmMoon2', Color(0xFF7DD3FC)),
+      _SceneDef('filmMoon3', Color(0xFF38BDF8)),
+      _SceneDef('filmMoon4', Color(0xFF0EA5E9)),
     ],
   ),
   _FilmDef(
     id: 'aurora',
-    title: 'Aurora',
-    subtitle: 'Kuzey ışıklarında kaybol',
+    title: 'filmAurora',
+    subtitle: 'filmAuroraSub',
     emoji: '🌅',
     gradient: [Color(0xFF001A0D), Color(0xFF002A15)],
     scenes: [
-      _SceneDef(
-          'Yeşil ve mavi kuşaklar gökyüzünde dans ediyor. Kuzey ışıkları sana bir şeyler fısıldıyor.',
-          Color(0xFF34D399)),
-      _SceneDef(
-          'Işık dalgaları ritmik olarak titreşiyor. Bu ritim nefes ritmini yumuşatıyor.',
-          Color(0xFF10B981)),
-      _SceneDef(
-          'Mor ve pembe tonlar yeşile katkılıyor. Gökyüzü canlı bir tablo gibi.',
-          Color(0xFF6EE7B7)),
-      _SceneDef(
-          'Işıklar yavaşça soluklaşıyor. Gece seni kucaklıyor, uyku kapıyı çalıyor.',
-          Color(0xFF059669)),
+      _SceneDef('filmAurora1', Color(0xFF34D399)),
+      _SceneDef('filmAurora2', Color(0xFF10B981)),
+      _SceneDef('filmAurora3', Color(0xFF6EE7B7)),
+      _SceneDef('filmAurora4', Color(0xFF059669)),
     ],
   ),
   _FilmDef(
     id: 'ocean',
-    title: 'Okyanus Derinlikleri',
-    subtitle: 'Biyolüminesan dünya',
+    title: 'filmOcean',
+    subtitle: 'filmOceanSub',
     emoji: '🌊',
     gradient: [Color(0xFF000D1A), Color(0xFF001A33)],
     scenes: [
-      _SceneDef(
-          'Derinlere indikçe mavi daha da koyulaşıyor. Denizanası gibi süzülüyorsun.',
-          Color(0xFF22D3EE)),
-      _SceneDef(
-          'Biyolüminesan balıklar etrafında dans ediyor. Karanlıkta bile ışık bulunuyor.',
-          Color(0xFF06B6D4)),
-      _SceneDef(
-          'Okyanus akıntısı seni taşıyor. Kontrolü bırakmak bu kadar güzel olabilir.',
-          Color(0xFF0891B2)),
-      _SceneDef(
-          'Derinlerin sessizliği beyne işliyor. Dalgaların ritmi uyku ritmine dönüşüyor.',
-          Color(0xFF0E7490)),
+      _SceneDef('filmOcean1', Color(0xFF22D3EE)),
+      _SceneDef('filmOcean2', Color(0xFF06B6D4)),
+      _SceneDef('filmOcean3', Color(0xFF0891B2)),
+      _SceneDef('filmOcean4', Color(0xFF0E7490)),
     ],
   ),
   _FilmDef(
     id: 'clouds',
-    title: 'Bulut Sörfü',
-    subtitle: 'Pembe bulutlarda süzül',
+    title: 'filmClouds',
+    subtitle: 'filmCloudsSub',
     emoji: '☁️',
     gradient: [Color(0xFF1A0A1A), Color(0xFF0F0020)],
     scenes: [
-      _SceneDef(
-          'Pembe ve turuncu bulutların üzerinde yürüyorsun. Pamuk gibi yumuşak, hafif bir his.',
-          Color(0xFFFDA4AF)),
-      _SceneDef(
-          'Bulutlar arasından güneş ışınları süzülüyor. Her ışın sıcaklık ve huzur getiriyor.',
-          Color(0xFFFB923C)),
-      _SceneDef(
-          'Rüzgar seni nazikçe ileri taşıyor. Bulutlar üzerinde süzülmek uyku gibi hissettiriyor.',
-          Color(0xFFF9A8D4)),
-      _SceneDef(
-          'Gün batımı renkleri soluklaşıyor. Gece yavaşça örtuyor, uyku buyur ediyor.',
-          Color(0xFFC084FC)),
+      _SceneDef('filmCloud1', Color(0xFFFDA4AF)),
+      _SceneDef('filmCloud2', Color(0xFFFB923C)),
+      _SceneDef('filmCloud3', Color(0xFFF9A8D4)),
+      _SceneDef('filmCloud4', Color(0xFFC084FC)),
     ],
   ),
   _FilmDef(
     id: 'crystal',
-    title: 'Kristal Orman',
-    subtitle: 'Işık ve kristallerin dansı',
+    title: 'filmCrystal',
+    subtitle: 'filmCrystalSub',
     emoji: '💎',
     gradient: [Color(0xFF000A1A), Color(0xFF001530)],
     scenes: [
-      _SceneDef(
-          'Dev kristaller mağaranın duvarlarından fışkırıyor. Her biri bin renk kırıyor.',
-          Color(0xFF818CF8)),
-      _SceneDef(
-          'Işık kristallerin içinde dans ediyor. Gökkuşağı renkleri tavanı süslüyor.',
-          Color(0xFF6366F1)),
-      _SceneDef(
-          'Kristallere dokunduğunda tatlı bir titreşim hissediyorsun. Beyin bu frekansla sakinleşiyor.',
-          Color(0xFF8B5CF6)),
-      _SceneDef(
-          'Tüm kristaller aynı anda parlıyor, sonra söncüyor. Bu ritim nefes ritminin ta kendisi.',
-          Color(0xFFA78BFA)),
+      _SceneDef('filmCrystal1', Color(0xFF818CF8)),
+      _SceneDef('filmCrystal2', Color(0xFF6366F1)),
+      _SceneDef('filmCrystal3', Color(0xFF8B5CF6)),
+      _SceneDef('filmCrystal4', Color(0xFFA78BFA)),
     ],
   ),
   _FilmDef(
     id: 'void',
-    title: 'Sonsuz Uzay',
-    subtitle: 'Derin meditasyon yolculuğu',
+    title: 'filmVoid',
+    subtitle: 'filmVoidSub',
     emoji: '∞',
     gradient: [Color(0xFF000000), Color(0xFF050005)],
     scenes: [
-      _SceneDef(
-          'Tamamen karanlık. Sadece nefes var. Bu karanlık korkutucu değil, rahatlatıcı.',
-          Color(0xFF7C3AED)),
-      _SceneDef(
-          'Uzakta küçük bir ışık var. Ona doğru yavaşça ilerleyiyorsun. Acelesi yok.',
-          Color(0xFF6D28D9)),
-      _SceneDef(
-          'Işık büyüyor, bir yıldıza dönüşüyor. Sıcaklığını hissediyorsun, zihin dinginleşiyor.',
-          Color(0xFF5B21B6)),
-      _SceneDef(
-          'Her şey tamam. Güvendesin. Dinlenmek için doğru yerdesin. Uyku artık çok yakın.',
-          Color(0xFF4C1D95)),
+      _SceneDef('filmVoid1', Color(0xFF7C3AED)),
+      _SceneDef('filmVoid2', Color(0xFF6D28D9)),
+      _SceneDef('filmVoid3', Color(0xFF5B21B6)),
+      _SceneDef('filmVoid4', Color(0xFF4C1D95)),
     ],
   ),
 ];
@@ -397,7 +333,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 800),
                 child: Text(
-                  scene.narration,
+                  scene.narration.tr,
                   key: ValueKey(_sceneIndex),
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -443,14 +379,17 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.film.title,
+                                widget.film.title.tr,
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600),
                               ),
                               Text(
-                                'Sahne ${_sceneIndex + 1}/$_totalScenes',
+                                'sceneLabel'.trParams({
+                                  'current': '${_sceneIndex + 1}',
+                                  'total': '$_totalScenes',
+                                }),
                                 style: const TextStyle(
                                     color: Colors.white54, fontSize: 12),
                               ),
@@ -458,7 +397,9 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                           ),
                         ),
                         Text(
-                          '${(_totalDuration - _timeSec).ceil()} sn',
+                          'secondsLeft'.trParams(
+                            {'sec': '${(_totalDuration - _timeSec).ceil()}'},
+                          ),
                           style: const TextStyle(
                               color: Colors.white54, fontSize: 13),
                         ),
@@ -523,7 +464,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
               right: 0,
               child: Center(
                 child: Text(
-                  'Sonraki sahne için sağa kaydır →',
+                  'swipeForNext'.tr,
                   style: TextStyle(
                       color: Colors.white.withAlpha(60),
                       fontSize: 11,
@@ -559,7 +500,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
               Text(widget.film.emoji, style: const TextStyle(fontSize: 80)),
               const SizedBox(height: 20),
               Text(
-                widget.film.title,
+                widget.film.title.tr,
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 26,
@@ -567,7 +508,7 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
               ),
               const SizedBox(height: 8),
               Text(
-                'Film tamamlandı ✨',
+                'filmCompleted'.tr,
                 style:
                     TextStyle(color: Colors.white.withAlpha(150), fontSize: 16),
               ),
@@ -581,20 +522,20 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                     border: Border.all(color: Colors.purple.withAlpha(120)),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('🎬', style: TextStyle(fontSize: 28)),
-                      SizedBox(width: 12),
+                      const Text('🎬', style: TextStyle(fontSize: 28)),
+                      const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Rozet Kazanıldı!',
-                              style: TextStyle(
+                          Text('badgeEarned'.tr,
+                              style: const TextStyle(
                                   color: Colors.purpleAccent,
                                   fontWeight: FontWeight.bold)),
-                          Text('Rüya Dokuyucu',
-                              style: TextStyle(
+                          Text('dreamWeaver'.tr,
+                              style: const TextStyle(
                                   color: Colors.white70, fontSize: 13)),
                         ],
                       ),
@@ -614,8 +555,8 @@ class _FilmPlayerPageState extends State<_FilmPlayerPage>
                             borderRadius: BorderRadius.circular(16)),
                       ),
                       onPressed: () => Get.back(),
-                      child: const Text('Film Listesi',
-                          style: TextStyle(color: Colors.white70)),
+                      child: Text('filmList'.tr,
+                          style: const TextStyle(color: Colors.white70)),
                     ),
                   ),
                 ],
@@ -700,8 +641,8 @@ class SleepFilmsPage extends StatelessWidget {
               onPressed: () => Get.back(),
             ),
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text(
-                'Uyku Filmleri',
+              title: Text(
+                'sleepFilmsAppbar'.tr,
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
@@ -720,7 +661,7 @@ class SleepFilmsPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                '${_kFilms.length} adet huzur verici animasyon • 2-3 dakika',
+                'filmsCount'.trParams({'count': '${_kFilms.length}'}),
                 style: const TextStyle(color: Colors.white38, fontSize: 13),
               ),
             ),
@@ -786,7 +727,7 @@ class _FilmCard extends StatelessWidget {
               Text(film.emoji, style: const TextStyle(fontSize: 40)),
               const Spacer(),
               Text(
-                film.title,
+                film.title.tr,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -795,7 +736,7 @@ class _FilmCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                film.subtitle,
+                film.subtitle.tr,
                 style: TextStyle(
                   color: Colors.white.withAlpha(140),
                   fontSize: 11,
@@ -808,7 +749,7 @@ class _FilmCard extends StatelessWidget {
                       color: film.scenes[0].accentColor, size: 16),
                   const SizedBox(width: 4),
                   Text(
-                    '~3 dk',
+                    'minutesShort'.tr,
                     style: TextStyle(
                         color: film.scenes[0].accentColor, fontSize: 12),
                   ),

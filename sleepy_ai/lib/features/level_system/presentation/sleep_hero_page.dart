@@ -142,15 +142,15 @@ class _SleepHeroPageState extends State<SleepHeroPage>
                           ),
                         ],
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.star_rounded,
+                          const Icon(Icons.star_rounded,
                               color: Colors.white, size: 14),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Text(
-                            'PRO OL',
-                            style: TextStyle(
+                            'proButtonSmall'.tr,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w900,
                               fontSize: 11,
@@ -434,7 +434,7 @@ class _HeroCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      'Seviye ${hero.level}  •  Uyku Kahramanı',
+                      'levelSub'.trParams({'level': '${hero.level}'}),
                       style: const TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: AppSizes.fontSm,
@@ -457,7 +457,7 @@ class _HeroCard extends StatelessWidget {
                             const Text('🔥', style: TextStyle(fontSize: 12)),
                             const SizedBox(width: 4),
                             Text(
-                              '${hero.streak} günlük dizi!',
+                              'dayStreak'.trParams({'days': '${hero.streak}'}),
                               style: const TextStyle(
                                 color: Color(0xFFFF6B35),
                                 fontSize: AppSizes.fontXs,
@@ -629,13 +629,13 @@ class _XpProgressSection extends StatelessWidget {
                   fontSize: AppSizes.fontSm,
                 ),
               ),
-              const Row(
+              Row(
                 children: [
                   Icon(Icons.lock_rounded,
                       color: AppColors.accentGold, size: 13),
                   SizedBox(width: 4),
                   Text(
-                    'PRO ile devam et',
+                    'proContinue'.tr,
                     style: TextStyle(
                       color: AppColors.accentGold,
                       fontSize: AppSizes.fontSm,
@@ -665,13 +665,13 @@ class _XpProgressSection extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('✨', style: TextStyle(fontSize: 16)),
                   SizedBox(width: 8),
                   Text(
-                    'PRO ile Lv.99\'a Ulaş!',
+                    'proReachLv99'.tr,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w800,
@@ -700,7 +700,7 @@ class _XpProgressSection extends StatelessWidget {
               ),
             ),
             Text(
-              'Sonraki: Lv.${hero.level + 1}',
+              'nextLv'.trParams({'level': '${hero.level + 1}'}),
               style: const TextStyle(
                 color: AppColors.textMuted,
                 fontSize: AppSizes.fontXs,
@@ -844,11 +844,11 @@ class _LockedXpBar extends StatelessWidget {
               child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(Icons.lock_rounded, color: Colors.white54, size: 9),
                     SizedBox(width: 3),
                     Text(
-                      'Lv.6 için PRO gerekli',
+                      'lv6ProRequired'.tr,
                       style: TextStyle(
                         color: Colors.white54,
                         fontSize: 8.5,
@@ -891,7 +891,7 @@ class _MaxLevelBadge extends StatelessWidget {
           Text(titleInfo.emoji, style: const TextStyle(fontSize: 18)),
           const SizedBox(width: 8),
           Text(
-            'Maksimum Seviyeye Ulaştınız!',
+            'maxLevelReached'.tr,
             style: TextStyle(
               color: titleInfo.color,
               fontWeight: FontWeight.w700,
@@ -929,8 +929,8 @@ class _DailyQuestsSection extends StatelessWidget {
           const SizedBox(height: AppSizes.xl),
           Row(
             children: [
-              const Text(
-                '📅  Günlük Görevler',
+              Text(
+                'dailyQuestsTitle'.tr,
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: AppSizes.fontLg,
@@ -1145,8 +1145,8 @@ class _LevelPathSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '🗺️  Seviye Yolu',
+          Text(
+            'levelPath'.tr,
             style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: AppSizes.fontLg,
@@ -1296,8 +1296,8 @@ class _StatsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: AppSizes.xl),
-          const Text(
-            '📊  Kahramanım',
+          Text(
+            'myHero'.tr,
             style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: AppSizes.fontLg,
@@ -1310,7 +1310,7 @@ class _StatsSection extends StatelessWidget {
               Expanded(
                 child: _StatCard(
                   emoji: '⭐',
-                  label: 'Toplam XP',
+                  label: 'totalXpLabel'.tr,
                   value: _formatXp(hero.totalXp),
                   color: AppColors.accentGold,
                 ),
@@ -1319,8 +1319,8 @@ class _StatsSection extends StatelessWidget {
               Expanded(
                 child: _StatCard(
                   emoji: '🔥',
-                  label: 'Dizi',
-                  value: '${hero.streak} Gün',
+                  label: 'streakLabel'.tr,
+                  value: 'streakDays'.trParams({'days': '${hero.streak}'}),
                   color: const Color(0xFFFF6B35),
                 ),
               ),
@@ -1328,7 +1328,7 @@ class _StatsSection extends StatelessWidget {
               Expanded(
                 child: _StatCard(
                   emoji: '📅',
-                  label: 'Aktif Gün',
+                  label: 'activeDaysLabel'.tr,
                   value: '${hero.totalDays}',
                   color: AppColors.accentTeal,
                 ),

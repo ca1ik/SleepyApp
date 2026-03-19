@@ -2,6 +2,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
@@ -176,9 +177,9 @@ class _LevelUpOverlayState extends State<LevelUpOverlay>
                                 ShaderMask(
                                   shaderCallback: (b) =>
                                       AppColors.primaryGradient.createShader(b),
-                                  child: const Text(
-                                    'SEVİYE ATLADINIZ!',
-                                    style: TextStyle(
+                                  child: Text(
+                                    'levelUpTitle'.tr,
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 30,
                                       fontWeight: FontWeight.w900,
@@ -189,7 +190,10 @@ class _LevelUpOverlayState extends State<LevelUpOverlay>
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  'Seviye ${widget.oldLevel}  →  Seviye ${widget.newLevel}',
+                                  'levelUpSub'.trParams({
+                                    'old': '${widget.oldLevel}',
+                                    'new': '${widget.newLevel}'
+                                  }),
                                   style: const TextStyle(
                                     color: AppColors.textSecondary,
                                     fontSize: AppSizes.fontLg,
@@ -222,9 +226,9 @@ class _LevelUpOverlayState extends State<LevelUpOverlay>
                               ),
                               child: Column(
                                 children: [
-                                  const Text(
-                                    '✨  Yeni Unvan Kazanıldı',
-                                    style: TextStyle(
+                                  Text(
+                                    'newTitleEarned'.tr,
+                                    style: const TextStyle(
                                       color: AppColors.textMuted,
                                       fontSize: AppSizes.fontSm,
                                     ),
@@ -282,9 +286,9 @@ class _LevelUpOverlayState extends State<LevelUpOverlay>
                                     ),
                                   ],
                                 ),
-                                child: const Text(
-                                  'Harika!  Devam Et  ✨',
-                                  style: TextStyle(
+                                child: Text(
+                                  'levelUpContinue'.tr,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w800,
                                     fontSize: AppSizes.fontLg,

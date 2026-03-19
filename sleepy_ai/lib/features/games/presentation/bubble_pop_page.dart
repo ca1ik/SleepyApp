@@ -362,8 +362,8 @@ class _BubblePopPageState extends State<BubblePopPage>
               ),
               Column(
                 children: [
-                  const Text('BALON',
-                      style: TextStyle(
+                  Text('balloonCountLabel'.tr,
+                      style: const TextStyle(
                           color: Colors.white38,
                           fontSize: 11,
                           letterSpacing: 1.5)),
@@ -377,8 +377,9 @@ class _BubblePopPageState extends State<BubblePopPage>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text('HEDEF',
-                      style: TextStyle(color: Colors.white38, fontSize: 11)),
+                  Text('goalLabel'.tr,
+                      style:
+                          const TextStyle(color: Colors.white38, fontSize: 11)),
                   Text('$_badgeThreshold 🏅',
                       style: TextStyle(
                           color: _popped >= _badgeThreshold
@@ -410,11 +411,11 @@ class _BubblePopPageState extends State<BubblePopPage>
             ),
           ),
           const SizedBox(height: 4),
-          Text('$_secondsLeft sn',
+          Text('secondsLeft'.trParams({'sec': '$_secondsLeft'}),
               style: const TextStyle(color: Colors.white38, fontSize: 12)),
           const SizedBox(height: 6),
-          const Text('Baloncuklara dokun ve patlat 🫧',
-              style: TextStyle(color: Colors.white30, fontSize: 12)),
+          Text('tapBubbles'.tr,
+              style: const TextStyle(color: Colors.white30, fontSize: 12)),
         ],
       ),
     );
@@ -437,27 +438,29 @@ class _BubblePopPageState extends State<BubblePopPage>
             children: [
               const Text('🫧', style: TextStyle(fontSize: 80)),
               const SizedBox(height: 20),
-              const Text('Balon Bahçesi',
-                  style: TextStyle(
+              Text('balloonGardenTitle'.tr,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28,
                       fontWeight: FontWeight.bold)),
               const SizedBox(height: 6),
-              Text('Oturum Bitti!',
+              Text('sessionOver'.tr,
                   style: TextStyle(
                       color: Colors.white.withAlpha(150), fontSize: 16)),
               const SizedBox(height: 36),
               _Stat(
-                  label: 'Patlayan Balon',
+                  label: 'poppedBalloons'.tr,
                   value: '$_popped 🫧',
                   color: const Color(0xFF9D64F5)),
               const SizedBox(height: 12),
               _Stat(
-                  label: 'Puan', value: '${_popped * 5}', color: Colors.amber),
+                  label: 'score'.tr,
+                  value: '${_popped * 5}',
+                  color: Colors.amber),
               const SizedBox(height: 12),
               _Stat(
-                  label: 'Rozet Eşiği',
-                  value: '50 balon',
+                  label: 'badgeThreshold'.tr,
+                  value: 'fiftyBalloons'.tr,
                   color: _popped >= 50 ? Colors.greenAccent : Colors.white38),
               if (_badgeUnlocked) ...[
                 const SizedBox(height: 24),
@@ -469,20 +472,20 @@ class _BubblePopPageState extends State<BubblePopPage>
                     border: Border.all(color: Colors.purple.withAlpha(100)),
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('🫧', style: TextStyle(fontSize: 28)),
-                      SizedBox(width: 12),
+                      const Text('🫧', style: TextStyle(fontSize: 28)),
+                      const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Rozet Kazanıldı!',
-                              style: TextStyle(
+                          Text('badgeEarned'.tr,
+                              style: const TextStyle(
                                   color: Colors.purpleAccent,
                                   fontWeight: FontWeight.bold)),
-                          Text('Balon Patlatıcı',
-                              style: TextStyle(
+                          Text('balloonPopper'.tr,
+                              style: const TextStyle(
                                   color: Colors.white70, fontSize: 13)),
                         ],
                       ),
@@ -502,8 +505,8 @@ class _BubblePopPageState extends State<BubblePopPage>
                             borderRadius: BorderRadius.circular(16)),
                       ),
                       onPressed: () => Get.back(),
-                      child: const Text('Geri',
-                          style: TextStyle(color: Colors.white70)),
+                      child: Text('back'.tr,
+                          style: const TextStyle(color: Colors.white70)),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -517,8 +520,8 @@ class _BubblePopPageState extends State<BubblePopPage>
                       ),
                       onPressed: () =>
                           Get.offAndToNamed(AppStrings.routeBubblePop),
-                      child: const Text('Tekrar',
-                          style: TextStyle(
+                      child: Text('again'.tr,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
                     ),

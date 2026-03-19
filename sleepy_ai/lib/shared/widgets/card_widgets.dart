@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/shared/models/app_models.dart';
@@ -183,7 +184,7 @@ class BadgeCardWidget extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.sm),
             Text(
-              badge.titleTr,
+              badge.localizedTitle,
               style: TextStyle(
                 color:
                     badge.isEarned ? AppColors.badgeGold : AppColors.textMuted,
@@ -197,7 +198,7 @@ class BadgeCardWidget extends StatelessWidget {
             if (badge.isEarned && badge.earnedAt != null) ...[
               const SizedBox(height: AppSizes.xs),
               Text(
-                'Kazanıldı ✓',
+                'earnedBadge'.tr,
                 style: const TextStyle(
                   color: AppColors.success,
                   fontSize: AppSizes.fontXs,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/feedback/cubit/feedback_cubit.dart';
@@ -44,13 +45,13 @@ class _FeedbackViewState extends State<_FeedbackView> {
             barrierDismissible: false,
             builder: (_) => AlertDialog(
               backgroundColor: AppColors.backgroundCard,
-              title: const Text(
-                'Teşekkürler! 🙏',
-                style: TextStyle(color: AppColors.textPrimary),
+              title: Text(
+                'thankYou'.tr,
+                style: const TextStyle(color: AppColors.textPrimary),
               ),
-              content: const Text(
-                'Geri bildiriminiz başarıyla iletildi.',
-                style: TextStyle(color: AppColors.textSecondary),
+              content: Text(
+                'feedbackSent'.tr,
+                style: const TextStyle(color: AppColors.textSecondary),
               ),
               actions: [
                 TextButton(
@@ -58,9 +59,9 @@ class _FeedbackViewState extends State<_FeedbackView> {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop(); // back to dashboard
                   },
-                  child: const Text(
-                    'Tamam',
-                    style: TextStyle(color: AppColors.primary),
+                  child: Text(
+                    'ok'.tr,
+                    style: const TextStyle(color: AppColors.primary),
                   ),
                 ),
               ],
@@ -69,7 +70,7 @@ class _FeedbackViewState extends State<_FeedbackView> {
         } else if (state.status == FeedbackStatus.error) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.error ?? 'Bir hata oluştu.'),
+              content: Text(state.error ?? 'anErrorOccurred'.tr),
               backgroundColor: AppColors.error,
             ),
           );
@@ -81,9 +82,9 @@ class _FeedbackViewState extends State<_FeedbackView> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: const BackButton(color: AppColors.textPrimary),
-          title: const Text(
-            'Geri Bildirim',
-            style: TextStyle(
+          title: Text(
+            'feedback'.tr,
+            style: const TextStyle(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.bold,
             ),
@@ -105,19 +106,20 @@ class _FeedbackViewState extends State<_FeedbackView> {
                         const SizedBox(height: AppSizes.lg),
                         const Text('💬', style: TextStyle(fontSize: 56)),
                         const SizedBox(height: AppSizes.md),
-                        const Text(
-                          'SleepyApp\'i nasıl buldunuz?',
-                          style: TextStyle(
+                        Text(
+                          'howWasApp'.tr,
+                          style: const TextStyle(
                             color: AppColors.textPrimary,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: AppSizes.sm),
-                        const Text(
-                          'Görüşleriniz uygulamayı geliştirmemize yardımcı olur.',
+                        Text(
+                          'feedbackHelper'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColors.textSecondary),
+                          style:
+                              const TextStyle(color: AppColors.textSecondary),
                         ),
                         const SizedBox(height: AppSizes.xl),
                       ],
@@ -133,9 +135,9 @@ class _FeedbackViewState extends State<_FeedbackView> {
                     ),
                     child: Column(
                       children: [
-                        const Text(
-                          'Puanınız',
-                          style: TextStyle(
+                        Text(
+                          'yourRating'.tr,
+                          style: const TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: AppSizes.fontLg,
                           ),
@@ -189,10 +191,10 @@ class _FeedbackViewState extends State<_FeedbackView> {
                       onChanged: cubit.setMessage,
                       maxLines: 5,
                       style: const TextStyle(color: AppColors.textPrimary),
-                      decoration: const InputDecoration(
-                        hintText: 'Düşüncelerinizi paylaşın... (isteğe bağlı)',
-                        hintStyle: TextStyle(color: AppColors.textMuted),
-                        contentPadding: EdgeInsets.all(AppSizes.md),
+                      decoration: InputDecoration(
+                        hintText: 'feedbackPlaceholder'.tr,
+                        hintStyle: const TextStyle(color: AppColors.textMuted),
+                        contentPadding: const EdgeInsets.all(AppSizes.md),
                         border: InputBorder.none,
                       ),
                     ),
@@ -202,10 +204,9 @@ class _FeedbackViewState extends State<_FeedbackView> {
                   // Submit
                   GradientButton(
                     label: state.status == FeedbackStatus.loading
-                        ? 'Gönderiliyor...'
-                        : 'Gönder',
-                    onPressed:
-                        state.canSubmit &&
+                        ? 'submitting'.tr
+                        : 'submit'.tr,
+                    onPressed: state.canSubmit &&
                             state.status != FeedbackStatus.loading
                         ? cubit.submit
                         : null,
@@ -224,15 +225,15 @@ class _FeedbackViewState extends State<_FeedbackView> {
   String _ratingLabel(int rating) {
     switch (rating) {
       case 1:
-        return 'Çok Kötü 😞';
+        return 'ratingVeryBad'.tr;
       case 2:
-        return 'Kötü 😕';
+        return 'ratingBad'.tr;
       case 3:
-        return 'Orta 😐';
+        return 'ratingAverage'.tr;
       case 4:
-        return 'İyi 😊';
+        return 'ratingGood'.tr;
       case 5:
-        return 'Mükemmel! 🤩';
+        return 'ratingExcellent'.tr;
       default:
         return '';
     }

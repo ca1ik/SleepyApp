@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
@@ -11,17 +12,17 @@ import 'package:sleepy_ai/shared/widgets/common_widgets.dart';
 class LearningPage extends StatelessWidget {
   const LearningPage({super.key});
 
-  static const _cats = [
-    'Tümü',
-    'Biyoloji',
-    'Teknoloji',
-    'Beslenme',
-    'Ortam',
-    'Teknik',
-    'Spor',
-    'Psikoloji',
-    'Hijyen',
-  ];
+  static List<String> get _cats => [
+        'catAll'.tr,
+        'catBiology'.tr,
+        'catTechnology'.tr,
+        'catNutrition'.tr,
+        'catEnvironment'.tr,
+        'catTechnique'.tr,
+        'catSports'.tr,
+        'catPsychology'.tr,
+        'catHygiene'.tr,
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +41,10 @@ class LearningPage extends StatelessWidget {
                 child: Row(
                   children: [
                     const BackButton(color: AppColors.textPrimary),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Uyku Rehberi 📖',
-                        style: TextStyle(
+                        'sleepGuide'.tr,
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: AppSizes.fontLg,
                           fontWeight: FontWeight.w800,
@@ -61,8 +62,8 @@ class LearningPage extends StatelessWidget {
                 child: TextField(
                   onChanged: context.read<LearningCubit>().search,
                   style: const TextStyle(color: AppColors.textPrimary),
-                  decoration: const InputDecoration(
-                    hintText: 'Makale ara...',
+                  decoration: InputDecoration(
+                    hintText: 'searchArticles'.tr,
                     prefixIcon: Icon(Icons.search),
                   ),
                 ),
@@ -130,10 +131,11 @@ class LearningPage extends StatelessWidget {
                 child: BlocBuilder<LearningCubit, LearningState>(
                   builder: (ctx, state) {
                     if (state.filteredArticles.isEmpty) {
-                      return const Center(
+                      return Center(
                         child: Text(
-                          'Makale bulunamadı.',
-                          style: TextStyle(color: AppColors.textSecondary),
+                          'noArticles'.tr,
+                          style:
+                              const TextStyle(color: AppColors.textSecondary),
                         ),
                       );
                     }
@@ -164,20 +166,22 @@ class _ArticleCard extends StatelessWidget {
 
   final SleepTipModel article;
 
-  static const _categoryEmojis = <String, String>{
-    'Biyoloji': '🧬',
-    'Teknoloji': '📱',
-    'Beslenme': '🥗',
-    'Ortam': '🌡️',
-    'Teknik': '⚡',
-    'Spor': '🏃',
-    'Psikoloji': '🧠',
-    'Hijyen': '🛏️',
-  };
+  String get _emoji {
+    final cat = article.category.toLowerCase();
+    if (cat.contains('bio') || cat.contains('biyo')) return '🧬';
+    if (cat.contains('tech') || cat.contains('tekno')) return '📱';
+    if (cat.contains('nutri') || cat.contains('beslen')) return '🥗';
+    if (cat.contains('environ') || cat.contains('ortam')) return '🌡️';
+    if (cat.contains('techni') || cat.contains('tekni')) return '⚡';
+    if (cat.contains('sport') || cat.contains('spor')) return '🏃';
+    if (cat.contains('psych') || cat.contains('psiko')) return '🧠';
+    if (cat.contains('hygien') || cat.contains('hijyen')) return '🛏️';
+    return '📖';
+  }
 
   @override
   Widget build(BuildContext context) {
-    final emoji = _categoryEmojis[article.category] ?? '📖';
+    final emoji = _emoji;
     return GlassCard(
       padding: const EdgeInsets.all(AppSizes.md),
       child: Row(
@@ -234,7 +238,7 @@ class _ArticleCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 2),
                     Text(
-                      '${article.readTimeMinutes} dk',
+                      '${article.readTimeMinutes} ${'min'.tr}',
                       style: const TextStyle(
                         color: AppColors.textMuted,
                         fontSize: 11,

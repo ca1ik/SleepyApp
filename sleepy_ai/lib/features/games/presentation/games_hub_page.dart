@@ -109,11 +109,11 @@ class _GamesHubPageState extends State<GamesHubPage>
                 slivers: [
                   _buildHeader(),
                   _buildScoreCard(state),
-                  _buildSectionTitle('🎮 Oyunlar'),
+                  _buildSectionTitle('gamesTab'.tr),
                   _buildGameCards(),
-                  _buildSectionTitle('🎬 Uyku Filmleri'),
+                  _buildSectionTitle('filmsTab'.tr),
                   _buildFilmsRow(),
-                  _buildSectionTitle('🏆 Oyun Rozetleri'),
+                  _buildSectionTitle('gameBadgesTab'.tr),
                   _buildBadgeRow(state),
                   const SliverToBoxAdapter(child: SizedBox(height: 40)),
                 ],
@@ -144,19 +144,19 @@ class _GamesHubPageState extends State<GamesHubPage>
               ),
             ),
             const SizedBox(width: 14),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Uzay Oyunlar & Filmler',
-                  style: TextStyle(
+                  'spaceGamesAndFilms'.tr,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'Rahatlamak için oyna, izle, keşfet',
-                  style: TextStyle(color: Colors.white54, fontSize: 12),
+                  'playWatchExplore'.tr,
+                  style: const TextStyle(color: Colors.white54, fontSize: 12),
                 ),
               ],
             ),
@@ -189,8 +189,9 @@ class _GamesHubPageState extends State<GamesHubPage>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Toplam Oyun Puanı',
-                        style: TextStyle(color: Colors.white70, fontSize: 13)),
+                    Text('totalGameScore'.tr,
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 13)),
                     Text(
                       '${state.totalGameScore}',
                       style: const TextStyle(
@@ -204,8 +205,9 @@ class _GamesHubPageState extends State<GamesHubPage>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text('İzlenen Film',
-                      style: TextStyle(color: Colors.white54, fontSize: 11)),
+                  Text('watchedFilms'.tr,
+                      style:
+                          const TextStyle(color: Colors.white54, fontSize: 11)),
                   Text(
                     '${state.watchedFilmIds.length} 🎬',
                     style: const TextStyle(
@@ -242,42 +244,42 @@ class _GamesHubPageState extends State<GamesHubPage>
         delegate: SliverChildListDelegate([
           _GameCard(
             emoji: '🌌',
-            title: 'Kozmik Nefes',
-            subtitle: '4-4-6-2 nefes tekniği • Stres azaltır',
+            title: 'cosmicBreath'.tr,
+            subtitle: 'cosmicBreathDesc'.tr,
             gradient: const [Color(0xFF3B0764), Color(0xFF1E1035)],
             accentColor: AppColors.primaryLight,
             route: AppStrings.routeBreathingGame,
-            badgeName: 'Kozmik Nefes Ustası',
+            badgeName: '',
           ),
           const SizedBox(height: 12),
           _GameCard(
             emoji: '⭐',
-            title: 'Yıldız Avcısı',
-            subtitle: 'Düşen yıldızları yakala • 90 saniye',
+            title: 'starCatcher'.tr,
+            subtitle: 'starCatcherDesc'.tr,
             gradient: const [Color(0xFF1A0A3E), Color(0xFF0D0026)],
             accentColor: Colors.amber,
             route: AppStrings.routeStarCatcher,
-            badgeName: 'Yıldız Avcısı',
+            badgeName: '',
           ),
           const SizedBox(height: 12),
           _GameCard(
             emoji: '🫧',
-            title: 'Balon Bahçesi',
-            subtitle: '3 dakika • Yavaş yavaş patlat • Stressiz',
+            title: 'balloonGarden'.tr,
+            subtitle: 'balloonGardenDesc'.tr,
             gradient: const [Color(0xFF0A001A), Color(0xFF1E0030)],
             accentColor: Color(0xFF9D64F5),
             route: AppStrings.routeBubblePop,
-            badgeName: 'Balon Patlatıcı',
+            badgeName: '',
           ),
           const SizedBox(height: 12),
           _GameCard(
             emoji: '🐑',
-            title: 'Koyun Sayma',
-            subtitle: 'Klasik uyku ritüeli • Oldukça sakin',
+            title: 'sheepCounting'.tr,
+            subtitle: 'sheepCountingDesc'.tr,
             gradient: const [Color(0xFF001020), Color(0xFF001A35)],
             accentColor: Color(0xFF7DD3FC),
             route: AppStrings.routeSheepCounter,
-            badgeName: 'Uykulu Koyun',
+            badgeName: '',
           ),
           const SizedBox(height: 12),
         ]),
@@ -306,20 +308,19 @@ class _GamesHubPageState extends State<GamesHubPage>
               children: [
                 const Text('🎬', style: TextStyle(fontSize: 36)),
                 const SizedBox(width: 16),
-                const Expanded(
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Uyku Filmleri',
-                          style: TextStyle(
+                      Text('sleepFilmsTitle'.tr,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontWeight: FontWeight.bold)),
-                      SizedBox(height: 4),
-                      Text(
-                          '8 animasyon • Uzay, okyanus, aurora ve daha fazlası',
-                          style:
-                              TextStyle(color: Colors.white54, fontSize: 12)),
+                      const SizedBox(height: 4),
+                      Text('filmsAnimDesc'.tr,
+                          style: const TextStyle(
+                              color: Colors.white54, fontSize: 12)),
                     ],
                   ),
                 ),
@@ -336,12 +337,12 @@ class _GamesHubPageState extends State<GamesHubPage>
   Widget _buildBadgeRow(RewardsState state) {
     final gameBadges = state.gameBadges;
     if (gameBadges.isEmpty) {
-      return const SliverToBoxAdapter(
+      return SliverToBoxAdapter(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Oyun oynayarak ve film izleyerek rozet kazan!',
-            style: TextStyle(color: Colors.white38, fontSize: 13),
+            'gameBadgesPlay'.tr,
+            style: const TextStyle(color: Colors.white38, fontSize: 13),
           ),
         ),
       );
@@ -434,7 +435,7 @@ class _GameCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      'Oyna →',
+                      'playBtn'.tr,
                       style: TextStyle(
                           color: accentColor,
                           fontSize: 12,
@@ -480,7 +481,7 @@ class _BadgeTile extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            badge.titleTr,
+            badge.localizedTitle,
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,

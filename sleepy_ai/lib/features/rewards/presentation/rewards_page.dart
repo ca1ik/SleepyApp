@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/rewards/cubit/rewards_cubit.dart';
@@ -19,8 +20,8 @@ class RewardsPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: const BackButton(color: AppColors.textPrimary),
-          title: const Text(
-            'Rozetlerim',
+          title: Text(
+            'myBadgesTitle'.tr,
             style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: AppSizes.fontXl,
@@ -43,19 +44,21 @@ class RewardsPage extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(
                   child: _SectionHeader(
-                    label: 'Kazanılanlar (${state.earnedBadges.length})',
+                    label: 'earnedCount'
+                        .trParams({'count': '${state.earnedBadges.length}'}),
                     color: AppColors.success,
                   ),
                 ),
                 if (state.earnedBadges.isEmpty)
-                  const SliverToBoxAdapter(
+                  SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: AppSizes.lg),
+                      padding:
+                          const EdgeInsets.symmetric(vertical: AppSizes.lg),
                       child: Center(
                         child: Text(
-                          'Henüz rozet kazanılmadı.\nDüzenli uyuyarak rozetleri kilitle!',
+                          'noBadgesYet'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColors.textMuted),
+                          style: const TextStyle(color: AppColors.textMuted),
                         ),
                       ),
                     ),
@@ -85,7 +88,8 @@ class RewardsPage extends StatelessWidget {
                   ),
                 SliverToBoxAdapter(
                   child: _SectionHeader(
-                    label: 'Kilitli (${state.pendingBadges.length})',
+                    label: 'lockedCount'
+                        .trParams({'count': '${state.pendingBadges.length}'}),
                     color: AppColors.textMuted,
                   ),
                 ),
@@ -142,8 +146,8 @@ class _ScoreBanner extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Uyku Puanın',
+              Text(
+                'yourSleepScore'.tr,
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: AppSizes.fontMd,
@@ -240,7 +244,7 @@ class _BadgeCard extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.sm),
             Text(
-              badge.titleTr,
+              badge.localizedTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: isEarned ? AppColors.textPrimary : AppColors.textMuted,
@@ -252,7 +256,9 @@ class _BadgeCard extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.xs),
             Text(
-              isEarned ? '✓ Kazanıldı' : 'Skor: ${badge.requiredScore}+',
+              isEarned
+                  ? 'earned'.tr
+                  : 'scoreLabel'.trParams({'score': '${badge.requiredScore}'}),
               style: TextStyle(
                 color: isEarned ? AppColors.success : AppColors.textDisabled,
                 fontSize: AppSizes.fontXs,
@@ -261,7 +267,7 @@ class _BadgeCard extends StatelessWidget {
             if (!isEarned) ...[
               const SizedBox(height: AppSizes.xs),
               Text(
-                badge.description,
+                badge.localizedDescription,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: AppColors.textMuted,

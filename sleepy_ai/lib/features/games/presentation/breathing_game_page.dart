@@ -14,18 +14,18 @@ import 'package:sleepy_ai/shared/widgets/common_widgets.dart';
 enum _Phase { inhale, hold, exhale, rest }
 
 class _PhaseInfo {
-  const _PhaseInfo(this.phase, this.label, this.seconds, this.color);
+  const _PhaseInfo(this.phase, this.labelKey, this.seconds, this.color);
   final _Phase phase;
-  final String label;
+  final String labelKey;
   final int seconds;
   final Color color;
 }
 
 const _kPhases = [
-  _PhaseInfo(_Phase.inhale, 'Nefes Al', 4, Color(0xFF7C3AED)),
-  _PhaseInfo(_Phase.hold, 'Tut', 4, Color(0xFF9D64F5)),
-  _PhaseInfo(_Phase.exhale, 'Nefes Ver', 6, Color(0xFF3B82F6)),
-  _PhaseInfo(_Phase.rest, 'Bekle', 2, Color(0xFF1E1035)),
+  _PhaseInfo(_Phase.inhale, 'phaseInhale', 4, Color(0xFF7C3AED)),
+  _PhaseInfo(_Phase.hold, 'phaseHold', 4, Color(0xFF9D64F5)),
+  _PhaseInfo(_Phase.exhale, 'phaseExhale', 6, Color(0xFF3B82F6)),
+  _PhaseInfo(_Phase.rest, 'phaseRest', 2, Color(0xFF1E1035)),
 ];
 
 // ── Starfield ────────────────────────────────────────────────────────────────
@@ -290,8 +290,8 @@ class _BreathingGamePageState extends State<BreathingGamePage>
                 color: AppColors.textPrimary),
             onPressed: () => Get.back(),
           ),
-          title: const Text(
-            'Kozmik Nefes',
+          title: Text(
+            'cosmicBreath'.tr,
             style: TextStyle(
                 color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
@@ -388,7 +388,7 @@ class _BreathingGamePageState extends State<BreathingGamePage>
                   const SizedBox(height: 32),
                   if (_running) ...[
                     Text(
-                      _cur.label,
+                      _cur.labelKey.tr,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 26,
@@ -398,26 +398,28 @@ class _BreathingGamePageState extends State<BreathingGamePage>
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Döngü ${_cycles + 1} / 10',
+                      'cyclesProgress'.trParams(
+                        {'current': '${_cycles + 1}', 'total': '10'},
+                      ),
                       style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: AppSizes.fontMd),
                     ),
                   ] else ...[
-                    const Text(
-                      'Kozmik Nefes',
+                    Text(
+                      'cosmicBreath'.tr,
                       style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 28,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
-                        '4-4-6-2 nefes tekniğiyle evrenle uyum sağla.\n10 döngüde 500 puan kazan.',
+                        'cosmicBreathIntro'.tr,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: AppSizes.fontMd,
                             height: 1.5),
@@ -440,7 +442,9 @@ class _BreathingGamePageState extends State<BreathingGamePage>
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                '${p.label}\n${p.seconds}s',
+                                '${p.labelKey.tr}\n${'secondsLeft'.trParams({
+                                      'sec': '${p.seconds}'
+                                    })}',
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     color: AppColors.textMuted, fontSize: 10),
@@ -465,8 +469,8 @@ class _BreathingGamePageState extends State<BreathingGamePage>
                                 blurRadius: 20)
                           ],
                         ),
-                        child: const Text(
-                          '🌌  Başla',
+                        child: Text(
+                          'startCosmicBreath'.tr,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: AppSizes.fontXl,
@@ -502,8 +506,8 @@ class _FinishedView extends StatelessWidget {
           children: [
             const Text('🌌', style: TextStyle(fontSize: 80)),
             const SizedBox(height: AppSizes.lg),
-            const Text(
-              'Harika!',
+            Text(
+              'awesome'.tr,
               style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 36,
@@ -511,7 +515,7 @@ class _FinishedView extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.sm),
             Text(
-              '$cycles döngü tamamladın',
+              'cyclesCompleted'.trParams({'cycles': '$cycles'}),
               style: const TextStyle(
                   color: AppColors.textSecondary, fontSize: AppSizes.fontLg),
             ),
@@ -524,8 +528,8 @@ class _FinishedView extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  const Text('PUAN',
-                      style: TextStyle(
+                  Text('points'.tr,
+                      style: const TextStyle(
                           color: Colors.white70,
                           fontSize: AppSizes.fontSm,
                           letterSpacing: 3)),
@@ -549,14 +553,14 @@ class _FinishedView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppSizes.radiusMd),
                   border: Border.all(color: AppColors.accentGold.withAlpha(80)),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('🌌', style: TextStyle(fontSize: 20)),
-                    SizedBox(width: 8),
+                    const Text('🌌', style: TextStyle(fontSize: 20)),
+                    const SizedBox(width: 8),
                     Text(
-                      '"Kozmik Nefes" rozeti kazanıldı!',
-                      style: TextStyle(
+                      'cosmicBreathBadge'.tr,
+                      style: const TextStyle(
                           color: AppColors.accentGold,
                           fontWeight: FontWeight.bold),
                     ),
@@ -566,15 +570,15 @@ class _FinishedView extends StatelessWidget {
             ],
             const SizedBox(height: AppSizes.xxl),
             GradientButton(
-              label: 'Tekrar Oyna',
+              label: 'playAgain'.tr,
               onPressed: () => Get.offAndToNamed('/games/breathing'),
             ),
             const SizedBox(height: AppSizes.sm),
             TextButton(
               onPressed: () => Get.back(),
-              child: const Text(
-                "Oyunlar'a Dön",
-                style: TextStyle(color: AppColors.textSecondary),
+              child: Text(
+                'backToGames'.tr,
+                style: const TextStyle(color: AppColors.textSecondary),
               ),
             ),
           ],

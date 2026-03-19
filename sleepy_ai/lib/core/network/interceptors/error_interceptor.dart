@@ -36,7 +36,8 @@ class ErrorInterceptor extends Interceptor {
       case 401:
         return const UnauthorizedFailure();
       case 403:
-        return const UnauthorizedFailure('You do not have access to this resource.');
+        return const UnauthorizedFailure(
+            'You do not have access to this resource.');
       case 404:
         return const ServerFailure('Resource not found.', statusCode: 404);
       case 422:

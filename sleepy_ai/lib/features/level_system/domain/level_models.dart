@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ─── Level Math ──────────────────────────────────────────────────────────────
 
@@ -33,84 +34,84 @@ abstract final class LevelHelper {
     return level;
   }
 
-  /// Seviyeye ait unvan bilgisi
+  /// Title info for a given level
   static LevelTitleInfo titleForLevel(int level) {
     if (level <= 5) {
-      return const LevelTitleInfo(
-        title: 'Uyuyan Tohum',
+      return LevelTitleInfo(
+        title: 'levelTitle1'.tr,
         emoji: '🌱',
-        color: Color(0xFF10B981),
-        glowColor: Color(0x4010B981),
+        color: const Color(0xFF10B981),
+        glowColor: const Color(0x4010B981),
       );
     } else if (level <= 10) {
-      return const LevelTitleInfo(
-        title: 'Rüya Tomurcuğu',
+      return LevelTitleInfo(
+        title: 'levelTitle2'.tr,
         emoji: '🌸',
-        color: Color(0xFFF472B6),
-        glowColor: Color(0x40F472B6),
+        color: const Color(0xFFF472B6),
+        glowColor: const Color(0x40F472B6),
       );
     } else if (level <= 20) {
-      return const LevelTitleInfo(
-        title: 'Yıldız Yolcusu',
+      return LevelTitleInfo(
+        title: 'levelTitle3'.tr,
         emoji: '⭐',
-        color: Color(0xFFFDE68A),
-        glowColor: Color(0x40FDE68A),
+        color: const Color(0xFFFDE68A),
+        glowColor: const Color(0x40FDE68A),
       );
     } else if (level <= 30) {
-      return const LevelTitleInfo(
-        title: 'Ay Bekçisi',
+      return LevelTitleInfo(
+        title: 'levelTitle4'.tr,
         emoji: '🌙',
-        color: Color(0xFF93C5FD),
-        glowColor: Color(0x4093C5FD),
+        color: const Color(0xFF93C5FD),
+        glowColor: const Color(0x4093C5FD),
       );
     } else if (level <= 40) {
-      return const LevelTitleInfo(
-        title: 'Rüya Dokuyucu',
+      return LevelTitleInfo(
+        title: 'levelTitle5'.tr,
         emoji: '🕸️',
-        color: Color(0xFFC4B5FD),
-        glowColor: Color(0x40C4B5FD),
+        color: const Color(0xFFC4B5FD),
+        glowColor: const Color(0x40C4B5FD),
       );
     } else if (level <= 50) {
-      return const LevelTitleInfo(
-        title: 'Gece Kaşifi',
+      return LevelTitleInfo(
+        title: 'levelTitle6'.tr,
         emoji: '🔭',
-        color: Color(0xFF7C3AED),
-        glowColor: Color(0x407C3AED),
+        color: const Color(0xFF7C3AED),
+        glowColor: const Color(0x407C3AED),
       );
     } else if (level <= 60) {
-      return const LevelTitleInfo(
-        title: 'Uyku Üstadı',
+      return LevelTitleInfo(
+        title: 'levelTitle7'.tr,
         emoji: '🎓',
-        color: Color(0xFF60A5FA),
-        glowColor: Color(0x4060A5FA),
+        color: const Color(0xFF60A5FA),
+        glowColor: const Color(0x4060A5FA),
       );
     } else if (level <= 70) {
-      return const LevelTitleInfo(
-        title: 'Rüya Mimarı',
+      return LevelTitleInfo(
+        title: 'levelTitle8'.tr,
         emoji: '🏛️',
-        color: Color(0xFF34D399),
-        glowColor: Color(0x4034D399),
+        color: const Color(0xFF34D399),
+        glowColor: const Color(0x4034D399),
       );
     } else if (level <= 80) {
-      return const LevelTitleInfo(
-        title: 'Gece Efendisi',
+      return LevelTitleInfo(
+        title: 'levelTitle9'.tr,
         emoji: '👑',
-        color: Color(0xFFFFD700),
-        glowColor: Color(0x40FFD700),
+        color: const Color(0xFFFFD700),
+        glowColor: const Color(0x40FFD700),
       );
     } else if (level <= 90) {
-      return const LevelTitleInfo(
-        title: 'Uyku Tanrısı',
+      return LevelTitleInfo(
+        title: 'levelTitle10'.tr,
         emoji: '⚡',
-        color: Color(0xFFFF6B35),
-        glowColor: Color(0x40FF6B35),
+        color: const Color(0xFFFF6B35),
+        glowColor: const Color(0x40FF6B35),
       );
     } else {
-      return const LevelTitleInfo(
-        title: 'Ebedi Rüya',
+      return LevelTitleInfo(
+        title: 'levelTitle11'.tr,
         emoji: '✨',
-        color: Color(0xFFE0D0FF),
-        glowColor: Color(0x40E0D0FF),
+        color: const Color(0xFFE0D0FF),
+        glowColor: const Color(0x40E0D0FF),
       );
     }
   }
@@ -242,45 +243,45 @@ class DailyQuest {
 // ─── DailyQuestTemplates ──────────────────────────────────────────────────────
 
 abstract final class DailyQuestTemplates {
-  static const List<DailyQuest> all = [
-    DailyQuest(
-      id: 'daily_login',
-      title: 'Günlük Giriş',
-      description: 'Her gün uygulamayı aç',
-      xpReward: 15,
-      emoji: '⭐',
-    ),
-    DailyQuest(
-      id: 'daily_sleep',
-      title: 'Uyku Takibi',
-      description: 'Bu gece uyku takibini başlat',
-      xpReward: 50,
-      emoji: '🌙',
-      route: '/sleep-tracking',
-    ),
-    DailyQuest(
-      id: 'daily_sound',
-      title: 'Uyku Sesi',
-      description: '10 dakika uyku sesi dinle',
-      xpReward: 30,
-      emoji: '🎵',
-      route: '/sounds',
-    ),
-    DailyQuest(
-      id: 'daily_game',
-      title: 'Mini Oyun',
-      description: 'Bir uyku oyununu oyna',
-      xpReward: 40,
-      emoji: '🎮',
-      route: '/games',
-    ),
-    DailyQuest(
-      id: 'daily_learn',
-      title: 'Uyku Okulu',
-      description: 'Uyku bilgisi bölümünü ziyaret et',
-      xpReward: 25,
-      emoji: '📚',
-      route: '/learning',
-    ),
-  ];
+  static List<DailyQuest> get all => [
+        DailyQuest(
+          id: 'daily_login',
+          title: 'questDailyLogin'.tr,
+          description: 'questDailyLoginDesc'.tr,
+          xpReward: 15,
+          emoji: '⭐',
+        ),
+        DailyQuest(
+          id: 'daily_sleep',
+          title: 'questSleepTracking'.tr,
+          description: 'questSleepTrackingDesc'.tr,
+          xpReward: 50,
+          emoji: '🌙',
+          route: '/sleep-tracking',
+        ),
+        DailyQuest(
+          id: 'daily_sound',
+          title: 'questSleepSound'.tr,
+          description: 'questSleepSoundDesc'.tr,
+          xpReward: 30,
+          emoji: '🎵',
+          route: '/sounds',
+        ),
+        DailyQuest(
+          id: 'daily_game',
+          title: 'questMiniGame'.tr,
+          description: 'questMiniGameDesc'.tr,
+          xpReward: 40,
+          emoji: '🎮',
+          route: '/games',
+        ),
+        DailyQuest(
+          id: 'daily_learn',
+          title: 'questSleepSchool'.tr,
+          description: 'questSleepSchoolDesc'.tr,
+          xpReward: 25,
+          emoji: '📚',
+          route: '/learning',
+        ),
+      ];
 }

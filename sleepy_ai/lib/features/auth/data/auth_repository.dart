@@ -3,39 +3,39 @@ import 'package:sleepy_ai/core/error/failures.dart';
 import 'package:sleepy_ai/shared/models/entities.dart';
 
 /// Auth repository interface.
-/// Mock implementation aktif — Firebase hazır olduğunda FirebaseAuthRepository
-/// bu sınıfı implemente eder, dependency injection değişmeden kalır.
+/// Mock implementation active — when Firebase is ready, FirebaseAuthRepository
+/// implements this class, dependency injection stays the same.
 abstract class AuthRepository {
-  /// Mevcut kullanıcıyı döndürür. Oturum yoksa null.
+  /// Returns the current user. Null if no session.
   Future<Either<Failure, UserEntity?>> getCurrentUser();
 
-  /// E-posta ve şifre ile giriş.
+  /// Login with email and password.
   Future<Either<Failure, UserEntity>> loginWithEmail({
     required String email,
     required String password,
   });
 
-  /// Yeni kayıt.
+  /// New registration.
   Future<Either<Failure, UserEntity>> registerWithEmail({
     required String email,
     required String password,
     required String displayName,
   });
 
-  /// Şifre sıfırlama e-postası.
+  /// Password reset email.
   Future<Either<Failure, void>> sendPasswordReset({required String email});
 
-  /// Çıkış.
+  /// Sign out.
   Future<void> logout();
 }
 
-/// Mock Auth implementasyonu (Firebase hazır olana kadar yerel çalışır)
-/// Firebase hazır olduğunda bu sınıfın yerine FirebaseAuthRepository koyulur.
+/// Mock Auth implementation (works locally until Firebase is ready)
+/// When Firebase is ready, this class is replaced with FirebaseAuthRepository.
 class MockAuthRepository implements AuthRepository {
   static const _mockUser = UserEntity(
     id: 'local-user-001',
     email: 'demo@sleepyapp.com',
-    displayName: 'Demo Kullanici',
+    displayName: 'Demo User',
   );
 
   @override
@@ -49,7 +49,7 @@ class MockAuthRepository implements AuthRepository {
     required String password,
   }) async {
     if (password.length < 6) {
-      return Left(AuthFailure('Sifre en az 6 karakter olmalidir.'));
+      return Left(AuthFailure('Password must be at least 6 characters.'));
     }
     return Right(_mockUser.copyWith(email: email));
   }
@@ -77,9 +77,9 @@ class MockAuthRepository implements AuthRepository {
   String _unused(String code) {
     switch (code) {
       case 'user-not-found':
-        return 'Bu e-posta ile kayitli kullanici bulunamadi.';
+        return 'No user found with this email.';
       default:
-        return 'Kimlik dogrulama hatasi: $code';
+        return 'Authentication error: $code';
     }
   }
 }

@@ -6,32 +6,32 @@ import 'package:sleepy_ai/core/error/failures.dart';
 import 'package:sleepy_ai/shared/models/entities.dart';
 
 abstract class SleepRepository {
-  /// Son 7 günün uyku kayıtlarını döner (en yeniden en eskiye).
+  /// Returns the last 7 days of sleep records (newest first).
   Future<Either<Failure, List<SleepEntity>>> getLast7DaysRecords();
 
-  /// Yeni kayıt ekler.
+  /// Adds a new record.
   Future<Either<Failure, void>> saveSleepRecord(SleepEntity record);
 
-  /// Kaydı ID ile siler.
+  /// Deletes a record by ID.
   Future<Either<Failure, void>> deleteRecord(String id);
 
-  /// Hedef uyku süresini (saat) okur.
+  /// Reads the target sleep duration (hours).
   double getSleepGoalHours();
 
-  /// Hedef uyku süresini (saat) kaydeder.
+  /// Saves the target sleep duration (hours).
   Future<void> saveSleepGoalHours(double hours);
 
-  /// Yatış / kalkış saatlerini kaydeder.
+  /// Saves bedtime / wake time schedule.
   Future<void> saveBedtimeSchedule({
     required TimeOfDay bedTime,
     required TimeOfDay wakeTime,
   });
 
-  /// Mevcut oturumdaki kullanıcı ID'si.
+  /// Current session user ID.
   String get currentUserId;
 }
 
-/// Hive tabanlı yerel uygulama — Firebase senkronizasyonu daha sonra eklenir.
+/// Hive-based local implementation — Firebase sync will be added later.
 class LocalSleepRepository implements SleepRepository {
   LocalSleepRepository({required this.userId});
 
@@ -53,7 +53,7 @@ class LocalSleepRepository implements SleepRepository {
         ..sort((a, b) => b.bedtime.compareTo(a.bedtime));
       return Right(records);
     } catch (e) {
-      return Left(CacheFailure('Uyku geçmişi yüklenemedi: $e'));
+      return Left(CacheFailure('Failed to load sleep history: $e'));
     }
   }
 
@@ -63,7 +63,7 @@ class LocalSleepRepository implements SleepRepository {
       await _box.put(record.id, record.toMap());
       return const Right(null);
     } catch (e) {
-      return Left(CacheFailure('Kayıt kaydedilemedi: $e'));
+      return Left(CacheFailure('Failed to save record: $e'));
     }
   }
 
@@ -73,7 +73,7 @@ class LocalSleepRepository implements SleepRepository {
       await _box.delete(id);
       return const Right(null);
     } catch (e) {
-      return Left(CacheFailure('Kayıt silinemedi: $e'));
+      return Left(CacheFailure('Failed to delete record: $e'));
     }
   }
 

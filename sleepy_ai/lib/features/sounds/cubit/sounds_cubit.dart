@@ -4,8 +4,8 @@ import 'package:sleepy_ai/features/sounds/cubit/sounds_state.dart';
 import 'package:sleepy_ai/features/sounds/data/sounds_repository.dart';
 import 'package:sleepy_ai/shared/models/app_models.dart';
 
-/// Çoklu ses parçasının eş zamanlı çalınmasını yöneten Cubit.
-/// Her ActiveSoundTrack kendi [AudioPlayer] örneğine sahiptir.
+/// Cubit managing concurrent playback of multiple sound tracks.
+/// Each ActiveSoundTrack has its own [AudioPlayer] instance.
 class SoundsCubit extends Cubit<SoundsState> {
   SoundsCubit({required this.repository}) : super(const SoundsState()) {
     _loadSounds();
@@ -13,12 +13,12 @@ class SoundsCubit extends Cubit<SoundsState> {
 
   final SoundsRepository repository;
 
-  /// soundId → AudioPlayer mapping (bellek içinde tutulur).
+  /// soundId → AudioPlayer mapping (kept in memory).
   final Map<String, AudioPlayer> _players = {};
 
   static const int _maxTracks = 6;
 
-  // ─── Başlangıç yükleme ───────────────────────────────────────────────
+  // ─── Initial load ───────────────────────────────────────────────
 
   Future<void> _loadSounds() async {
     emit(state.copyWith(isLoading: true));
@@ -34,11 +34,12 @@ class SoundsCubit extends Cubit<SoundsState> {
         ),
       );
     } catch (e) {
-      emit(state.copyWith(isLoading: false, error: 'Sesler yüklenemedi: $e'));
+      emit(
+          state.copyWith(isLoading: false, error: 'Failed to load sounds: $e'));
     }
   }
 
-  // ─── Ses açma / kapatma ──────────────────────────────────────────────
+  // ─── Sound toggle ──────────────────────────────────────────────
 
   Future<void> toggleSound(SoundModel sound) async {
     if (state.isTrackActive(sound.id)) {
@@ -57,7 +58,7 @@ class SoundsCubit extends Cubit<SoundsState> {
 
     final newTrack = ActiveSoundTrack(sound: sound, volume: 0.7);
 
-    // State'i güncelle (çalmaya başlamadan önce UI'da görünsün).
+    // Update state before playing so UI shows it immediately.
     final updated = List<ActiveSoundTrack>.from(state.activeTracks)
       ..add(newTrack);
     emit(state.copyWith(activeTracks: updated, isMixerVisible: true));
@@ -68,9 +69,9 @@ class SoundsCubit extends Cubit<SoundsState> {
       await player.setLoopMode(LoopMode.one);
       await player.play();
     } catch (e) {
-      // Eklenemeyen track geri çıkar.
+      // Remove track that failed to play.
       await removeTrack(sound.id);
-      emit(state.copyWith(error: '${sound.name} çalınamadı: $e'));
+      emit(state.copyWith(error: '${sound.name} could not be played: $e'));
     }
   }
 
@@ -130,7 +131,7 @@ class SoundsCubit extends Cubit<SoundsState> {
     emit(state.copyWith(activeTracks: [], isMixerVisible: false));
   }
 
-  // ─── Favoriler ────────────────────────────────────────────────────────
+  // ─── Favorites ────────────────────────────────────────────────────────
 
   Future<void> toggleFavorite(String soundId) async {
     final current = List<String>.from(state.favorites);
@@ -143,13 +144,13 @@ class SoundsCubit extends Cubit<SoundsState> {
     await repository.saveFavorites(current);
   }
 
-  // ─── Mixer görünürlüğü ───────────────────────────────────────────────
+  // ─── Mixer visibility ───────────────────────────────────────────────
 
   void toggleMixerVisibility() {
     emit(state.copyWith(isMixerVisible: !state.isMixerVisible));
   }
 
-  // ─── YZ mod müzik önerisi ─────────────────────────────────────────────
+  // ─── AI mood music suggestion ─────────────────────────────────────────────
 
   Future<void> askAiForSounds(String moodDescription) async {
     if (moodDescription.trim().isEmpty) return;
@@ -163,12 +164,13 @@ class SoundsCubit extends Cubit<SoundsState> {
       );
     } catch (e) {
       emit(
-        state.copyWith(isAiLoading: false, error: 'YZ önerileri alınamadı: $e'),
+        state.copyWith(
+            isAiLoading: false, error: 'Failed to get AI recommendations: $e'),
       );
     }
   }
 
-  /// Önerilen tüm sesleri durdurur ve yeni 4-5 parçalı karışımı başlatır.
+  /// Stops all recommended sounds and starts a new 4-5 track mix.
   Future<void> applyAiRecommendations() async {
     final sounds = state.aiRecommendedSounds;
     if (sounds.isEmpty) return;

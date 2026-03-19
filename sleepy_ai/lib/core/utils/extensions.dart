@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 
@@ -17,18 +18,18 @@ extension DateTimeExtensions on DateTime {
 
   String toFormattedDate() {
     final months = [
-      'Oca',
-      'Şub',
-      'Mar',
-      'Nis',
-      'May',
-      'Haz',
-      'Tem',
-      'Ağu',
-      'Eyl',
-      'Eki',
-      'Kas',
-      'Ara',
+      'monthJan'.tr,
+      'monthFeb'.tr,
+      'monthMar'.tr,
+      'monthApr'.tr,
+      'monthMay'.tr,
+      'monthJun'.tr,
+      'monthJul'.tr,
+      'monthAug'.tr,
+      'monthSep'.tr,
+      'monthOct'.tr,
+      'monthNov'.tr,
+      'monthDec'.tr,
     ];
     return '$day ${months[month - 1]} $year';
   }
@@ -52,10 +53,10 @@ extension DurationExtensions on Duration {
 
   String toSleepScore() {
     final hours = inHours;
-    if (hours >= 8) return 'Mükemmel';
-    if (hours >= 7) return 'İyi';
-    if (hours >= 6) return 'Orta';
-    return 'Yetersiz';
+    if (hours >= 8) return 'sleepExcellent'.tr;
+    if (hours >= 7) return 'sleepGood'.tr;
+    if (hours >= 6) return 'sleepFair'.tr;
+    return 'sleepPoor'.tr;
   }
 }
 
@@ -85,10 +86,10 @@ extension SleepScoreExtension on int {
   }
 
   String toScoreLabel() {
-    if (this >= 85) return 'Mükemmel';
-    if (this >= 70) return 'İyi';
-    if (this >= 55) return 'Orta';
-    return 'Zayıf';
+    if (this >= 85) return 'sleepExcellent'.tr;
+    if (this >= 70) return 'sleepGood'.tr;
+    if (this >= 55) return 'sleepFair'.tr;
+    return 'sleepPoor'.tr;
   }
 }
 
