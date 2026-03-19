@@ -1,7 +1,7 @@
 ﻿import 'package:equatable/equatable.dart';
 
-/// Uygulamada hata yonetimi icin temel sinif.
-/// Either<Failure, Success> pattern ile kullanilir.
+/// Base class for error handling in the app.
+/// Used with Either<Failure, Success> pattern.
 abstract class Failure extends Equatable {
   const Failure(this.message);
   final String message;
@@ -16,12 +16,12 @@ class ServerFailure extends Failure {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure([String message = 'Internet baglantisi yok.'])
+  const NetworkFailure([String message = 'No internet connection.'])
       : super(message);
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure([String message = 'Yerel veri okuma hatasi.'])
+  const CacheFailure([String message = 'Local data read error.'])
       : super(message);
 }
 
@@ -31,7 +31,7 @@ class AuthFailure extends Failure {
 
 class UnauthorizedFailure extends Failure {
   const UnauthorizedFailure(
-      [String message = 'Oturumunuz sona erdi. Lutfen tekrar giris yapin.'])
+      [String message = 'Your session has expired. Please log in again.'])
       : super(message);
 }
 
@@ -49,6 +49,6 @@ class PlatformFailure extends Failure {
 
 class UnknownFailure extends Failure {
   const UnknownFailure(
-      [String message = 'Beklenmeyen bir hata olustu. Lutfen tekrar deneyin.'])
+      [String message = 'An unexpected error occurred. Please try again.'])
       : super(message);
 }
