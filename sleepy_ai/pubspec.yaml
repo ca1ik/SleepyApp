@@ -74,6 +74,7 @@ dev_dependencies:
   mockito: ^5.4.4
   build_runner: ^2.4.13
   hive_generator: ^2.0.1
+  flutter_launcher_icons: ^0.10.0
 
 flutter:
   uses-material-design: true
@@ -83,5 +84,11 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lottie/
+
+# Configuration for flutter_launcher_icons (top-level)
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/icons/app_icon.png
 
   # Fonts are provided via google_fonts package (no local font files needed)
