@@ -68,6 +68,10 @@ class _DashboardPageState extends State<DashboardPage> {
               Get.toNamed(AppStrings.routeLearning);
               return;
             }
+            if (index == 4) {
+              Get.toNamed(AppStrings.routeSettings);
+              return;
+            }
             setState(() => _selectedNavIndex = index);
           },
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -91,6 +95,11 @@ class _DashboardPageState extends State<DashboardPage> {
               icon: const Icon(Icons.auto_awesome_outlined),
               selectedIcon: const Icon(Icons.auto_awesome_rounded),
               label: 'hero'.tr,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.settings_outlined),
+              selectedIcon: const Icon(Icons.settings_rounded),
+              label: 'settings'.tr,
             ),
           ],
         ),

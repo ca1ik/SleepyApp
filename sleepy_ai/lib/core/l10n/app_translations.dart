@@ -283,6 +283,9 @@ class AppTranslations extends Translations {
 
     // ── Settings ──────────────────────────────────────────────────────
     'settings': 'Settings',
+    'themeSection': 'APPEARANCE',
+    'darkMode': 'Dark Mode',
+    'lightMode': 'Light Mode',
     'languageSection': 'Language',
     'turkish': 'Türkçe',
     'english': 'English',
@@ -1008,6 +1011,9 @@ class AppTranslations extends Translations {
 
     // ── Settings ──────────────────────────────────────────────────────
     'settings': 'Ayarlar',
+    'themeSection': 'GÖRÜNÜM',
+    'darkMode': 'Karanlık Mod',
+    'lightMode': 'Aydınlık Mod',
     'languageSection': 'Dil / Language',
     'turkish': 'Türkçe',
     'english': 'English',

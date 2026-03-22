@@ -130,7 +130,9 @@ class _SleepyAppState extends State<SleepyApp> with WidgetsBindingObserver {
             builder: (_, settingsState) => GetMaterialApp(
               title: AppStrings.appName,
               debugShowCheckedModeBanner: false,
-              theme: AppTheme.darkTheme,
+              theme: settingsState.isDarkMode
+                  ? AppTheme.darkTheme
+                  : AppTheme.lightTheme,
               initialRoute: AppStrings.routeSplash,
               getPages: AppRouter.routes,
               navigatorObservers: [AtmosphericRouteObserver()],

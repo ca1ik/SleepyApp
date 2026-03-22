@@ -69,6 +69,9 @@ const Map<String, String> translationsFr = {
 
   // ── Settings ────────────────────────────────────────────────────
   'settings': 'Paramètres',
+  'themeSection': 'APPARENCE',
+  'darkMode': 'Mode Sombre',
+  'lightMode': 'Mode Clair',
   'languageSection': 'Langue',
   'notifications': 'Notifications',
   'sleepReminder': 'Rappel de sommeil',

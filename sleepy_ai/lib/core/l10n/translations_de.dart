@@ -158,6 +158,9 @@ const Map<String, String> translationsDe = {
 
   // ── Settings ────────────────────────────────────────────────────
   'settings': 'Einstellungen',
+  'themeSection': 'ERSCHEINUNGSBILD',
+  'darkMode': 'Dunkelmodus',
+  'lightMode': 'Hellmodus',
   'languageSection': 'Sprache',
   'turkish': 'Türkisch',
   'english': 'Englisch',

@@ -84,6 +84,9 @@ const Map<String, String> translationsEs = {
 
   // ── Settings ────────────────────────────────────────────────────
   'settings': 'Configuración',
+  'themeSection': 'APARIENCIA',
+  'darkMode': 'Modo Oscuro',
+  'lightMode': 'Modo Claro',
   'languageSection': 'Idioma',
   'notifications': 'Notificaciones',
   'sleepReminder': 'Recordatorio de sueño',

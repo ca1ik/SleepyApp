@@ -8,6 +8,7 @@ class SettingsState extends Equatable {
     this.bedtimeHour = 23,
     this.bedtimeMinute = 0,
     this.sleepGoalHours = 8.0,
+    this.isDarkMode = true,
     this.isSaving = false,
   });
 
@@ -16,6 +17,7 @@ class SettingsState extends Equatable {
   final int bedtimeHour;
   final int bedtimeMinute;
   final double sleepGoalHours;
+  final bool isDarkMode;
   final bool isSaving;
 
   bool get isTurkish => locale.languageCode == 'tr';
@@ -26,6 +28,7 @@ class SettingsState extends Equatable {
     int? bedtimeHour,
     int? bedtimeMinute,
     double? sleepGoalHours,
+    bool? isDarkMode,
     bool? isSaving,
   }) {
     return SettingsState(
@@ -34,6 +37,7 @@ class SettingsState extends Equatable {
       bedtimeHour: bedtimeHour ?? this.bedtimeHour,
       bedtimeMinute: bedtimeMinute ?? this.bedtimeMinute,
       sleepGoalHours: sleepGoalHours ?? this.sleepGoalHours,
+      isDarkMode: isDarkMode ?? this.isDarkMode,
       isSaving: isSaving ?? this.isSaving,
     );
   }
@@ -45,6 +49,7 @@ class SettingsState extends Equatable {
         bedtimeHour,
         bedtimeMinute,
         sleepGoalHours,
+        isDarkMode,
         isSaving,
       ];
 }

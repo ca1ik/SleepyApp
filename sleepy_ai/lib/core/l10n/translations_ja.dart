@@ -59,6 +59,9 @@ const Map<String, String> translationsJa = {
   'sleepTips': '睡眠のヒント',
   'more': 'もっと見る',
   'settings': '設定',
+  'themeSection': '外観',
+  'darkMode': 'ダークモード',
+  'lightMode': 'ライトモード',
   'logout': 'ログアウト',
 
   // ── Games Hub ───────────────────────────────────────────────────

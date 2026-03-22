@@ -59,6 +59,9 @@ const Map<String, String> translationsZh = {
   'sleepTips': '睡眠建议',
   'more': '更多',
   'settings': '设置',
+  'themeSection': '外观',
+  'darkMode': '深色模式',
+  'lightMode': '浅色模式',
   'logout': '退出',
 
   // ── Games Hub ───────────────────────────────────────────────────

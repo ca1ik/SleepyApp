@@ -59,6 +59,9 @@ const Map<String, String> translationsIt = {
   'sleepTips': 'Consigli per il sonno',
   'more': 'Altro',
   'settings': 'Impostazioni',
+  'themeSection': 'ASPETTO',
+  'darkMode': 'Modalità Scura',
+  'lightMode': 'Modalità Chiara',
   'logout': 'Esci',
 
   // ── Games Hub ───────────────────────────────────────────────────

@@ -18,6 +18,7 @@ class SettingsCubit extends Cubit<SettingsState> {
         _prefs.getBool(AppStrings.prefNotificationsEnabled) ?? true;
     final bedtimeHour = _prefs.getInt(AppStrings.prefBedtimeHour) ?? 23;
     final bedtimeMinute = _prefs.getInt(AppStrings.prefBedtimeMinute) ?? 0;
+    final isDarkMode = _prefs.getBool(AppStrings.prefThemeMode) ?? true;
 
     emit(
       state.copyWith(
@@ -25,8 +26,15 @@ class SettingsCubit extends Cubit<SettingsState> {
         notificationsEnabled: notificationsEnabled,
         bedtimeHour: bedtimeHour,
         bedtimeMinute: bedtimeMinute,
+        isDarkMode: isDarkMode,
       ),
     );
+  }
+
+  Future<void> toggleTheme() async {
+    final newMode = !state.isDarkMode;
+    await _prefs.setBool(AppStrings.prefThemeMode, newMode);
+    emit(state.copyWith(isDarkMode: newMode));
   }
 
   Future<void> setLocale(String languageCode) async {
