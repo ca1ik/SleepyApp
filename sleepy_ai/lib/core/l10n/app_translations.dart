@@ -754,6 +754,89 @@ class AppTranslations extends Translations {
     'chakra_alignment': 'Chakra Alignment',
     'cosmic_energy_meditation': 'Cosmic Energy Meditation',
     'third_eye_activation': 'Third Eye Activation',
+
+    // ── Sleep Stories ─────────────────────────────────────────────────
+    'sleepStories': 'Sleep Stories',
+    'storiesSubtitle': 'Magical tales to guide you to sleep',
+    'scenes': 'scenes',
+    'storyRedTitle': 'Red Riding Hood',
+    'storyRedSub': 'A magical walk through the moonlit forest',
+    'storyRed01':
+        'Once upon a time, a little girl in a red hood set out through the forest as the moon rose above the trees...',
+    'storyRed02':
+        'Her gas lamp cast a warm golden glow on the path. The trees whispered ancient lullabies as she walked deeper into the woods...',
+    'storyRed03':
+        'She stopped for a moment to watch the fireflies dance among the ferns. Their tiny lights blinked like fallen stars...',
+    'storyRed04':
+        'The soft forest floor cushioned her steps. An owl hooted gently from a high branch, welcoming her to the night...',
+    'storyRed05':
+        'She came upon a clearing where mushrooms glowed with a faint blue light. The moon shone like a silver coin overhead...',
+    'storyRed06':
+        'A gentle breeze carried the scent of pine and wildflowers. She felt peace wrapping around her like a warm blanket...',
+    'storyRed07':
+        'The forest grew quieter now, as if nature itself was settling down to sleep. Even the wind began to whisper more softly...',
+    'storyRed08':
+        'She found a cozy spot beneath the oldest tree, sat down, and let her lamp dim. The stars sang her a silent lullaby as her eyes gently closed...',
+
+    'storyMoonTitle': 'The Moon Princess',
+    'storyMoonSub': 'A celestial journey across silver meadows',
+    'storyMoon01':
+        'High above the clouds, a princess made of moonlight stepped onto a bridge of silver stardust...',
+    'storyMoon02':
+        'Her lamp was the moon itself, tiny and radiant in her hand. Each step left a trail of soft white light on the path...',
+    'storyMoon03':
+        'She gazed across the endless meadow of star-flowers, each petal glowing with a gentle purple hue...',
+    'storyMoon04':
+        'The night breeze sang a melody only she could hear, weaving through constellations like a silk ribbon...',
+    'storyMoon05':
+        'She paused at the edge of a celestial lake, its surface reflecting a thousand sleeping galaxies...',
+    'storyMoon06':
+        'The princess lay down on a cloud of moonbeams, and the universe gently rocked her to sleep...',
+
+    'storyStarTitle': 'The Star Collector',
+    'storyStarSub': 'Gathering fallen stars in the quiet night',
+    'storyStar01':
+        'Every night, a young dreamer walks the hilltops with a lantern, searching for stars that have fallen from the sky...',
+    'storyStar02':
+        'Tonight the sky was generous. A golden star lay nestled in the grass, still warm and humming softly...',
+    'storyStar03':
+        'The dreamer picked it up gently and watched it pulse with light. Each star held a sleeping wish inside...',
+    'storyStar04':
+        'Walking further along the ridge, more stars dotted the meadow like glowing dewdrops in the darkness...',
+    'storyStar05':
+        'With pockets full of starlight, the dreamer sat on the hillcrest and watched the Milky Way breathe slowly...',
+    'storyStar06':
+        'One by one, the collected stars floated up and returned home. The dreamer smiled and drifted into a golden sleep...',
+
+    'storyGnomeTitle': 'The Forest Gnome',
+    'storyGnomeSub': 'A tiny guardian\'s nighttime patrol',
+    'storyGnome01':
+        'Deep in the enchanted woods, a little gnome with a mushroom hat began his nightly walk among the ancient trees...',
+    'storyGnome02':
+        'His green lantern hummed as he checked on sleeping flowers and tucked moss blankets around tiny forest creatures...',
+    'storyGnome03':
+        'He stopped by a babbling brook, its water singing a song as old as the mountains themselves...',
+    'storyGnome04':
+        'Fireflies gathered around him like old friends, their glow turning the forest into a living fairy tale...',
+    'storyGnome05':
+        'The gnome sat on a toadstool and played a tiny flute. The melody floated through the trees like warm honey...',
+    'storyGnome06':
+        'As the forest fell completely silent, the gnome curled up inside a hollow log, his lantern dimming to a soft ember...',
+
+    'storyOceanTitle': 'Ocean Dream',
+    'storyOceanSub': 'Drifting through bioluminescent waters',
+    'storyOcean01':
+        'Beneath the waves, where sunlight never reaches, a gentle swimmer drifted through a world of living light...',
+    'storyOcean02':
+        'Jellyfish floated past like glowing lanterns, trailing ribbons of soft cyan and violet through the deep...',
+    'storyOcean03':
+        'The swimmer paused to watch a giant sea turtle glide silently through a cathedral of coral...',
+    'storyOcean04':
+        'Tiny fish swirled around in spirals, their scales catching the bioluminescent glow like scattered diamonds...',
+    'storyOcean05':
+        'A whale sang in the distance, its deep voice vibrating through the water like a cosmic lullaby...',
+    'storyOcean06':
+        'The swimmer floated down to a bed of soft sea grass, wrapped in the ocean\'s gentle rocking, and fell asleep...',
   };
 
   static const Map<String, String> _tr = {
@@ -1418,5 +1501,88 @@ class AppTranslations extends Translations {
     'chakra_alignment': 'Çakra Hizalama',
     'cosmic_energy_meditation': 'Kozmik Enerji Meditasyonu',
     'third_eye_activation': 'Üçüncü Göz Aktivasyonu',
+
+    // ── Sleep Stories ─────────────────────────────────────────────────
+    'sleepStories': 'Uyku Masalları',
+    'storiesSubtitle': 'Uykuya yolculuk eden büyülü masallar',
+    'scenes': 'sahne',
+    'storyRedTitle': 'Kırmızı Başlıklı Kız',
+    'storyRedSub': 'Ay ışığında büyülü bir orman yürüyüşü',
+    'storyRed01':
+        'Bir varmış bir yokmuş, küçük kırmızı başlıklı kız, ay ağaçların üzerinde yükselirken ormana doğru yola çıktı...',
+    'storyRed02':
+        'Gaz lambasının sıcak altın ışığı patikayı aydınlattı. Ağaçlar, ormanın derinliklerine ilerlerken kadim ninniler fısıldadı...',
+    'storyRed03':
+        'Eğrelti otlarının arasında dans eden ateşböceklerini izlemek için bir an durdu. Minicik ışıkları düşmüş yıldızlar gibi yanıp söndü...',
+    'storyRed04':
+        'Yumuşak orman zemini adımlarını yastıkladı. Bir baykuş yüksek bir daldan nazikçe öttü ve onu geceye karşıladı...',
+    'storyRed05':
+        'Mantarların soluk mavi bir ışıkla parıldadığı bir açıklığa geldi. Ay tepesinde gümüş bir sikke gibi parlıyordu...',
+    'storyRed06':
+        'Hafif bir esinti çam ve kır çiçeklerinin kokusunu taşıdı. Huzurun onu sıcak bir battaniye gibi sardığını hissetti...',
+    'storyRed07':
+        'Orman artık sessizleşiyordu, sanki doğanın kendisi uykuya dalıyordu. Rüzgâr bile daha yumuşak fısıldamaya başladı...',
+    'storyRed08':
+        'En yaşlı ağacın altında rahat bir köşe buldu, oturdu ve lambasını kıstı. Yıldızlar gözleri yavaşça kapanırken sessiz bir ninni söyledi...',
+
+    'storyMoonTitle': 'Ay Prensesi',
+    'storyMoonSub': 'Gümüş çayırlarda göksel bir yolculuk',
+    'storyMoon01':
+        'Bulutların çok üstünde, ay ışığından yapılmış bir prenses gümüş yıldız tozu köprüsüne adım attı...',
+    'storyMoon02':
+        'Lambası elindeki minicik ve parlak ayın kendisiydi. Her adımı yolda yumuşak beyaz bir iz bıraktı...',
+    'storyMoon03':
+        'Her yaprağı nazik mor bir tonla parlayan sonsuz yıldız çiçeği çayırına baktı...',
+    'storyMoon04':
+        'Gece esintisi sadece onun duyabileceği bir melodi söyledi, takımyıldızlar arasında ipek bir kurdele gibi süzüldü...',
+    'storyMoon05':
+        'Göksel bir gölün kenarında durdu, yüzeyi bin uyuyan galaksiyi yansıtıyordu...',
+    'storyMoon06':
+        'Prenses ay ışığından bir bulutun üzerine uzandı ve evren onu nazikçe uykuya salladı...',
+
+    'storyStarTitle': 'Yıldız Toplayıcı',
+    'storyStarSub': 'Sessiz gecede düşen yıldızları topluyoruz',
+    'storyStar01':
+        'Her gece, genç bir hayalperest bir fenerle tepelerin üstünde yürür, gökyüzünden düşen yıldızları arar...',
+    'storyStar02':
+        'Bu gece gökyüzü cömertti. Altın bir yıldız çimenler arasında yatıyordu, hâlâ sıcak ve hafifçe uğulduyordu...',
+    'storyStar03':
+        'Hayalperest onu nazikçe aldı ve ışıkla atmasını izledi. Her yıldız içinde uyuyan bir dilek taşıyordu...',
+    'storyStar04':
+        'Sırt boyunca daha ilerlerken, daha fazla yıldız çayırı karanlıkta parlayan çiy taneleri gibi süsledi...',
+    'storyStar05':
+        'Cepleri yıldız ışığıyla dolu hayalperest tepeye oturdu ve Samanyolu\'nun yavaşça nefes alışını izledi...',
+    'storyStar06':
+        'Toplanan yıldızlar teker teker süzülüp evlerine döndü. Hayalperest gülümsedi ve altın bir uykuya daldı...',
+
+    'storyGnomeTitle': 'Orman Cücesi',
+    'storyGnomeSub': 'Küçük bir koruyucunun gece devriyesi',
+    'storyGnome01':
+        'Büyülü ormanın derinliklerinde, mantar şapkalı küçük bir cüce kadim ağaçların arasında gece yürüyüşüne başladı...',
+    'storyGnome02':
+        'Yeşil feneri uğuldarken uyuyan çiçekleri kontrol etti ve minik orman yaratıklarının etrafına yosun battaniyeleri sardı...',
+    'storyGnome03':
+        'Şırıl şırıl akan bir derenin yanında durdu, suyu dağlar kadar eski bir şarkı söylüyordu...',
+    'storyGnome04':
+        'Ateşböcekleri eski dostlar gibi etrafında toplandı, parıltıları ormanı yaşayan bir masala dönüştürdü...',
+    'storyGnome05':
+        'Cüce bir mantarın üzerine oturdu ve minicik flütünü çaldı. Melodi ağaçların arasında sıcak bal gibi süzüldü...',
+    'storyGnome06':
+        'Orman tamamen sessizleştiğinde, cüce kovuk bir kütüğün içine kıvrılıp feneri yumuşak bir köze döndürdü...',
+
+    'storyOceanTitle': 'Okyanus Rüyası',
+    'storyOceanSub': 'Biyolüminesan sularda süzülüyoruz',
+    'storyOcean01':
+        'Dalgaların altında, güneş ışığının asla ulaşamadığı yerde, nazik bir yüzücü canlı ışık dünyasında süzülüyordu...',
+    'storyOcean02':
+        'Denizanaları parlayan fenerler gibi süzüldü, derinliklerde yumuşak camgöbeği ve menekşe kurdeleler bıraktı...',
+    'storyOcean03':
+        'Yüzücü dev bir deniz kaplumbağasının mercan katedralinden sessizce süzülmesini izlemek için durdu...',
+    'storyOcean04':
+        'Minik balıklar spiraller halinde döndü, pulları saçılmış elmaslar gibi biyolüminesan parıltıyı yakaladı...',
+    'storyOcean05':
+        'Uzakta bir balina şarkı söyledi, derin sesi kozmik bir ninni gibi suyun içinde titreşti...',
+    'storyOcean06':
+        'Yüzücü yumuşak deniz çimenlerinden bir yatağa süzüldü, okyanusun nazik sallanmasına sarılıp uykuya daldı...',
   };
 }

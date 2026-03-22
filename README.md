@@ -1,6 +1,6 @@
 # 🌙 SleepyApp — Sleep Optimization & Wellness Companion
 
-Welcome to the **SleepyApp** repository! This comprehensive Flutter application is designed to help users **improve their sleep quality** through intelligent tracking, ambient sound mixing, gamification, educational content, and relaxing mini-games. Built with **Clean Architecture**, powered by **BLoC/Cubit state management**, and fully functional offline.
+Welcome to the **SleepyApp** repository! This comprehensive Flutter application is designed to help users **improve their sleep quality** through intelligent tracking, ambient sound mixing, gamification, educational content, interactive sleep stories, zodiac-powered astral exercises, and 10 relaxing mini-games. Built with **Clean Architecture**, powered by **BLoC/Cubit state management**, supporting **13 languages** and **Dark/Light theme**, and fully functional offline.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ebe309e3-cd63-4437-b685-d955c7c3a42e" width="280">
@@ -8,7 +8,7 @@ Welcome to the **SleepyApp** repository! This comprehensive Flutter application 
 
 ---
 
-## 🛠️ FEATURES (v1.0)
+## 🛠️ FEATURES (v2.0)
 
 ### 🛏️ Sleep Tracking & Analytics
 - Manual or automatic sleep logging (bedtime & wake time pickers)
@@ -24,12 +24,38 @@ Welcome to the **SleepyApp** repository! This comprehensive Flutter application 
 - Category-based filtering and floating mixer panel
 - AI Mood Music recommendations (API-ready)
 
-### 🎮 Relaxing Mini-Games
+### 🎮 10 Relaxing Mini-Games
 - **Breathing Exercise** — Guided 4-4-6-2 breathing cycle with animated circle, particle effects, and starfield background
 - **Star Catcher** — Tap falling stars to collect points with increasing difficulty
 - **Bubble Pop** — Physics-based bubble animations with haptic feedback
 - **Sheep Counter** — Classic sleep-inducing sheep counting game
 - **Sleep Films** — Curated collection of relaxation films with watch tracking
+- **Dream Labyrinth** — Navigate through dreamlike mazes with ambient visuals
+- **Moon Runner** — Endless runner across lunar landscapes
+- **Nebula Match** — Memory card matching game with cosmic theme
+- **Galaxy Puzzle** — Sliding puzzle with galaxy imagery
+- **Cosmic Flow** — Zen-like flow drawing game with particle trails
+
+### 📖 Interactive Sleep Stories (NEW)
+- **5 immersive bedtime stories** with unique animated environments:
+  - 🧒 **Red Riding Hood** — Moonlit forest walk with golden lamp
+  - 👸 **The Moon Princess** — Celestial journey across silver meadows
+  - ⭐ **The Star Collector** — Gathering fallen stars in the quiet night
+  - 🍄 **The Forest Gnome** — A tiny guardian's nighttime patrol
+  - 🐚 **Ocean Dream** — Drifting through bioluminescent waters
+- **Walking character animation** with gas lamp glow effect
+- **Parallax scrolling scenery** — 3-layer trees, twinkling stars, floating firefly particles
+- **Auto-advancing story text** with fade transitions and scene progress dots
+- **Text-to-Speech (TTS)** voice narration via `flutter_tts` (tap to listen)
+- **Play/Pause, Forward/Back** controls for full story navigation
+- Custom `CustomPainter`-based rendering for 60fps performance
+
+### 🔮 Zodiac & Astral Exercises (NEW)
+- **12 zodiac signs** with detailed sleep profiles and personality traits
+- **Zodiac compatibility** checker between any two signs
+- **5 astral exercises**: Astral Projection, Lucid Dreaming, Chakra Alignment, Cosmic Energy Meditation, Third Eye Activation
+- Step-by-step guided exercise flow with breathing cues
+- Difficulty levels: Beginner, Intermediate, Advanced
 
 ### 🏆 Gamification & Achievements
 - **12 achievement badges** unlocked by sleep quality and game performance
@@ -48,11 +74,17 @@ Welcome to the **SleepyApp** repository! This comprehensive Flutter application 
 - Unlocks advanced analytics, premium sounds, AI recommendations, unlimited level system
 - Purchase restore support for reinstalls
 
+### 🤖 AI Sleep Assistant (NEW)
+- Conversational AI chatbot for personalized sleep advice
+- Context-aware recommendations based on user sleep data
+- API-ready architecture for LLM integration
+
 ### ⚙️ Settings & Personalization
-- 🇹🇷 Turkish / 🇬🇧 English language support
+- **13 languages**: 🇬🇧 English, 🇹🇷 Turkish, 🇩🇪 German, 🇪🇸 Spanish, 🇫🇷 French, 🇮🇹 Italian, 🇨🇳 Chinese, 🇯🇵 Japanese, 🇰🇷 Korean, 🇸🇦 Arabic, 🇷🇺 Russian, 🇧🇷 Portuguese, 🇮🇳 Hindi
+- **Dark / Light theme** toggle with animated sun/moon transition
 - Sleep reminder notifications
 - Bedtime schedule and sleep goal configuration
-- Dark theme by default
+- Animated staggered settings page with 2-column language grid
 
 ### 💬 Feedback System
 - 5-star rating selector
@@ -60,16 +92,22 @@ Welcome to the **SleepyApp** repository! This comprehensive Flutter application 
 
 ---
 
-## 🔄 UPCOMING FEATURES (v1.1+)
+## 🔄 UPCOMING FEATURES (v2.1+)
 
-- ✅ Firebase Authentication integration (MockAuth → FirebaseAuth)
-- 🔄 Backend API connection (sleep tips, AI story generator, chatbot)
+- ✅ ~~Firebase Authentication integration~~ (Done)
+- ✅ ~~13-language localization~~ (Done)
+- ✅ ~~Dark/Light theme~~ (Done)
+- ✅ ~~10 mini-games~~ (Done)
+- ✅ ~~Interactive Sleep Stories with TTS~~ (Done)
+- ✅ ~~Zodiac & Astral Exercises~~ (Done)
+- ✅ ~~AI Sleep Assistant~~ (Done)
+- 🔄 Backend API connection (sleep tips, AI story generator)
 - ✨ Real In-App Purchase implementation (Google Play Billing)
 - 📈 Firebase Cloud Messaging push notifications
 - 🤖 AI-powered music & story recommendations (LLM integration)
 - 🔥 Firebase Analytics / telemetry
 - 🍎 iOS platform testing & App Store publishing
-- 🎮 Additional relaxing mini-games & content
+- 🌐 More interactive story content & seasonal stories
 
 ---
 
@@ -128,25 +166,27 @@ lib/
 │   ├── l10n/                          # Localization configuration
 │   ├── network/                       # Dio client, Auth/Error/Logging interceptors
 │   ├── platform/                      # MethodChannel (alarm service)
-│   ├── router/                        # GetX route definitions (20+ pages)
-│   ├── theme/                         # Dark theme, color scheme, ThemeProvider
+│   ├── router/                        # GetX route definitions (30+ pages)
+│   ├── theme/                         # Dark & Light theme, color scheme, ThemeProvider
 │   └── utils/                         # Extensions, SleepDurationCalculator
 ├── features/
 │   ├── auth/                          # Authentication (Mock → Firebase ready)
 │   │   ├── bloc/                      # AuthBloc, AuthEvent, AuthState
 │   │   ├── data/                      # AuthRepository (mock implementation)
 │   │   └── presentation/             # Splash, Login, Register, ForgotPassword
-│   ├── dashboard/                     # Main hub with 4-tab navigation
+│   ├── dashboard/                     # Main hub with 5-tab navigation
 │   ├── feedback/                      # User feedback (rating + message)
-│   ├── games/                         # 5 mini-games + hub page
+│   ├── games/                         # 10 mini-games + hub page
 │   ├── learning/                      # Educational articles with search & filter
 │   ├── level_system/                  # RPG progression (XP, quests, 99 levels)
 │   ├── pro/                           # PRO subscription paywall (IAP)
 │   ├── rewards/                       # Achievement badge system (12 badges)
-│   ├── settings/                      # Language, notifications, sleep goal
+│   ├── settings/                      # Language, theme, notifications, sleep goal
 │   ├── sleep_tracking/                # Sleep logging, charts, quality scoring
-│   └── sounds/                        # Multi-track sound mixer (40+ sounds)
-├── l10n/                              # ARB translation files (TR / EN)
+│   ├── sounds/                        # Multi-track sound mixer (40+ sounds)
+│   ├── stories/                       # 5 interactive sleep stories with TTS
+│   └── zodiac/                        # Zodiac signs, compatibility, astral exercises
+├── l10n/                              # ARB translation files (13 languages)
 └── shared/
     ├── models/                        # UserEntity, SleepEntity, SoundModel, BadgeModel
     └── widgets/                       # GradientBackground, GlassCard, MetricCard, SleepChart
@@ -181,6 +221,7 @@ lib/
 | `just_audio` | ^0.9.40 | Audio playback (multi-player) |
 | `audio_service` | ^0.18.15 | Background audio service |
 | `audio_session` | ^0.1.21 | Audio session management |
+| `flutter_tts` | ^4.2.0 | Text-to-Speech for story narration |
 
 ### UI & Animations
 | Package | Version | Description |
@@ -297,7 +338,7 @@ This project is developed for private use.
 
 ---
 
-**IN APP:**
+## 📸 IN APP SCREENSHOTS
 
 
 <p align="center">

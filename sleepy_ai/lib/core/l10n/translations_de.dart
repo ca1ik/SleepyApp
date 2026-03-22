@@ -328,4 +328,83 @@ const Map<String, String> translationsDe = {
   'chakra_alignment': 'Chakra-Ausrichtung',
   'cosmic_energy_meditation': 'Kosmische Energiemeditation',
   'third_eye_activation': 'Drittes-Auge-Aktivierung',
+
+  // ── Sleep Stories ─────────────────────────────────────────────────
+  'sleepStories': 'Schlafgeschichten',
+  'storiesSubtitle': 'Magische Geschichten, die dich in den Schlaf begleiten',
+  'scenes': 'Szenen',
+  'storyRedTitle': 'Rotkäppchen',
+  'storyRedSub': 'Ein magischer Spaziergang durch den Mondscheinwald',
+  'storyRed01':
+      'Es war einmal ein kleines Mädchen im roten Mantel, das sich auf den Weg durch den Wald machte, als der Mond über den Bäumen aufging...',
+  'storyRed02':
+      'Ihre Gaslaterne warf einen warmen goldenen Schein auf den Weg. Die Bäume flüsterten uralte Schlaflieder, als sie tiefer in den Wald ging...',
+  'storyRed03':
+      'Sie blieb einen Moment stehen, um den Glühwürmchen zuzusehen, die zwischen den Farnen tanzten...',
+  'storyRed04':
+      'Der weiche Waldboden dämpfte ihre Schritte. Eine Eule rief sanft von einem hohen Ast und begrüßte sie in der Nacht...',
+  'storyRed05':
+      'Sie kam auf eine Lichtung, wo Pilze in sanftem blauen Licht leuchteten. Der Mond schien wie eine Silbermünze...',
+  'storyRed06':
+      'Eine sanfte Brise trug den Duft von Kiefern und Wildblumen. Frieden umhüllte sie wie eine warme Decke...',
+  'storyRed07':
+      'Der Wald wurde jetzt ruhiger, als ob die Natur selbst einschlief. Selbst der Wind begann leiser zu flüstern...',
+  'storyRed08':
+      'Sie fand ein gemütliches Plätzchen unter dem ältesten Baum und ließ ihre Lampe dimmen. Die Sterne sangen ein stilles Schlaflied...',
+  'storyMoonTitle': 'Die Mondprinzessin',
+  'storyMoonSub': 'Eine himmlische Reise über silberne Wiesen',
+  'storyMoon01':
+      'Hoch über den Wolken trat eine Prinzessin aus Mondlicht auf eine Brücke aus silbernem Sternenstaub...',
+  'storyMoon02':
+      'Ihre Lampe war der Mond selbst, winzig und strahlend in ihrer Hand...',
+  'storyMoon03':
+      'Sie blickte über die endlose Wiese der Sternblumen, jedes Blütenblatt in sanftem Violett leuchtend...',
+  'storyMoon04':
+      'Die Nachtbrise sang eine Melodie, die nur sie hören konnte, webend durch Sternbilder wie ein Seidenband...',
+  'storyMoon05':
+      'Sie hielt am Rand eines himmlischen Sees inne, dessen Oberfläche tausend schlafende Galaxien widerspiegelte...',
+  'storyMoon06':
+      'Die Prinzessin legte sich auf eine Wolke aus Mondstrahlen, und das Universum wiegte sie sanft in den Schlaf...',
+  'storyStarTitle': 'Der Sternensammler',
+  'storyStarSub': 'Gefallene Sterne in der stillen Nacht sammeln',
+  'storyStar01':
+      'Jede Nacht wandert ein junger Träumer mit einer Laterne über die Hügel und sucht nach Sternen...',
+  'storyStar02':
+      'Heute Nacht war der Himmel großzügig. Ein goldener Stern lag warm und leise summend im Gras...',
+  'storyStar03':
+      'Der Träumer hob ihn sanft auf und sah ihm beim Pulsieren zu. Jeder Stern trug einen schlafenden Wunsch...',
+  'storyStar04':
+      'Weiter entlang des Kammes lagen mehr Sterne wie leuchtende Tautropfen in der Dunkelheit...',
+  'storyStar05':
+      'Mit Taschen voller Sternenlicht setzte sich der Träumer auf den Hügel und sah der Milchstraße beim Atmen zu...',
+  'storyStar06':
+      'Die gesammelten Sterne schwebten einer nach dem anderen zurück nach Hause. Der Träumer lächelte und glitt in goldenen Schlaf...',
+  'storyGnomeTitle': 'Der Waldgnom',
+  'storyGnomeSub': 'Die nächtliche Patrouille eines kleinen Hüters',
+  'storyGnome01':
+      'Tief im verzauberten Wald begann ein kleiner Gnom mit Pilzhut seinen nächtlichen Spaziergang...',
+  'storyGnome02':
+      'Seine grüne Laterne summte, als er schlafende Blumen kontrollierte und Moosbettchen um Waldgeschöpfe legte...',
+  'storyGnome03':
+      'Er blieb an einem plätschernden Bach stehen, dessen Wasser ein Lied sang, so alt wie die Berge...',
+  'storyGnome04':
+      'Glühwürmchen sammelten sich um ihn wie alte Freunde und verwandelten den Wald in ein Märchen...',
+  'storyGnome05':
+      'Der Gnom setzte sich auf einen Fliegenpilz und spielte eine winzige Flöte. Die Melodie schwebte durch die Bäume...',
+  'storyGnome06':
+      'Als der Wald völlig still wurde, rollte sich der Gnom in einem hohlen Baumstamm zusammen...',
+  'storyOceanTitle': 'Ozeantraum',
+  'storyOceanSub': 'Durch biolumineszierende Gewässer gleiten',
+  'storyOcean01':
+      'Unter den Wellen, wo Sonnenlicht nie hinkommt, trieb ein sanfter Schwimmer durch eine Welt aus lebendigem Licht...',
+  'storyOcean02':
+      'Quallen schwebten vorbei wie leuchtende Laternen und hinterließen Bänder aus Cyan und Violett...',
+  'storyOcean03':
+      'Der Schwimmer beobachtete eine riesige Meeresschildkröte, die lautlos durch eine Korallen-Kathedrale glitt...',
+  'storyOcean04':
+      'Winzige Fische wirbelten in Spiralen, ihre Schuppen fingen das biolumineszente Leuchten wie Diamanten...',
+  'storyOcean05':
+      'Ein Wal sang in der Ferne, seine tiefe Stimme vibrierte durch das Wasser wie ein kosmisches Schlaflied...',
+  'storyOcean06':
+      'Der Schwimmer glitt hinab zu einem Bett aus Seegras, umhüllt vom sanften Wiegen des Ozeans...',
 };

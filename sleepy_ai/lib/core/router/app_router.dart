@@ -30,6 +30,8 @@ import 'package:sleepy_ai/features/games/presentation/moon_runner_page.dart';
 import 'package:sleepy_ai/features/games/presentation/nebula_match_page.dart';
 import 'package:sleepy_ai/features/games/presentation/galaxy_puzzle_page.dart';
 import 'package:sleepy_ai/features/games/presentation/cosmic_flow_page.dart';
+import 'package:sleepy_ai/features/stories/presentation/stories_hub_page.dart';
+import 'package:sleepy_ai/features/stories/presentation/story_player_page.dart';
 
 /// GetX yönlendirme tablosu.
 /// Tüm sayfalar buraya kayıtlıdır ve [AppStrings] rotaları kullanılır.
@@ -189,6 +191,18 @@ abstract final class AppRouter {
     GetPage(
       name: AppStrings.routeCosmicFlow,
       page: () => const CosmicFlowPage(),
+      transition: Transition.downToUp,
+    ),
+
+    // ── Stories ────────────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeStories,
+      page: () => const StoriesHubPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeStoryPlayer,
+      page: () => const StoryPlayerPage(),
       transition: Transition.downToUp,
     ),
   ];

@@ -65,6 +65,8 @@ abstract final class AppStrings {
   static const String routeNebulaMatch = '/games/nebula-match';
   static const String routeGalaxyPuzzle = '/games/galaxy-puzzle';
   static const String routeCosmicFlow = '/games/cosmic-flow';
+  static const String routeStories = '/stories';
+  static const String routeStoryPlayer = '/story-player';
 
   // ── Hive Box Names ───────────────────────────────────────────────────
   static const String boxSleepLogs = 'sleep_logs';

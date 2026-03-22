@@ -144,4 +144,82 @@ const Map<String, String> translationsPt = {
   'chakra_alignment': 'Alinhamento de chakras',
   'cosmic_energy_meditation': 'Meditação de energia cósmica',
   'third_eye_activation': 'Ativação do terceiro olho',
+
+  // ── Sleep Stories ─────────────────────────────────────────────────
+  'sleepStories': 'Histórias para Dormir',
+  'storiesSubtitle': 'Contos mágicos que guiam ao sono',
+  'scenes': 'cenas',
+  'storyRedTitle': 'Chapeuzinho Vermelho',
+  'storyRedSub': 'Um passeio mágico pela floresta ao luar',
+  'storyRed01':
+      'Era uma vez, uma menina de capuz vermelho que entrou na floresta enquanto a lua se erguia sobre as árvores...',
+  'storyRed02':
+      'Sua lamparina projetava um brilho dourado e quente no caminho. As árvores sussurravam canções de ninar antigas...',
+  'storyRed03':
+      'Ela parou por um momento para observar os vagalumes dançando entre as samambaias...',
+  'storyRed04':
+      'O chão macio da floresta amortecia seus passos. Uma coruja piou suavemente de um galho alto...',
+  'storyRed05':
+      'Ela chegou a uma clareira onde cogumelos brilhavam com uma luz azul suave. A lua brilhava como uma moeda de prata...',
+  'storyRed06':
+      'Uma brisa suave trazia o aroma de pinheiros e flores silvestres. A paz a envolveu como um cobertor quente...',
+  'storyRed07':
+      'A floresta ficou mais silenciosa, como se a natureza estivesse se preparando para dormir...',
+  'storyRed08':
+      'Ela encontrou um cantinho aconchegante sob a árvore mais velha e deixou a lamparina diminuir. As estrelas cantaram uma canção de ninar silenciosa...',
+  'storyMoonTitle': 'A Princesa da Lua',
+  'storyMoonSub': 'Uma jornada celestial por prados prateados',
+  'storyMoon01':
+      'Muito acima das nuvens, uma princesa feita de luar pisou numa ponte de poeira estelar prateada...',
+  'storyMoon02':
+      'Sua lamparina era a própria lua, minúscula e radiante em sua mão...',
+  'storyMoon03':
+      'Ela contemplou o prado infinito de flores estelares, cada pétala brilhando em tom violeta suave...',
+  'storyMoon04': 'A brisa noturna cantou uma melodia que só ela podia ouvir...',
+  'storyMoon05':
+      'Ela parou à beira de um lago celestial, cuja superfície refletia mil galáxias adormecidas...',
+  'storyMoon06':
+      'A princesa deitou-se numa nuvem de raios de luar, e o universo a embalou suavemente até adormecer...',
+  'storyStarTitle': 'O Colecionador de Estrelas',
+  'storyStarSub': 'Coletando estrelas caídas na noite silenciosa',
+  'storyStar01':
+      'Toda noite, um jovem sonhador caminha pelas colinas com uma lanterna, procurando estrelas caídas do céu...',
+  'storyStar02':
+      'Esta noite o céu foi generoso. Uma estrela dourada estava na grama, ainda quente e zumbindo suavemente...',
+  'storyStar03':
+      'O sonhador a pegou com cuidado e a viu pulsar com luz. Cada estrela guardava um desejo adormecido...',
+  'storyStar04':
+      'Caminhando mais adiante, mais estrelas pontilhavam o prado como gotas de orvalho brilhantes na escuridão...',
+  'storyStar05':
+      'Com os bolsos cheios de luz estelar, o sonhador sentou no topo e observou a Via Láctea respirar...',
+  'storyStar06':
+      'As estrelas coletadas flutuaram uma a uma de volta para casa. O sonhador sorriu e mergulhou num sono dourado...',
+  'storyGnomeTitle': 'O Gnomo da Floresta',
+  'storyGnomeSub': 'A patrulha noturna de um pequeno guardião',
+  'storyGnome01':
+      'No fundo da floresta encantada, um pequeno gnomo de chapéu de cogumelo começou sua caminhada noturna...',
+  'storyGnome02':
+      'Sua lanterna verde zumbia enquanto verificava flores adormecidas e cobria criaturinhas com cobertores de musgo...',
+  'storyGnome03':
+      'Ele parou junto a um riacho murmurante, cuja água cantava uma canção tão antiga quanto as montanhas...',
+  'storyGnome04':
+      'Vagalumes se reuniram ao seu redor como velhos amigos, transformando a floresta num conto de fadas vivo...',
+  'storyGnome05':
+      'O gnomo sentou num cogumelo e tocou uma pequena flauta. A melodia flutuou entre as árvores como mel quente...',
+  'storyGnome06':
+      'Quando a floresta ficou completamente silenciosa, o gnomo se enrolou dentro de um tronco oco...',
+  'storyOceanTitle': 'Sonho Oceânico',
+  'storyOceanSub': 'Flutuando em águas bioluminescentes',
+  'storyOcean01':
+      'Sob as ondas, onde a luz do sol nunca chega, um nadador gentil flutuava num mundo de luz viva...',
+  'storyOcean02':
+      'Águas-vivas passavam como lanternas brilhantes, deixando fitas de ciano e violeta nas profundezas...',
+  'storyOcean03':
+      'O nadador observou uma tartaruga marinha gigante deslizar silenciosamente por uma catedral de coral...',
+  'storyOcean04':
+      'Pequenos peixes giravam em espirais, suas escamas capturando o brilho bioluminescente como diamantes...',
+  'storyOcean05':
+      'Uma baleia cantou ao longe, sua voz profunda vibrando na água como uma canção de ninar cósmica...',
+  'storyOcean06':
+      'O nadador desceu até uma cama de grama marinha, envolvido pelo suave balançar do oceano e adormeceu...',
 };

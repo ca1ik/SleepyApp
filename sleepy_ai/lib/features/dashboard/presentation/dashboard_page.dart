@@ -406,6 +406,12 @@ class _QuickActionsRow extends StatelessWidget {
               color: AppColors.accentBlue,
               route: AppStrings.routeGames,
             ),
+            _QuickActionItem(
+              icon: Icons.auto_stories_rounded,
+              label: 'sleepStories'.tr,
+              color: AppColors.accentTeal,
+              route: AppStrings.routeStories,
+            ),
           ],
         ),
       ],
