@@ -20,6 +20,16 @@ import 'package:sleepy_ai/features/games/presentation/bubble_pop_page.dart';
 import 'package:sleepy_ai/features/games/presentation/sheep_counter_page.dart';
 import 'package:sleepy_ai/features/sounds/presentation/sounds_page.dart';
 import 'package:sleepy_ai/features/level_system/presentation/sleep_hero_page.dart';
+import 'package:sleepy_ai/features/zodiac/presentation/zodiac_hub_page.dart';
+import 'package:sleepy_ai/features/zodiac/presentation/zodiac_detail_page.dart';
+import 'package:sleepy_ai/features/zodiac/presentation/zodiac_compatibility_page.dart';
+import 'package:sleepy_ai/features/zodiac/presentation/astral_exercises_page.dart';
+import 'package:sleepy_ai/features/zodiac/presentation/astral_exercise_detail_page.dart';
+import 'package:sleepy_ai/features/games/presentation/dream_labyrinth_page.dart';
+import 'package:sleepy_ai/features/games/presentation/moon_runner_page.dart';
+import 'package:sleepy_ai/features/games/presentation/nebula_match_page.dart';
+import 'package:sleepy_ai/features/games/presentation/galaxy_puzzle_page.dart';
+import 'package:sleepy_ai/features/games/presentation/cosmic_flow_page.dart';
 
 /// GetX yönlendirme tablosu.
 /// Tüm sayfalar buraya kayıtlıdır ve [AppStrings] rotaları kullanılır.
@@ -125,6 +135,60 @@ abstract final class AppRouter {
     GetPage(
       name: AppStrings.routeSleepHero,
       page: () => const SleepHeroPage(showBackButton: true),
+      transition: Transition.downToUp,
+    ),
+
+    // ── Zodiac & Astral ────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeZodiac,
+      page: () => const ZodiacHubPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeZodiacDetail,
+      page: () => const ZodiacDetailPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeZodiacCompatibility,
+      page: () => const ZodiacCompatibilityPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeAstralExercises,
+      page: () => const AstralExercisesPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppStrings.routeAstralExerciseDetail,
+      page: () => const AstralExerciseDetailPage(),
+      transition: Transition.rightToLeft,
+    ),
+
+    // ── New Games ──────────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeDreamLabyrinth,
+      page: () => const DreamLabyrinthPage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeMoonRunner,
+      page: () => const MoonRunnerPage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeNebulaMatch,
+      page: () => const NebulaMatchPage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeGalaxyPuzzle,
+      page: () => const GalaxyPuzzlePage(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppStrings.routeCosmicFlow,
+      page: () => const CosmicFlowPage(),
       transition: Transition.downToUp,
     ),
   ];

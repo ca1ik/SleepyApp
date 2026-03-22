@@ -1,10 +1,32 @@
 import 'package:get/get.dart';
+import 'package:sleepy_ai/core/l10n/translations_de.dart';
+import 'package:sleepy_ai/core/l10n/translations_es.dart';
+import 'package:sleepy_ai/core/l10n/translations_fr.dart';
+import 'package:sleepy_ai/core/l10n/translations_it.dart';
+import 'package:sleepy_ai/core/l10n/translations_zh.dart';
+import 'package:sleepy_ai/core/l10n/translations_ja.dart';
+import 'package:sleepy_ai/core/l10n/translations_ko.dart';
+import 'package:sleepy_ai/core/l10n/translations_ar.dart';
+import 'package:sleepy_ai/core/l10n/translations_ru.dart';
+import 'package:sleepy_ai/core/l10n/translations_pt.dart';
+import 'package:sleepy_ai/core/l10n/translations_hi.dart';
 
 class AppTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en': _en,
         'tr': _tr,
+        'de': translationsDe,
+        'es': translationsEs,
+        'fr': translationsFr,
+        'it': translationsIt,
+        'zh': translationsZh,
+        'ja': translationsJa,
+        'ko': translationsKo,
+        'ar': translationsAr,
+        'ru': translationsRu,
+        'pt': translationsPt,
+        'hi': translationsHi,
       };
 
   static const Map<String, String> _en = {
@@ -643,6 +665,92 @@ class AppTranslations extends Translations {
     'errSleepHistoryLoad': 'Failed to load sleep history: @e',
     'errRecordSave': 'Failed to save record: @e',
     'errRecordDelete': 'Failed to delete record: @e',
+
+    // ── New Games ─────────────────────────────────────────────────────
+    'game_dream_labyrinth': 'Dream Labyrinth',
+    'game_dream_labyrinth_desc':
+        'Navigate a dreamy maze and collect moon fragments.',
+    'game_moon_runner': 'Moon Runner',
+    'game_moon_runner_desc':
+        'Run across the lunar surface, dodge craters, collect stars.',
+    'game_nebula_match': 'Nebula Match',
+    'game_nebula_match_desc': 'Flip cosmic cards and find matching pairs.',
+    'game_galaxy_puzzle': 'Galaxy Puzzle',
+    'game_galaxy_puzzle_desc': 'Slide tiles to restore the cosmic image.',
+    'game_cosmic_flow': 'Cosmic Flow',
+    'game_cosmic_flow_desc':
+        'Tap energy nodes in rhythm as the cosmos slows you to sleep.',
+    'moons': 'Moons',
+    'moves': 'Moves',
+    'time': 'Time',
+    'game_won': 'You Won! 🎉',
+    'streak': 'Streak',
+    'level': 'Level',
+    'bpm': 'BPM',
+    'best': 'Best',
+    'start': 'Start',
+    'lanes': 'Lanes',
+    'game_over': 'Game Over',
+    'play_again': 'Play Again',
+    'pairs_found': 'Pairs Found',
+    'puzzle_complete': 'Puzzle Complete!',
+
+    // ── Zodiac & Astral ───────────────────────────────────────────────
+    'zodiac_hub': 'Zodiac & Astral',
+    'zodiac_hub_desc': 'Explore your zodiac sign and astral exercises.',
+    'daily_horoscope': 'Daily Horoscope',
+    'compatibility': 'Compatibility',
+    'astral_exercises': 'Astral Exercises',
+    'zodiac_detail': 'Zodiac Detail',
+    'zodiac_compatibility': 'Zodiac Compatibility',
+    'your_sign': 'Your Sign',
+    'select_sign': 'Select Sign',
+    'partner_sign': 'Partner Sign',
+    'love': 'Love',
+    'friendship': 'Friendship',
+    'sleep_harmony': 'Sleep Harmony',
+    'astral_connection': 'Astral Connection',
+    'overall': 'Overall',
+    'all_compatibilities': 'All Compatibilities',
+    'set_birthday': 'Set Birthday',
+    'element': 'Element',
+    'modality': 'Modality',
+    'sleep_profile': 'Sleep Profile',
+    'astral_advice': 'Astral Advice',
+    'sign_traits': 'Traits',
+    'exercise_steps': 'Steps',
+    'begin_exercise': 'Begin Exercise',
+    'breathe_in': 'Breathe In',
+    'breathe_out': 'Breathe Out',
+    'hold': 'Hold',
+    'step_n': 'Step @n',
+    'duration_min': '@n min',
+    'difficulty': 'Difficulty',
+    'category': 'Category',
+    'beginner': 'Beginner',
+    'intermediate': 'Intermediate',
+    'advanced': 'Advanced',
+
+    // ── Zodiac Signs ──────────────────────────────────────────────────
+    'zodiac_aries': 'Aries',
+    'zodiac_taurus': 'Taurus',
+    'zodiac_gemini': 'Gemini',
+    'zodiac_cancer': 'Cancer',
+    'zodiac_leo': 'Leo',
+    'zodiac_virgo': 'Virgo',
+    'zodiac_libra': 'Libra',
+    'zodiac_scorpio': 'Scorpio',
+    'zodiac_sagittarius': 'Sagittarius',
+    'zodiac_capricorn': 'Capricorn',
+    'zodiac_aquarius': 'Aquarius',
+    'zodiac_pisces': 'Pisces',
+
+    // ── Astral Exercise Titles ────────────────────────────────────────
+    'astral_projection': 'Astral Projection',
+    'lucid_dreaming': 'Lucid Dreaming',
+    'chakra_alignment': 'Chakra Alignment',
+    'cosmic_energy_meditation': 'Cosmic Energy Meditation',
+    'third_eye_activation': 'Third Eye Activation',
   };
 
   static const Map<String, String> _tr = {
@@ -1217,5 +1325,92 @@ class AppTranslations extends Translations {
     'errSleepHistoryLoad': 'Uyku geçmişi yüklenemedi: @e',
     'errRecordSave': 'Kayıt kaydedilemedi: @e',
     'errRecordDelete': 'Kayıt silinemedi: @e',
+
+    // ── New Games ─────────────────────────────────────────────────────
+    'game_dream_labyrinth': 'Rüya Labirenti',
+    'game_dream_labyrinth_desc':
+        'Rüya labirentinde gezin ve ay parçalarını toplayın.',
+    'game_moon_runner': 'Ay Koşucusu',
+    'game_moon_runner_desc':
+        'Ay yüzeyinde koş, kraterlerden kaç, yıldız topla.',
+    'game_nebula_match': 'Nebula Eşleştir',
+    'game_nebula_match_desc': 'Kozmik kartları çevir ve eşleşen çiftleri bul.',
+    'game_galaxy_puzzle': 'Galaksi Bulmacası',
+    'game_galaxy_puzzle_desc':
+        'Kozmik görüntüyü geri yüklemek için karoları kaydır.',
+    'game_cosmic_flow': 'Kozmik Akış',
+    'game_cosmic_flow_desc':
+        'Kozmos seni uykuya sürüklerken enerji düğümlerine doğru ritimde dokun.',
+    'moons': 'Aylar',
+    'moves': 'Hamle',
+    'time': 'Süre',
+    'game_won': 'Kazandın! 🎉',
+    'streak': 'Seri',
+    'level': 'Seviye',
+    'bpm': 'BPM',
+    'best': 'En İyi',
+    'start': 'Başla',
+    'lanes': 'Şerit',
+    'game_over': 'Oyun Bitti',
+    'play_again': 'Tekrar Oyna',
+    'pairs_found': 'Bulunan Çift',
+    'puzzle_complete': 'Bulmaca Tamamlandı!',
+
+    // ── Zodiac & Astral ───────────────────────────────────────────────
+    'zodiac_hub': 'Burçlar & Astral',
+    'zodiac_hub_desc': 'Burcunu keşfet ve astral egzersizleri dene.',
+    'daily_horoscope': 'Günlük Burç Yorumu',
+    'compatibility': 'Uyum',
+    'astral_exercises': 'Astral Egzersizler',
+    'zodiac_detail': 'Burç Detayı',
+    'zodiac_compatibility': 'Burç Uyumu',
+    'your_sign': 'Burcun',
+    'select_sign': 'Burç Seç',
+    'partner_sign': 'Partner Burcu',
+    'love': 'Aşk',
+    'friendship': 'Dostluk',
+    'sleep_harmony': 'Uyku Uyumu',
+    'astral_connection': 'Astral Bağlantı',
+    'overall': 'Genel',
+    'all_compatibilities': 'Tüm Uyumlar',
+    'set_birthday': 'Doğum Günü Belirle',
+    'element': 'Element',
+    'modality': 'Modalite',
+    'sleep_profile': 'Uyku Profili',
+    'astral_advice': 'Astral Tavsiye',
+    'sign_traits': 'Özellikler',
+    'exercise_steps': 'Adımlar',
+    'begin_exercise': 'Egzersize Başla',
+    'breathe_in': 'Nefes Al',
+    'breathe_out': 'Nefes Ver',
+    'hold': 'Tut',
+    'step_n': 'Adım @n',
+    'duration_min': '@n dk',
+    'difficulty': 'Zorluk',
+    'category': 'Kategori',
+    'beginner': 'Başlangıç',
+    'intermediate': 'Orta',
+    'advanced': 'İleri',
+
+    // ── Zodiac Signs ──────────────────────────────────────────────────
+    'zodiac_aries': 'Koç',
+    'zodiac_taurus': 'Boğa',
+    'zodiac_gemini': 'İkizler',
+    'zodiac_cancer': 'Yengeç',
+    'zodiac_leo': 'Aslan',
+    'zodiac_virgo': 'Başak',
+    'zodiac_libra': 'Terazi',
+    'zodiac_scorpio': 'Akrep',
+    'zodiac_sagittarius': 'Yay',
+    'zodiac_capricorn': 'Oğlak',
+    'zodiac_aquarius': 'Kova',
+    'zodiac_pisces': 'Balık',
+
+    // ── Astral Exercise Titles ────────────────────────────────────────
+    'astral_projection': 'Astral Projeksiyon',
+    'lucid_dreaming': 'Lusid Rüya',
+    'chakra_alignment': 'Çakra Hizalama',
+    'cosmic_energy_meditation': 'Kozmik Enerji Meditasyonu',
+    'third_eye_activation': 'Üçüncü Göz Aktivasyonu',
   };
 }

@@ -54,6 +54,18 @@ abstract final class AppStrings {
   static const String routeSheepCounter = '/games/sheep';
   static const String routeSleepHero = '/sleep-hero';
 
+  // ── New Feature Routes ───────────────────────────────────────────────
+  static const String routeZodiac = '/zodiac';
+  static const String routeZodiacDetail = '/zodiac/detail';
+  static const String routeZodiacCompatibility = '/zodiac/compatibility';
+  static const String routeAstralExercises = '/astral-exercises';
+  static const String routeAstralExerciseDetail = '/astral-exercises/detail';
+  static const String routeDreamLabyrinth = '/games/dream-labyrinth';
+  static const String routeMoonRunner = '/games/moon-runner';
+  static const String routeNebulaMatch = '/games/nebula-match';
+  static const String routeGalaxyPuzzle = '/games/galaxy-puzzle';
+  static const String routeCosmicFlow = '/games/cosmic-flow';
+
   // ── Hive Box Names ───────────────────────────────────────────────────
   static const String boxSleepLogs = 'sleep_logs';
   static const String boxSettings = 'settings';

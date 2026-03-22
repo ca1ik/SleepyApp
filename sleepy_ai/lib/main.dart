@@ -18,8 +18,11 @@ import 'package:sleepy_ai/features/settings/cubit/settings_cubit.dart';
 import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_bloc.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
+import 'package:sleepy_ai/features/zodiac/bloc/zodiac_bloc.dart';
 import 'package:sleepy_ai/core/l10n/app_translations.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_state.dart';
+import 'package:sleepy_ai/shared/services/atmospheric_music_manager.dart';
+import 'package:sleepy_ai/shared/services/atmospheric_route_observer.dart';
 
 // Uncomment after adding google-services.json:
 // import 'package:firebase_core/firebase_core.dart';
@@ -49,8 +52,36 @@ Future<void> main() async {
   runApp(const SleepyApp());
 }
 
-class SleepyApp extends StatelessWidget {
+class SleepyApp extends StatefulWidget {
   const SleepyApp({super.key});
+
+  @override
+  State<SleepyApp> createState() => _SleepyAppState();
+}
+
+class _SleepyAppState extends State<SleepyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    AtmosphericMusicManager.instance.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final mgr = AtmosphericMusicManager.instance;
+    if (state == AppLifecycleState.paused) {
+      mgr.onAppPaused();
+    } else if (state == AppLifecycleState.resumed) {
+      mgr.onAppResumed();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +120,9 @@ class SleepyApp extends StatelessWidget {
           BlocProvider<LevelCubit>(
             create: (_) => InjectionContainer.createLevelCubit()..loadHero(),
           ),
+          BlocProvider<ZodiacBloc>(
+            create: (_) => InjectionContainer.createZodiacBloc(),
+          ),
         ],
         child: Consumer<ThemeProvider>(
           builder: (_, themeProvider, __) =>
@@ -99,10 +133,25 @@ class SleepyApp extends StatelessWidget {
               theme: AppTheme.darkTheme,
               initialRoute: AppStrings.routeSplash,
               getPages: AppRouter.routes,
+              navigatorObservers: [AtmosphericRouteObserver()],
               translations: AppTranslations(),
               locale: settingsState.locale,
               fallbackLocale: const Locale('en'),
-              supportedLocales: const [Locale('en'), Locale('tr')],
+              supportedLocales: const [
+                Locale('en'),
+                Locale('tr'),
+                Locale('de'),
+                Locale('es'),
+                Locale('it'),
+                Locale('fr'),
+                Locale('zh'),
+                Locale('ja'),
+                Locale('ko'),
+                Locale('ar'),
+                Locale('ru'),
+                Locale('pt'),
+                Locale('hi'),
+              ],
               localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,

@@ -120,5 +120,66 @@ abstract final class AppColors {
   static const Color iconInactive = Color(0xFF5050A0);
   static const Color transparent = Colors.transparent;
 
+  // Galaxy Theme
+  static const Color galaxyCore = Color(0xFF4A0E8F);
+  static const Color galaxyNebula = Color(0xFF8B5CF6);
+  static const Color galaxyStardust = Color(0xFFD8B4FE);
+  static const Color galaxyDeep = Color(0xFF0F0525);
+  static const Color galaxyVoid = Color(0xFF06001A);
+  static const Color cosmicPink = Color(0xFFFF6FD8);
+  static const Color cosmicBlue = Color(0xFF3813C2);
+  static const Color cosmicTeal = Color(0xFF00C9FF);
+  static const Color astralGold = Color(0xFFFFE066);
+  static const Color astralSilver = Color(0xFFB8C6DB);
+
+  // Zodiac Sign Colors
+  static const Color zodiacAries = Color(0xFFFF4444);
+  static const Color zodiacTaurus = Color(0xFF4CAF50);
+  static const Color zodiacGemini = Color(0xFFFFEB3B);
+  static const Color zodiacCancer = Color(0xFFC0C0C0);
+  static const Color zodiacLeo = Color(0xFFFF9800);
+  static const Color zodiacVirgo = Color(0xFF8D6E63);
+  static const Color zodiacLibra = Color(0xFFE91E63);
+  static const Color zodiacScorpio = Color(0xFF9C27B0);
+  static const Color zodiacSagittarius = Color(0xFF2196F3);
+  static const Color zodiacCapricorn = Color(0xFF424242);
+  static const Color zodiacAquarius = Color(0xFF00BCD4);
+  static const Color zodiacPisces = Color(0xFF7C4DFF);
+
+  // Galaxy Gradients
+  static const LinearGradient galaxyGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFF0F0525),
+      Color(0xFF1A0845),
+      Color(0xFF4A0E8F),
+      Color(0xFF1A0845),
+      Color(0xFF0F0525),
+    ],
+    stops: [0.0, 0.25, 0.5, 0.75, 1.0],
+  );
+
+  static const LinearGradient astralGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF0A0020),
+      Color(0xFF1A0845),
+      Color(0xFF3B0764),
+      Color(0xFF7C3AED),
+    ],
+  );
+
+  static const RadialGradient nebulaGradient = RadialGradient(
+    center: Alignment.center,
+    radius: 1.2,
+    colors: [
+      Color(0x66FF6FD8),
+      Color(0x333813C2),
+      Color(0x00000000),
+    ],
+  );
+
   AppColors._();
 }

@@ -15,6 +15,7 @@ import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 import 'package:sleepy_ai/features/sounds/data/sounds_repository.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
 import 'package:sleepy_ai/features/level_system/data/level_repository.dart';
+import 'package:sleepy_ai/features/zodiac/bloc/zodiac_bloc.dart';
 
 /// Basit bağımlılık enjeksiyon konteyneri.
 /// GetIt yerine manuel singleton pattern — pakete bağımlılık yok.
@@ -70,4 +71,6 @@ class InjectionContainer {
   static SettingsCubit createSettingsCubit() => SettingsCubit(_prefs);
 
   static LevelCubit createLevelCubit() => LevelCubit(levelRepository);
+
+  static ZodiacBloc createZodiacBloc() => ZodiacBloc();
 }
