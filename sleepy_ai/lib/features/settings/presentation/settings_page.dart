@@ -38,21 +38,7 @@ class SettingsPage extends StatelessWidget {
               // Language section
               _SectionHeader(label: 'languageSection'.tr),
               _SettingsCard(
-                children: [
-                  _LanguageTile(
-                    label: 'Türkçe',
-                    flagEmoji: '🇹🇷',
-                    isSelected: state.isTurkish,
-                    onTap: () => cubit.setLocale('tr'),
-                  ),
-                  const Divider(color: AppColors.divider, height: 1),
-                  _LanguageTile(
-                    label: 'English',
-                    flagEmoji: '🇺🇸',
-                    isSelected: !state.isTurkish,
-                    onTap: () => cubit.setLocale('en'),
-                  ),
-                ],
+                children: _buildLanguageTiles(state, cubit),
               ),
               const SizedBox(height: AppSizes.md),
 
@@ -251,6 +237,39 @@ class SettingsPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  static const _languages = <({String code, String flag, String name})>[
+    (code: 'tr', flag: '🇹🇷', name: 'Türkçe'),
+    (code: 'en', flag: '🇺🇸', name: 'English'),
+    (code: 'de', flag: '🇩🇪', name: 'Deutsch'),
+    (code: 'es', flag: '🇪🇸', name: 'Español'),
+    (code: 'fr', flag: '🇫🇷', name: 'Français'),
+    (code: 'it', flag: '🇮🇹', name: 'Italiano'),
+    (code: 'pt', flag: '🇧🇷', name: 'Português'),
+    (code: 'ru', flag: '🇷🇺', name: 'Русский'),
+    (code: 'ar', flag: '🇸🇦', name: 'العربية'),
+    (code: 'hi', flag: '🇮🇳', name: 'हिन्दी'),
+    (code: 'zh', flag: '🇨🇳', name: '中文'),
+    (code: 'ja', flag: '🇯🇵', name: '日本語'),
+    (code: 'ko', flag: '🇰🇷', name: '한국어'),
+  ];
+
+  List<Widget> _buildLanguageTiles(SettingsState state, SettingsCubit cubit) {
+    final tiles = <Widget>[];
+    for (int i = 0; i < _languages.length; i++) {
+      if (i > 0) tiles.add(const Divider(color: AppColors.divider, height: 1));
+      final lang = _languages[i];
+      tiles.add(
+        _LanguageTile(
+          label: lang.name,
+          flagEmoji: lang.flag,
+          isSelected: state.locale.languageCode == lang.code,
+          onTap: () => cubit.setLocale(lang.code),
+        ),
+      );
+    }
+    return tiles;
   }
 }
 
