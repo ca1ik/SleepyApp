@@ -3,7 +3,7 @@
 Welcome to the **SleepyApp** repository! This comprehensive Flutter application is designed to help users **improve their sleep quality** through intelligent tracking, ambient sound mixing, gamification, educational content, interactive sleep stories, zodiac-powered astral exercises, and 10 relaxing mini-games. Built with **Clean Architecture**, powered by **BLoC/Cubit state management**, supporting **13 languages** and **Dark/Light theme**, and fully functional offline.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ebe309e3-cd63-4437-b685-d955c7c3a42e" width="280">
+  <img src="https://github.com/user-attachments/assets/401471c7-e42b-4bc2-bffc-43caf74b1f06" width="280">
 </p>
 
 ---
@@ -342,14 +342,20 @@ This project is developed for private use.
 
 
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/ebe309e3-cd63-4437-b685-d955c7c3a42e" width="280">
+    <img src="https://github.com/user-attachments/assets/401471c7-e42b-4bc2-bffc-43caf74b1f06" width="280">
     <img src="https://github.com/user-attachments/assets/6ed4b275-c260-46be-948c-78bb5eb7aefd" width="280" alt="screenshot2">
     <img src="https://github.com/user-attachments/assets/411c3c6c-cfb1-4499-858c-e55adad3ddfb" width="280" alt="screenshot3">
   <img src="https://github.com/user-attachments/assets/bae68ebd-d64e-4e1e-8d2a-56994afa8e16" width="280" alt="screenshot4">
   <img src="https://github.com/user-attachments/assets/bbd517e9-a87e-4091-868f-0ef68f4c4dbd" width="280" alt="screenshot5">
   <img src="https://github.com/user-attachments/assets/386e60f4-bfe5-4478-8b58-a00a6a75bbcc" width="280" alt="screenshot6">
   <img src="https://github.com/user-attachments/assets/f51377c2-42b0-452e-a9ee-4c52e5d987f6" width="280" alt="screenshot7">
+  <img src="https://github.com/user-attachments/assets/f508e7df-111a-425f-baf9-75405670fa6c" width="280" alt="screenshot8">
+  <img src="https://github.com/user-attachments/assets/929e1791-0148-4a61-a0dc-a463dba36b14" width="280" alt="screenshot9">
+  <img src="https://github.com/user-attachments/assets/cab3b1c9-cda9-4b10-8491-35e59799ac16" width="280" alt="screenshot10">
+  <img src="https://github.com/user-attachments/assets/2c41b069-64cd-4679-a4f3-cb84c4606a79" width="280" alt="screenshot11">
+  <img src="https://github.com/user-attachments/assets/605a88ac-669d-4c62-912d-073219da0679" width="280" alt="screenshot11">
   
+
   
 </p>
 
