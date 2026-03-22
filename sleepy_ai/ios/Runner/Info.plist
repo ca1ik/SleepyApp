@@ -45,5 +45,18 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>fetch</string>
+	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>SleepyApp uses the microphone for voice-based sleep features.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>SleepyApp uses speech recognition for voice commands.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver personalized sleep recommendations.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

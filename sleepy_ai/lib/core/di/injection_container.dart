@@ -16,6 +16,13 @@ import 'package:sleepy_ai/features/sounds/data/sounds_repository.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
 import 'package:sleepy_ai/features/level_system/data/level_repository.dart';
 import 'package:sleepy_ai/features/zodiac/bloc/zodiac_bloc.dart';
+import 'package:sleepy_ai/features/dream_journal/cubit/dream_journal_cubit.dart';
+import 'package:sleepy_ai/features/dream_journal/data/dream_repository.dart';
+import 'package:sleepy_ai/features/mood_tracker/cubit/mood_tracker_cubit.dart';
+import 'package:sleepy_ai/features/mood_tracker/data/mood_repository.dart';
+import 'package:sleepy_ai/features/challenges/cubit/challenge_cubit.dart';
+import 'package:sleepy_ai/features/challenges/data/challenge_repository.dart';
+import 'package:sleepy_ai/features/sleep_timer/cubit/sleep_timer_cubit.dart';
 
 /// Basit bağımlılık enjeksiyon konteyneri.
 /// GetIt yerine manuel singleton pattern — pakete bağımlılık yok.
@@ -50,6 +57,13 @@ class InjectionContainer {
 
   static LevelRepository get levelRepository => LocalLevelRepository(_prefs);
 
+  static DreamRepository get dreamRepository => DreamRepository(_prefs);
+
+  static MoodRepository get moodRepository => MoodRepository(_prefs);
+
+  static ChallengeRepository get challengeRepository =>
+      ChallengeRepository(_prefs);
+
   // ── BLoCs / Cubits ────────────────────────────────────────────────────
 
   static AuthBloc createAuthBloc() => AuthBloc(authRepository: authRepository);
@@ -73,4 +87,15 @@ class InjectionContainer {
   static LevelCubit createLevelCubit() => LevelCubit(levelRepository);
 
   static ZodiacBloc createZodiacBloc() => ZodiacBloc();
+
+  static DreamJournalCubit createDreamJournalCubit() =>
+      DreamJournalCubit(dreamRepository);
+
+  static MoodTrackerCubit createMoodTrackerCubit() =>
+      MoodTrackerCubit(moodRepository);
+
+  static ChallengeCubit createChallengeCubit() =>
+      ChallengeCubit(challengeRepository);
+
+  static SleepTimerCubit createSleepTimerCubit() => SleepTimerCubit();
 }

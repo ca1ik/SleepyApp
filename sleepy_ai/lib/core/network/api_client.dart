@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:dio/dio.dart';
 import 'package:sleepy_ai/core/network/api_constants.dart';
 import 'package:sleepy_ai/core/network/interceptors/auth_interceptor.dart';
@@ -26,7 +28,7 @@ class ApiClient {
         headers: {
           ApiConstants.headerContentType: 'application/json',
           ApiConstants.headerAccept: 'application/json',
-          ApiConstants.headerPlatform: 'android',
+          ApiConstants.headerPlatform: Platform.isIOS ? 'ios' : 'android',
           ApiConstants.headerAppVersion: '1.0.0',
         },
         responseType: ResponseType.json,

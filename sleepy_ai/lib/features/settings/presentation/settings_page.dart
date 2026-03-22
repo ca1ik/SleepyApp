@@ -9,6 +9,8 @@ import 'package:sleepy_ai/features/auth/bloc/auth_bloc.dart';
 import 'package:sleepy_ai/features/auth/bloc/auth_event.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_cubit.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_state.dart';
+import 'package:sleepy_ai/features/pro/cubit/pro_cubit.dart';
+import 'package:sleepy_ai/features/pro/cubit/pro_state.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -336,9 +338,24 @@ class _SettingsPageState extends State<SettingsPage>
                     ),
                     const SizedBox(height: AppSizes.lg),
 
-                    // ═══ ACCOUNT ═══
+                    // ═══ SUBSCRIPTION ═══
                     _buildStaggeredItem(
                       index: 7,
+                      child: _AnimatedSectionHeader(
+                        label: 'subscriptionSection'.tr,
+                        icon: Icons.workspace_premium_rounded,
+                      ),
+                    ),
+                    const SizedBox(height: AppSizes.sm),
+                    _buildStaggeredItem(
+                      index: 8,
+                      child: _SubscriptionCard(isDarkMode: isDark),
+                    ),
+                    const SizedBox(height: AppSizes.lg),
+
+                    // ═══ ACCOUNT ═══
+                    _buildStaggeredItem(
+                      index: 9,
                       child: _AnimatedSectionHeader(
                         label: 'account'.tr,
                         icon: Icons.person_rounded,
@@ -346,7 +363,7 @@ class _SettingsPageState extends State<SettingsPage>
                     ),
                     const SizedBox(height: AppSizes.sm),
                     _buildStaggeredItem(
-                      index: 8,
+                      index: 10,
                       child: _GlassSettingsCard(
                         isDarkMode: isDark,
                         child: Column(
@@ -907,6 +924,150 @@ class _ActionTile extends StatelessWidget {
         color: isDarkMode ? AppColors.textMuted : const Color(0xFF9E8EC0),
       ),
       onTap: onTap,
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SUBSCRIPTION CARD — PRO + No Ads durumu
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class _SubscriptionCard extends StatelessWidget {
+  const _SubscriptionCard({required this.isDarkMode});
+  final bool isDarkMode;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProCubit, ProState>(
+      builder: (context, proState) {
+        return _GlassSettingsCard(
+          isDarkMode: isDarkMode,
+          child: Column(
+            children: [
+              // PRO Durumu
+              ListTile(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: AppSizes.md),
+                leading: Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    gradient: proState.isPro ? AppColors.goldGradient : null,
+                    color:
+                        proState.isPro ? null : AppColors.primary.withAlpha(30),
+                    borderRadius: BorderRadius.circular(AppSizes.radiusSm),
+                  ),
+                  child: Icon(
+                    proState.isPro
+                        ? Icons.workspace_premium_rounded
+                        : Icons.star_outline_rounded,
+                    color: proState.isPro ? Colors.white : AppColors.primary,
+                    size: 20,
+                  ),
+                ),
+                title: Text(
+                  proState.isPro ? 'proActive'.tr : 'goPro'.tr,
+                  style: TextStyle(
+                    color: isDarkMode
+                        ? AppColors.textPrimary
+                        : const Color(0xFF1A1A2E),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  proState.isPro ? 'proActiveDesc'.tr : 'proInactiveDesc'.tr,
+                  style: TextStyle(
+                    color: isDarkMode
+                        ? AppColors.textMuted
+                        : const Color(0xFF6B5B93),
+                    fontSize: AppSizes.fontSm,
+                  ),
+                ),
+                trailing: proState.isPro
+                    ? const Icon(
+                        Icons.verified_rounded,
+                        color: AppColors.success,
+                        size: 22,
+                      )
+                    : Icon(
+                        Icons.chevron_right_rounded,
+                        color: isDarkMode
+                            ? AppColors.textMuted
+                            : const Color(0xFF9E8EC0),
+                      ),
+                onTap: proState.isPro
+                    ? null
+                    : () => Get.toNamed(AppStrings.routePro),
+              ),
+              Divider(
+                color: isDarkMode
+                    ? AppColors.divider
+                    : AppColors.primary.withAlpha(20),
+                height: 1,
+              ),
+              // No Ads Durumu
+              ListTile(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: AppSizes.md),
+                leading: Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: !proState.shouldShowAds
+                        ? AppColors.success.withAlpha(30)
+                        : AppColors.primary.withAlpha(30),
+                    borderRadius: BorderRadius.circular(AppSizes.radiusSm),
+                  ),
+                  child: Icon(
+                    !proState.shouldShowAds
+                        ? Icons.block_rounded
+                        : Icons.campaign_outlined,
+                    color: !proState.shouldShowAds
+                        ? AppColors.success
+                        : AppColors.primary,
+                    size: 20,
+                  ),
+                ),
+                title: Text(
+                  'noAdsTitle'.tr,
+                  style: TextStyle(
+                    color: isDarkMode
+                        ? AppColors.textPrimary
+                        : const Color(0xFF1A1A2E),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  !proState.shouldShowAds
+                      ? 'noAdsActiveDesc'.tr
+                      : 'noAdsInactiveDesc'.tr,
+                  style: TextStyle(
+                    color: isDarkMode
+                        ? AppColors.textMuted
+                        : const Color(0xFF6B5B93),
+                    fontSize: AppSizes.fontSm,
+                  ),
+                ),
+                trailing: !proState.shouldShowAds
+                    ? const Icon(
+                        Icons.check_circle_rounded,
+                        color: AppColors.success,
+                        size: 22,
+                      )
+                    : Icon(
+                        Icons.chevron_right_rounded,
+                        color: isDarkMode
+                            ? AppColors.textMuted
+                            : const Color(0xFF9E8EC0),
+                      ),
+                onTap: proState.shouldShowAds
+                    ? () => Get.toNamed(AppStrings.routeNoAds)
+                    : null,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

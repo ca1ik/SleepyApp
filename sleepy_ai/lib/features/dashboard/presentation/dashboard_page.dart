@@ -15,6 +15,7 @@ import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_state.dart';
 import 'package:sleepy_ai/features/level_system/domain/level_models.dart';
 import 'package:sleepy_ai/features/level_system/presentation/sleep_hero_page.dart';
+import 'package:sleepy_ai/shared/widgets/ad_banner_widget.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -186,6 +187,9 @@ class _HomeTab extends StatelessWidget {
                   ],
                   // Hızlı butonlar
                   _QuickActionsRow(),
+                  const SizedBox(height: AppSizes.sm),
+                  // Reklam alanı (PRO/NoAds kullanıcılarına gizlenir)
+                  const AdBannerWidget(),
                   const SizedBox(height: AppSizes.lg),
                   // Son kazanılan rozetler
                   _BadgesSection(),
@@ -411,6 +415,36 @@ class _QuickActionsRow extends StatelessWidget {
               label: 'sleepStories'.tr,
               color: AppColors.accentTeal,
               route: AppStrings.routeStories,
+            ),
+            _QuickActionItem(
+              icon: Icons.book_rounded,
+              label: 'dreamJournal'.tr,
+              color: AppColors.primaryLight,
+              route: AppStrings.routeDreamJournal,
+            ),
+            _QuickActionItem(
+              icon: Icons.mood_rounded,
+              label: 'moodTracker'.tr,
+              color: AppColors.accent,
+              route: AppStrings.routeMoodTracker,
+            ),
+            _QuickActionItem(
+              icon: Icons.flag_rounded,
+              label: 'challenges'.tr,
+              color: AppColors.accentGold,
+              route: AppStrings.routeChallenges,
+            ),
+            _QuickActionItem(
+              icon: Icons.timer_rounded,
+              label: 'sleepTimer'.tr,
+              color: AppColors.accentBlue,
+              route: AppStrings.routeSleepTimer,
+            ),
+            _QuickActionItem(
+              icon: Icons.lightbulb_rounded,
+              label: 'dailyTips'.tr,
+              color: AppColors.success,
+              route: AppStrings.routeDailyTips,
             ),
           ],
         ),

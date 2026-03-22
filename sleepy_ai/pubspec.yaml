@@ -1,5 +1,5 @@
 name: sleepy_ai
-description: "SleepyApp - Sleep Optimization & Tracking for Android"
+description: "SleepyApp - Sleep Optimization & Tracking"
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -38,6 +38,7 @@ dependencies:
   # ── In-App Purchase (PRO üyelik) ──────────────────────────────────────────
   in_app_purchase: ^3.2.0
   in_app_purchase_android: ^0.3.6
+  in_app_purchase_storekit: ^0.3.17
 
   # ── Charts & Visualization ────────────────────────────────────────────────
   fl_chart: ^0.69.0

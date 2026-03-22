@@ -32,6 +32,12 @@ import 'package:sleepy_ai/features/games/presentation/galaxy_puzzle_page.dart';
 import 'package:sleepy_ai/features/games/presentation/cosmic_flow_page.dart';
 import 'package:sleepy_ai/features/stories/presentation/stories_hub_page.dart';
 import 'package:sleepy_ai/features/stories/presentation/story_player_page.dart';
+import 'package:sleepy_ai/features/pro/presentation/no_ads_page.dart';
+import 'package:sleepy_ai/features/dream_journal/presentation/dream_journal_page.dart';
+import 'package:sleepy_ai/features/mood_tracker/presentation/mood_tracker_page.dart';
+import 'package:sleepy_ai/features/challenges/presentation/challenges_page.dart';
+import 'package:sleepy_ai/features/sleep_timer/presentation/sleep_timer_page.dart';
+import 'package:sleepy_ai/features/daily_tips/presentation/daily_tips_page.dart';
 
 /// GetX yönlendirme tablosu.
 /// Tüm sayfalar buraya kayıtlıdır ve [AppStrings] rotaları kullanılır.
@@ -204,6 +210,48 @@ abstract final class AppRouter {
       name: AppStrings.routeStoryPlayer,
       page: () => const StoryPlayerPage(),
       transition: Transition.downToUp,
+    ),
+
+    // ── No Ads ─────────────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeNoAds,
+      page: () => const NoAdsPage(),
+      transition: Transition.downToUp,
+    ),
+
+    // ── Dream Journal ──────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeDreamJournal,
+      page: () => const DreamJournalPage(),
+      transition: Transition.rightToLeft,
+    ),
+
+    // ── Mood Tracker ───────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeMoodTracker,
+      page: () => const MoodTrackerPage(),
+      transition: Transition.rightToLeft,
+    ),
+
+    // ── Challenges ─────────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeChallenges,
+      page: () => const ChallengesPage(),
+      transition: Transition.rightToLeft,
+    ),
+
+    // ── Sleep Timer ────────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeSleepTimer,
+      page: () => const SleepTimerPage(),
+      transition: Transition.downToUp,
+    ),
+
+    // ── Daily Tips ─────────────────────────────────────────────────────
+    GetPage(
+      name: AppStrings.routeDailyTips,
+      page: () => const DailyTipsPage(),
+      transition: Transition.rightToLeft,
     ),
   ];
 }

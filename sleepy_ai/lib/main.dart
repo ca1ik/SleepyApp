@@ -19,6 +19,10 @@ import 'package:sleepy_ai/features/sleep_tracking/bloc/sleep_cycle_bloc.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 import 'package:sleepy_ai/features/level_system/cubit/level_cubit.dart';
 import 'package:sleepy_ai/features/zodiac/bloc/zodiac_bloc.dart';
+import 'package:sleepy_ai/features/dream_journal/cubit/dream_journal_cubit.dart';
+import 'package:sleepy_ai/features/mood_tracker/cubit/mood_tracker_cubit.dart';
+import 'package:sleepy_ai/features/challenges/cubit/challenge_cubit.dart';
+import 'package:sleepy_ai/features/sleep_timer/cubit/sleep_timer_cubit.dart';
 import 'package:sleepy_ai/core/l10n/app_translations.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_state.dart';
 import 'package:sleepy_ai/shared/services/atmospheric_music_manager.dart';
@@ -122,6 +126,21 @@ class _SleepyAppState extends State<SleepyApp> with WidgetsBindingObserver {
           ),
           BlocProvider<ZodiacBloc>(
             create: (_) => InjectionContainer.createZodiacBloc(),
+          ),
+          BlocProvider<DreamJournalCubit>(
+            create: (_) =>
+                InjectionContainer.createDreamJournalCubit()..loadDreams(),
+          ),
+          BlocProvider<MoodTrackerCubit>(
+            create: (_) =>
+                InjectionContainer.createMoodTrackerCubit()..loadMoods(),
+          ),
+          BlocProvider<ChallengeCubit>(
+            create: (_) =>
+                InjectionContainer.createChallengeCubit()..loadChallenges(),
+          ),
+          BlocProvider<SleepTimerCubit>(
+            create: (_) => InjectionContainer.createSleepTimerCubit(),
           ),
         ],
         child: Consumer<ThemeProvider>(

@@ -230,6 +230,11 @@ final _kFeatures = [
     'proCloudSync'.tr,
     'proCloudSyncDesc'.tr,
   ),
+  _ProFeature(
+    '🚫',
+    'noAdsTitle'.tr,
+    'noAdsProActiveDesc'.tr,
+  ),
 ];
 
 class _ProFeature {

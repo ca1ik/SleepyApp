@@ -67,6 +67,12 @@ abstract final class AppStrings {
   static const String routeCosmicFlow = '/games/cosmic-flow';
   static const String routeStories = '/stories';
   static const String routeStoryPlayer = '/story-player';
+  static const String routeNoAds = '/no-ads';
+  static const String routeDreamJournal = '/dream-journal';
+  static const String routeMoodTracker = '/mood-tracker';
+  static const String routeChallenges = '/challenges';
+  static const String routeSleepTimer = '/sleep-timer';
+  static const String routeDailyTips = '/daily-tips';
 
   // ── Hive Box Names ───────────────────────────────────────────────────
   static const String boxSleepLogs = 'sleep_logs';
@@ -88,6 +94,7 @@ abstract final class AppStrings {
   static const String prefNotificationsEnabled = 'notifications_enabled';
   static const String prefBedtimeHour = 'bedtime_hour';
   static const String prefBedtimeMinute = 'bedtime_minute';
+  static const String prefIsNoAds = 'is_no_ads';
 
   // ── MethodChannel ────────────────────────────────────────────────────
   static const String alarmChannel = 'com.sleepyapp.sleepy_ai/alarm';
@@ -98,6 +105,7 @@ abstract final class AppStrings {
   // ── IAP Product IDs ──────────────────────────────────────────────────
   static const String iapProMonthly = 'sleepyapp_pro_monthly';
   static const String iapProYearly = 'sleepyapp_pro_yearly';
+  static const String iapNoAdsMonthly = 'sleepyapp_no_ads_monthly';
 
   // ── API ──────────────────────────────────────────────────────────────
   static const String apiBaseUrl = 'https://api.sleepyapp.example.com/v1';
