@@ -220,6 +220,70 @@ Color _soundCategoryColor(SoundCategory category) {
   }
 }
 
+void _showProSoundDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      backgroundColor: AppColors.backgroundCard,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusLg),
+      ),
+      title: Row(
+        children: [
+          const Text('🔒', style: TextStyle(fontSize: 24)),
+          const SizedBox(width: AppSizes.sm),
+          Expanded(
+            child: Text(
+              'proSoundTitle'.tr,
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: AppSizes.fontLg,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+      content: Text(
+        'proSoundDesc'.tr,
+        style: const TextStyle(
+          color: AppColors.textSecondary,
+          fontSize: AppSizes.fontSm,
+          height: 1.5,
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(ctx).pop(),
+          child: Text(
+            'ok'.tr,
+            style: const TextStyle(color: AppColors.textMuted),
+          ),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSizes.radiusSm),
+            ),
+          ),
+          onPressed: () {
+            Navigator.of(ctx).pop();
+            Get.toNamed(AppStrings.routePro);
+          },
+          child: Text(
+            'goPro'.tr,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 // ─── Ses Kütüphanesi Tab ──────────────────────────────────────────────────────
 
 class _SoundsLibraryTab extends StatelessWidget {
