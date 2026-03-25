@@ -95,6 +95,8 @@ abstract final class AppStrings {
   static const String prefBedtimeHour = 'bedtime_hour';
   static const String prefBedtimeMinute = 'bedtime_minute';
   static const String prefIsNoAds = 'is_no_ads';
+  static const String prefAiDailyUsageDate = 'ai_daily_usage_date';
+  static const String prefAiDailyUsageCount = 'ai_daily_usage_count';
 
   // ── MethodChannel ────────────────────────────────────────────────────
   static const String alarmChannel = 'com.sleepyapp.sleepy_ai/alarm';
