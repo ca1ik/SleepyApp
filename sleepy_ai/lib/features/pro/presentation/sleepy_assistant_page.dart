@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
@@ -44,6 +45,10 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
   final _scrollController = ScrollController();
   final _focusNode = FocusNode();
   bool _isTyping = false;
+  bool _dailyLimitReached = false;
+
+  /// Free kullanıcılar günde 1 mesaj gönderebilir.
+  static const int _freeDailyLimit = 1;
 
   late final List<_ChatMessage> _messages = [
     _ChatMessage(
@@ -53,6 +58,12 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _checkDailyLimit();
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     _scrollController.dispose();
@@ -60,9 +71,49 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
     super.dispose();
   }
 
+  Future<void> _checkDailyLimit() async {
+    final prefs = await SharedPreferences.getInstance();
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    final savedDate = prefs.getString(AppStrings.prefAiDailyUsageDate) ?? '';
+    final count = prefs.getInt(AppStrings.prefAiDailyUsageCount) ?? 0;
+
+    if (savedDate == today && count >= _freeDailyLimit) {
+      setState(() => _dailyLimitReached = true);
+    }
+  }
+
+  Future<bool> _incrementDailyUsage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    final savedDate = prefs.getString(AppStrings.prefAiDailyUsageDate) ?? '';
+    int count = prefs.getInt(AppStrings.prefAiDailyUsageCount) ?? 0;
+
+    if (savedDate != today) {
+      count = 0;
+      await prefs.setString(AppStrings.prefAiDailyUsageDate, today);
+    }
+
+    if (count >= _freeDailyLimit) return false;
+
+    count++;
+    await prefs.setInt(AppStrings.prefAiDailyUsageCount, count);
+
+    if (count >= _freeDailyLimit) {
+      setState(() => _dailyLimitReached = true);
+    }
+    return true;
+  }
+
   void _sendMessage() {
     final text = _controller.text.trim();
     if (text.isEmpty || _isTyping) return;
+
+    final isPro = context.read<ProCubit>().state.isPro;
+
+    if (!isPro && _dailyLimitReached) {
+      _showDailyLimitDialog();
+      return;
+    }
 
     setState(() {
       _messages.add(_ChatMessage(text: text, sender: _Sender.user));
@@ -70,6 +121,11 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
     });
     _controller.clear();
     _scrollToBottom();
+
+    // Free kullanıcı için günlük kullanımı artır
+    if (!isPro) {
+      _incrementDailyUsage();
+    }
 
     // Simulate AI thinking delay
     Future.delayed(const Duration(milliseconds: 900), () {
@@ -212,6 +268,68 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
     return keywords.any((k) => text.contains(k));
   }
 
+  void _showDailyLimitDialog() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppColors.backgroundCard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.radiusLg),
+        ),
+        title: Row(
+          children: [
+            const Text('🌙', style: TextStyle(fontSize: 24)),
+            const SizedBox(width: AppSizes.sm),
+            Expanded(
+              child: Text(
+                'dailyLimitTitle'.tr,
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: AppSizes.fontLg,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          'dailyLimitDesc'.tr,
+          style: const TextStyle(
+            color: AppColors.textSecondary,
+            fontSize: AppSizes.fontSm,
+            height: 1.5,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(
+              'ok'.tr,
+              style: const TextStyle(color: AppColors.textMuted),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppSizes.radiusSm),
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              Get.toNamed(AppStrings.routePro);
+            },
+            child: Text(
+              'goPro'.tr,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProCubit, ProState>(
@@ -294,16 +412,15 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
                   ),
               ],
             ),
-            body: proState.isPro
-                ? _ChatBody(
-                    messages: _messages,
-                    isTyping: _isTyping,
-                    controller: _controller,
-                    scrollController: _scrollController,
-                    focusNode: _focusNode,
-                    onSend: _sendMessage,
-                  )
-                : _ProGateBody(),
+            body: _ChatBody(
+              messages: _messages,
+              isTyping: _isTyping,
+              controller: _controller,
+              scrollController: _scrollController,
+              focusNode: _focusNode,
+              onSend: _sendMessage,
+              showDailyLimitBanner: !proState.isPro && _dailyLimitReached,
+            ),
           ),
         );
       },
@@ -437,6 +554,7 @@ class _ChatBody extends StatelessWidget {
     required this.scrollController,
     required this.focusNode,
     required this.onSend,
+    this.showDailyLimitBanner = false,
   });
 
   final List<_ChatMessage> messages;
@@ -445,11 +563,70 @@ class _ChatBody extends StatelessWidget {
   final ScrollController scrollController;
   final FocusNode focusNode;
   final VoidCallback onSend;
+  final bool showDailyLimitBanner;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        if (showDailyLimitBanner)
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.symmetric(
+              horizontal: AppSizes.md,
+              vertical: AppSizes.xs,
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.md,
+              vertical: AppSizes.sm,
+            ),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.warning.withAlpha(30),
+                  AppColors.warning.withAlpha(15),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(AppSizes.radiusMd),
+              border: Border.all(color: AppColors.warning.withAlpha(60)),
+            ),
+            child: Row(
+              children: [
+                const Text('⚡', style: TextStyle(fontSize: 16)),
+                const SizedBox(width: AppSizes.sm),
+                Expanded(
+                  child: Text(
+                    'dailyLimitBanner'.tr,
+                    style: const TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppStrings.routePro),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSizes.sm,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: AppColors.goldGradient,
+                      borderRadius: BorderRadius.circular(AppSizes.radiusSm),
+                    ),
+                    child: const Text(
+                      'PRO',
+                      style: TextStyle(
+                        color: AppColors.backgroundDark,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         Expanded(
           child: ListView.builder(
             controller: scrollController,
