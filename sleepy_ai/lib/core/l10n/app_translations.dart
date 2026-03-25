@@ -401,6 +401,16 @@ class AppTranslations extends Translations {
         'Would you like me to help with something more specific? '
         'For example: you can ask about *sleep duration*, *meditation techniques*, *sleep routine*, or *sleep environment*.',
 
+    // ── Daily Limit & Pro Sound Dialogs ───────────────────────────────
+    'dailyLimitTitle': 'Daily Limit Reached',
+    'dailyLimitDesc':
+        'Free users can use the AI assistant once per day. Upgrade to PRO for unlimited access! 🌙',
+    'dailyLimitBanner':
+        'You\'ve used your free daily message. Upgrade for unlimited access.',
+    'proSoundTitle': 'PRO Sound',
+    'proSoundDesc':
+        'This sound is available for PRO members. Upgrade to unlock all premium sounds! 🎵',
+
     // ── Level System ──────────────────────────────────────────────────
     'levelTitle1': 'Sleeping Seed',
     'levelTitle2': 'Dream Bud',

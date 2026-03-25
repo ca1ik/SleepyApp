@@ -500,7 +500,13 @@ class _AiMoodTab extends StatelessWidget {
                   name: sound.localeName,
                   isPlaying: state.isTrackActive(sound.id),
                   color: _soundCategoryColor(sound.category),
-                  onTap: () => context.read<SoundsCubit>().toggleSound(sound),
+                  onTap: () {
+                    if (sound.isPro && !context.read<ProCubit>().state.isPro) {
+                      _showProSoundDialog(ctx);
+                      return;
+                    }
+                    context.read<SoundsCubit>().toggleSound(sound);
+                  },
                   isFavorite: state.favorites.contains(sound.id),
                   isPro: sound.isPro,
                 );
