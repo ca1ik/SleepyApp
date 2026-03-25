@@ -1,0 +1,238 @@
+workflows:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # iOS Release Build
+  # ═══════════════════════════════════════════════════════════════════════════
+  ios-release:
+    name: iOS Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      groups:
+        - app_store_credentials  # Codemagic > Teams > App Store Connect API key
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.sleepyapp.sleepy_ai
+      vars:
+        BUNDLE_ID: "com.sleepyapp.sleepy_ai"
+        APP_STORE_APPLE_ID: "YOUR_APPLE_ID"  # App Store Connect'ten alınacak
+
+    triggering:
+      events:
+        - push
+        - tag
+      branch_patterns:
+        - pattern: "main"
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: "v*"
+          include: true
+
+    scripts:
+      - name: iOS platform'u etkinleştir
+        script: |
+          flutter config --enable-ios
+
+      - name: Bağımlılıkları yükle
+        script: |
+          flutter pub get
+
+      - name: CocoaPods bağımlılıkları kur
+        script: |
+          cd ios
+          pod install --repo-update
+          cd ..
+
+      - name: Flutter Analyze
+        script: |
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Unit testleri çalıştır
+        script: |
+          flutter test --no-pub
+
+      - name: iOS code signing ayarla
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
+          keychain add-certificates
+          xcode-project use-profiles
+
+      - name: Flutter iOS build (Release)
+        script: |
+          flutter build ipa \
+            --release \
+            --build-name=1.0.0 \
+            --build-number=$PROJECT_BUILD_NUMBER \
+            --export-options-plist=/Users/builder/export_options.plist
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com  # E-posta adresinizi yazın
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        expire_build_submitted_for_review: true
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # iOS Ad Hoc (TestFlight'sız direkt cihaza yükleme)
+  # ═══════════════════════════════════════════════════════════════════════════
+  ios-adhoc:
+    name: iOS Ad Hoc (Direct Install)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      groups:
+        - app_store_credentials
+      ios_signing:
+        distribution_type: ad_hoc
+        bundle_identifier: com.sleepyapp.sleepy_ai
+      vars:
+        BUNDLE_ID: "com.sleepyapp.sleepy_ai"
+
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "develop"
+          include: true
+          source: true
+
+    scripts:
+      - name: iOS platform'u etkinleştir
+        script: |
+          flutter config --enable-ios
+
+      - name: Bağımlılıkları yükle
+        script: |
+          flutter pub get
+
+      - name: CocoaPods bağımlılıkları kur
+        script: |
+          cd ios
+          pod install --repo-update
+          cd ..
+
+      - name: iOS code signing ayarla (Ad Hoc)
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_ADHOC \
+            --create
+          keychain add-certificates
+          xcode-project use-profiles
+
+      - name: Flutter iOS build (Ad Hoc)
+        script: |
+          flutter build ipa \
+            --release \
+            --build-name=1.0.0 \
+            --build-number=$PROJECT_BUILD_NUMBER \
+            --export-options-plist=/Users/builder/export_options.plist
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # Android Release Build
+  # ═══════════════════════════════════════════════════════════════════════════
+  android-release:
+    name: Android Release
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+
+    environment:
+      flutter: stable
+      java: 17
+      groups:
+        - google_play_credentials  # Codemagic > Teams > Google Play API key
+        - keystore_credentials     # CM_KEYSTORE, CM_KEY_PASSWORD, CM_KEY_ALIAS, CM_KEYSTORE_PASSWORD
+      vars:
+        PACKAGE_NAME: "com.sleepyapp.sleepy_ai"
+
+    triggering:
+      events:
+        - push
+        - tag
+      branch_patterns:
+        - pattern: "main"
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: "v*"
+          include: true
+
+    scripts:
+      - name: Bağımlılıkları yükle
+        script: |
+          flutter pub get
+
+      - name: Flutter Analyze
+        script: |
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Unit testleri çalıştır
+        script: |
+          flutter test --no-pub
+
+      - name: Android keystore ayarla
+        script: |
+          echo $CM_KEYSTORE | base64 --decode > $CM_BUILD_DIR/keystore.jks
+          cat > "$CM_BUILD_DIR/android/key.properties" << EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=$CM_BUILD_DIR/keystore.jks
+          EOF
+
+      - name: Flutter Android build (App Bundle)
+        script: |
+          flutter build appbundle \
+            --release \
+            --build-name=1.0.0 \
+            --build-number=$PROJECT_BUILD_NUMBER
+
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: true
