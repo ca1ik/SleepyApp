@@ -246,6 +246,7 @@ class LocalSoundsRepository implements SoundsRepository {
       streamUrl: 'https://cdn.freesound.org/previews/790/790545_6885640-lq.mp3',
       category: SoundCategory.instruments,
       iconEmoji: '🔔',
+      isPro: true,
     ),
     const SoundModel(
       id: 'flute_peaceful',
@@ -255,6 +256,7 @@ class LocalSoundsRepository implements SoundsRepository {
       streamUrl: 'https://cdn.freesound.org/previews/157/157881_177850-lq.mp3',
       category: SoundCategory.instruments,
       iconEmoji: '🪈',
+      isPro: true,
     ),
     // ── Meditasyon ───────────────────────────────────────────────────────────
     const SoundModel(
@@ -265,6 +267,7 @@ class LocalSoundsRepository implements SoundsRepository {
       streamUrl: 'https://cdn.freesound.org/previews/157/157880_177850-lq.mp3',
       category: SoundCategory.meditation,
       iconEmoji: '🧘',
+      isPro: true,
     ),
     const SoundModel(
       id: 'binaural_delta',
@@ -313,6 +316,7 @@ class LocalSoundsRepository implements SoundsRepository {
       streamUrl: 'https://cdn.freesound.org/previews/614/614066_3594951-lq.mp3',
       category: SoundCategory.happy,
       iconEmoji: '🐱',
+      isPro: true,
     ),
     // ── Dua ─────────────────────────────────────────────────────────────────
     const SoundModel(
@@ -324,6 +328,7 @@ class LocalSoundsRepository implements SoundsRepository {
           'https://cdn.freesound.org/previews/813/813328_11606594-lq.mp3',
       category: SoundCategory.prayer,
       iconEmoji: '🤲',
+      isPro: true,
     ),
   ];
 
