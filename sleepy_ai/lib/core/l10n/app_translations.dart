@@ -1346,6 +1346,16 @@ class AppTranslations extends Translations {
     'proGateFeature3': 'Uyku rutini oluşturma desteği',
     'askAboutSleep': 'Uyku hakkında bir şey sorun…',
 
+    // ── Daily Limit & Pro Sound Dialogs ───────────────────────────────
+    'dailyLimitTitle': 'Günlük Limit Doldu',
+    'dailyLimitDesc':
+        'Ücretsiz kullanıcılar günde 1 kez YZ asistanı kullanabilir. Sınırsız erişim için PRO\'ya geçin! 🌙',
+    'dailyLimitBanner':
+        'Günlük ücretsiz mesaj hakkınız doldu. Sınırsız erişim için yükseltin.',
+    'proSoundTitle': 'PRO Ses',
+    'proSoundDesc':
+        'Bu ses PRO üyelere özeldir. Tüm premium seslerin kilidini açmak için yükseltin! 🎵',
+
     // ── Level System ──────────────────────────────────────────────────
     'levelTitle1': 'Uyuyan Tohum',
     'levelTitle2': 'Rüya Tomurcuğu',
