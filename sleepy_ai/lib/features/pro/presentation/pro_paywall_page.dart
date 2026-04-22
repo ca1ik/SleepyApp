@@ -128,8 +128,9 @@ class ProPaywallPage extends StatelessWidget {
                         price: state.monthlyPrice,
                         subtitle: 'monthlyLabel'.tr,
                         badge: null,
-                        onTap:
-                            state.isPurchasing ? null : cubit.purchaseMonthly,
+                        onTap: state.isPurchasing || !state.isStoreAvailable
+                            ? null
+                            : cubit.purchaseMonthly,
                         isLoading: state.isPurchasing,
                       ),
                       const SizedBox(height: AppSizes.sm),
@@ -138,7 +139,9 @@ class ProPaywallPage extends StatelessWidget {
                         price: state.yearlyPrice,
                         subtitle: 'yearlyLabel'.tr,
                         badge: 'bestValue'.tr,
-                        onTap: state.isPurchasing ? null : cubit.purchaseYearly,
+                        onTap: state.isPurchasing || !state.isStoreAvailable
+                            ? null
+                            : cubit.purchaseYearly,
                         isLoading: state.isPurchasing,
                       ),
                       const SizedBox(height: AppSizes.md),

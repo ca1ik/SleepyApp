@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:sleepy_ai/core/config/monetization_config.dart';
 import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
@@ -9,9 +11,8 @@ import 'package:sleepy_ai/features/pro/cubit/pro_state.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_cubit.dart';
 import 'package:sleepy_ai/features/settings/cubit/settings_state.dart';
 
-/// Reklam alanı — PRO veya No Ads aboneleri görmez.
-/// Gerçek AdMob entegrasyonu hazır olduğunda buradaki mock banner
-/// google_mobile_ads BannerAd ile değiştirilecek.
+/// Reklam alanÄ± â€” PRO veya No Ads aboneleri gÃ¶rmez.
+/// Reklamlar gerÃ§ek AdMob `BannerAd` ile servis edilir.
 class AdBannerWidget extends StatelessWidget {
   const AdBannerWidget({super.key});
 
@@ -31,8 +32,9 @@ class AdBannerWidget extends StatelessWidget {
                 vertical: AppSizes.sm,
               ),
               decoration: BoxDecoration(
-                color:
-                    isDark ? AppColors.backgroundCard : const Color(0xFFEDE5FF),
+                color: isDark
+                    ? AppColors.backgroundCard
+                    : const Color(0xFFEDE5FF),
                 borderRadius: BorderRadius.circular(AppSizes.radiusMd),
                 border: Border.all(
                   color: isDark
@@ -42,60 +44,29 @@ class AdBannerWidget extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  // Mock ad content — gerçek AdMob entegrasyonunda kaldırılacak
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSizes.lg,
                       vertical: AppSizes.md,
                     ),
-                    child: Row(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withAlpha(30),
-                            borderRadius:
-                                BorderRadius.circular(AppSizes.radiusSm),
-                          ),
-                          child: const Icon(
-                            Icons.campaign_rounded,
-                            color: AppColors.primary,
-                            size: 22,
-                          ),
-                        ),
-                        const SizedBox(width: AppSizes.md),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'adPlaceholder'.tr,
-                                style: TextStyle(
-                                  color: isDark
-                                      ? AppColors.textMuted
-                                      : const Color(0xFF6B5B93),
-                                  fontSize: AppSizes.fontSm,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                'removeAdsHint'.tr,
-                                style: TextStyle(
-                                  color: isDark
-                                      ? AppColors.textDisabled
-                                      : const Color(0xFF9E8EC0),
-                                  fontSize: AppSizes.fontXs,
-                                ),
-                              ),
-                            ],
+                        const _AdMobBanner(),
+                        const SizedBox(height: AppSizes.xs),
+                        Text(
+                          'removeAdsHint'.tr,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textDisabled
+                                : const Color(0xFF9E8EC0),
+                            fontSize: AppSizes.fontXs,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  // "Remove Ads" tıklanabilir alan
                   Positioned(
                     top: 4,
                     right: 4,
@@ -127,6 +98,58 @@ class AdBannerWidget extends StatelessWidget {
           },
         );
       },
+    );
+  }
+}
+
+class _AdMobBanner extends StatefulWidget {
+  const _AdMobBanner();
+
+  @override
+  State<_AdMobBanner> createState() => _AdMobBannerState();
+}
+
+class _AdMobBannerState extends State<_AdMobBanner> {
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(
+      adUnitId: MonetizationConfig.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          if (!mounted) return;
+          setState(() => _isLoaded = true);
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() => _isLoaded = false);
+        },
+      ),
+    )..load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ad = _bannerAd;
+    if (!_isLoaded || ad == null) {
+      return const SizedBox(height: 50);
+    }
+    return SizedBox(
+      width: ad.size.width.toDouble(),
+      height: ad.size.height.toDouble(),
+      child: AdWidget(ad: ad),
     );
   }
 }

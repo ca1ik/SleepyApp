@@ -1,4 +1,4 @@
-import 'dart:math' as math;
+﻿import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +47,7 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
   bool _isTyping = false;
   bool _dailyLimitReached = false;
 
-  /// Free kullanıcılar günde 1 mesaj gönderebilir.
+  /// Free kullanÄ±cÄ±lar gÃ¼nde 1 mesaj gÃ¶nderebilir.
   static const int _freeDailyLimit = 1;
 
   late final List<_ChatMessage> _messages = [
@@ -122,7 +122,7 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
     _controller.clear();
     _scrollToBottom();
 
-    // Free kullanıcı için günlük kullanımı artır
+    // Free kullanÄ±cÄ± iÃ§in gÃ¼nlÃ¼k kullanÄ±mÄ± artÄ±r
     if (!isPro) {
       _incrementDailyUsage();
     }
@@ -155,11 +155,11 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
     final q = input.toLowerCase();
 
     if (_anyMatch(q, ['sleep', 'uyku', 'uyu', 'uyumak'])) {
-      if (_anyMatch(q, ['hour', 'long', 'duration', 'saat', 'kaç', 'süre'])) {
+      if (_anyMatch(q, ['hour', 'long', 'duration', 'saat', 'kaÃ§', 'sÃ¼re'])) {
         return 'respSleepHours'.tr;
       }
       if (_anyMatch(
-          q, ['problem', 'issue', 'can\'t', 'sorun', 'uyuyamıyorum', 'zor'])) {
+          q, ['problem', 'issue', 'can\'t', 'sorun', 'uyuyamÄ±yorum', 'zor'])) {
         return 'respSleepProblems'.tr;
       }
     }
@@ -177,7 +177,7 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
       return 'respMeditation'.tr;
     }
 
-    if (_anyMatch(q, ['dream', 'nightmare', 'rem', 'rüya', 'kabus'])) {
+    if (_anyMatch(q, ['dream', 'nightmare', 'rem', 'rÃ¼ya', 'kabus'])) {
       return 'respDreams'.tr;
     }
 
@@ -193,10 +193,10 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
       'dark',
       'noise',
       'oda',
-      'sıcaklık',
-      'ışık',
-      'karanlık',
-      'gürültü'
+      'sÄ±caklÄ±k',
+      'Ä±ÅŸÄ±k',
+      'karanlÄ±k',
+      'gÃ¼rÃ¼ltÃ¼'
     ])) {
       return 'respEnvironment'.tr;
     }
@@ -224,8 +224,8 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
       'workout',
       'spor',
       'egzersiz',
-      'yürüyüş',
-      'koşu'
+      'yÃ¼rÃ¼yÃ¼ÅŸ',
+      'koÅŸu'
     ])) {
       return 'respExercise'.tr;
     }
@@ -237,8 +237,8 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
       'tip',
       'hijyen',
       'rutin',
-      'alışkanlık',
-      'öneri',
+      'alÄ±ÅŸkanlÄ±k',
+      'Ã¶neri',
       'ipucu'
     ])) {
       return 'respHygiene'.tr;
@@ -251,13 +251,13 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
       'good morning',
       'merhaba',
       'selam',
-      'nasılsın',
-      'günaydın'
+      'nasÄ±lsÄ±n',
+      'gÃ¼naydÄ±n'
     ])) {
       return 'respGreeting'.tr;
     }
 
-    if (_anyMatch(q, ['thank', 'thanks', 'teşekkür', 'sağol', 'eyvallah'])) {
+    if (_anyMatch(q, ['thank', 'thanks', 'teÅŸekkÃ¼r', 'saÄŸol', 'eyvallah'])) {
       return 'respThanks'.tr;
     }
 
@@ -278,7 +278,7 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
         ),
         title: Row(
           children: [
-            const Text('🌙', style: TextStyle(fontSize: 24)),
+            const Text('ğŸŒ™', style: TextStyle(fontSize: 24)),
             const SizedBox(width: AppSizes.sm),
             Expanded(
               child: Text(
@@ -363,7 +363,7 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
                       ],
                     ),
                     child: const Center(
-                      child: Text('🌙', style: TextStyle(fontSize: 18)),
+                      child: Text('ğŸŒ™', style: TextStyle(fontSize: 18)),
                     ),
                   ),
                   const SizedBox(width: AppSizes.sm),
@@ -428,119 +428,6 @@ class _SleepyAssistantPageState extends State<SleepyAssistantPage> {
   }
 }
 
-// --------------------------------------------------------------------------
-// PRO Gate
-// --------------------------------------------------------------------------
-
-class _ProGateBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSizes.xl),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withAlpha(100),
-                    blurRadius: 30,
-                    spreadRadius: 5,
-                  ),
-                ],
-              ),
-              child: const Center(
-                child: Text('🌙', style: TextStyle(fontSize: 48)),
-              ),
-            ),
-            const SizedBox(height: AppSizes.xl),
-            const Text(
-              'Sleepy Assistant',
-              style: TextStyle(
-                color: AppColors.textPrimary,
-                fontSize: AppSizes.fontXxl,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: AppSizes.sm),
-            Text(
-              'proGateDesc'.tr,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: AppSizes.fontMd,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(height: AppSizes.xl),
-            _FeatureBadge(
-              emoji: '💬',
-              text: 'proGateFeature1'.tr,
-            ),
-            const SizedBox(height: AppSizes.sm),
-            _FeatureBadge(
-              emoji: '🧠',
-              text: 'proGateFeature2'.tr,
-            ),
-            const SizedBox(height: AppSizes.sm),
-            _FeatureBadge(
-              emoji: '📊',
-              text: 'proGateFeature3'.tr,
-            ),
-            const SizedBox(height: AppSizes.xxl),
-            GradientButton(
-              label: 'goPro'.tr,
-              onPressed: () => Get.toNamed(AppStrings.routePro),
-              height: 52,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _FeatureBadge extends StatelessWidget {
-  const _FeatureBadge({required this.emoji, required this.text});
-  final String emoji;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSizes.md,
-        vertical: AppSizes.sm,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withAlpha(25),
-        borderRadius: BorderRadius.circular(AppSizes.radiusMd),
-        border: Border.all(color: AppColors.primary.withAlpha(60)),
-      ),
-      child: Row(
-        children: [
-          Text(emoji, style: const TextStyle(fontSize: 18)),
-          const SizedBox(width: AppSizes.sm),
-          Expanded(
-            child: Text(
-              text,
-              style: const TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: AppSizes.fontSm,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 // --------------------------------------------------------------------------
 // Chat Body
@@ -592,7 +479,7 @@ class _ChatBody extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Text('⚡', style: TextStyle(fontSize: 16)),
+                const Text('âš¡', style: TextStyle(fontSize: 16)),
                 const SizedBox(width: AppSizes.sm),
                 Expanded(
                   child: Text(
@@ -694,7 +581,7 @@ class _ChatBubble extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: const Center(
-                    child: Text('🌙', style: TextStyle(fontSize: 12)),
+                    child: Text('ğŸŒ™', style: TextStyle(fontSize: 12)),
                   ),
                 ),
                 const SizedBox(width: 6),
@@ -815,7 +702,7 @@ class _TypingIndicatorState extends State<_TypingIndicator>
               shape: BoxShape.circle,
             ),
             child: const Center(
-              child: Text('🌙', style: TextStyle(fontSize: 12)),
+              child: Text('ğŸŒ™', style: TextStyle(fontSize: 12)),
             ),
           ),
           const SizedBox(width: 6),

@@ -8,21 +8,6 @@ import 'package:sleepy_ai/features/dream_journal/cubit/dream_journal_state.dart'
 import 'package:sleepy_ai/features/dream_journal/domain/dream_models.dart';
 import 'package:sleepy_ai/shared/widgets/common_widgets.dart';
 
-void _showAddDreamSheet(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: AppColors.backgroundCard,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-    ),
-    builder: (_) => BlocProvider.value(
-      value: context.read<DreamJournalCubit>(),
-      child: const _AddDreamSheet(),
-    ),
-  );
-}
-
 class DreamJournalPage extends StatelessWidget {
   const DreamJournalPage({super.key});
 

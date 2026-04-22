@@ -40,6 +40,9 @@ dependencies:
   in_app_purchase_android: ^0.3.6
   in_app_purchase_storekit: ^0.3.17
 
+  # ── Ads (AdMob) ──────────────────────────────────────────────────────────
+  google_mobile_ads: ^5.3.1
+
   # ── Charts & Visualization ────────────────────────────────────────────────
   fl_chart: ^0.69.0
 

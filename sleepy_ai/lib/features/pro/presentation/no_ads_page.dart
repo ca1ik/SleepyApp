@@ -173,7 +173,8 @@ class NoAdsPage extends StatelessWidget {
                           // Fiyat kartı
                           _NoAdsPricingCard(
                             price: proState.noAdsMonthlyPrice,
-                            onTap: proState.isPurchasing
+                            onTap: proState.isPurchasing ||
+                                    !proState.isStoreAvailable
                                 ? null
                                 : cubit.purchaseNoAds,
                             isLoading: proState.isPurchasing,

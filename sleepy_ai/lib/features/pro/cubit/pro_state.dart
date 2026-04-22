@@ -7,6 +7,7 @@ class ProState extends Equatable {
     this.status = ProStatus.unknown,
     this.isPro = false,
     this.isNoAds = false,
+    this.isStoreAvailable = true,
     this.monthlyPrice = '₺99,99',
     this.yearlyPrice = '₺799,99',
     this.noAdsMonthlyPrice = '₺49,99',
@@ -17,6 +18,7 @@ class ProState extends Equatable {
   final ProStatus status;
   final bool isPro;
   final bool isNoAds;
+  final bool isStoreAvailable;
   final String monthlyPrice;
   final String yearlyPrice;
   final String noAdsMonthlyPrice;
@@ -30,6 +32,7 @@ class ProState extends Equatable {
     ProStatus? status,
     bool? isPro,
     bool? isNoAds,
+    bool? isStoreAvailable,
     String? monthlyPrice,
     String? yearlyPrice,
     String? noAdsMonthlyPrice,
@@ -40,6 +43,7 @@ class ProState extends Equatable {
       status: status ?? this.status,
       isPro: isPro ?? this.isPro,
       isNoAds: isNoAds ?? this.isNoAds,
+      isStoreAvailable: isStoreAvailable ?? this.isStoreAvailable,
       monthlyPrice: monthlyPrice ?? this.monthlyPrice,
       yearlyPrice: yearlyPrice ?? this.yearlyPrice,
       noAdsMonthlyPrice: noAdsMonthlyPrice ?? this.noAdsMonthlyPrice,
@@ -53,6 +57,7 @@ class ProState extends Equatable {
         status,
         isPro,
         isNoAds,
+        isStoreAvailable,
         monthlyPrice,
         yearlyPrice,
         noAdsMonthlyPrice,

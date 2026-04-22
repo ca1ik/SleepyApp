@@ -10,6 +10,7 @@ class ProCubit extends Cubit<ProState> {
   Future<void> checkProStatus() async {
     emit(state.copyWith(status: ProStatus.checking));
     try {
+      final catalog = await _repository.fetchStoreCatalog();
       final isPro = await _repository.checkProStatus();
       final isNoAds = await _repository.checkNoAdsStatus();
       emit(
@@ -17,14 +18,25 @@ class ProCubit extends Cubit<ProState> {
           status: isPro ? ProStatus.active : ProStatus.inactive,
           isPro: isPro,
           isNoAds: isNoAds || isPro,
+          isStoreAvailable: catalog.isStoreAvailable,
+          monthlyPrice: catalog.monthlyPrice,
+          yearlyPrice: catalog.yearlyPrice,
+          noAdsMonthlyPrice: catalog.noAdsMonthlyPrice,
         ),
       );
-    } catch (e) {
+    } on Object catch (e) {
       emit(state.copyWith(status: ProStatus.error, error: e.toString()));
     }
   }
 
   Future<void> purchaseMonthly() async {
+    if (!state.isStoreAvailable) {
+      emit(state.copyWith(
+        status: ProStatus.error,
+        error: 'Play Store şu anda kullanılamıyor.',
+      ));
+      return;
+    }
     emit(state.copyWith(isPurchasing: true));
     try {
       final success = await _repository.purchaseMonthly();
@@ -36,7 +48,7 @@ class ProCubit extends Cubit<ProState> {
           status: success ? ProStatus.active : ProStatus.inactive,
         ),
       );
-    } catch (e) {
+    } on Object catch (e) {
       emit(
         state.copyWith(
           isPurchasing: false,
@@ -48,6 +60,13 @@ class ProCubit extends Cubit<ProState> {
   }
 
   Future<void> purchaseYearly() async {
+    if (!state.isStoreAvailable) {
+      emit(state.copyWith(
+        status: ProStatus.error,
+        error: 'Play Store şu anda kullanılamıyor.',
+      ));
+      return;
+    }
     emit(state.copyWith(isPurchasing: true));
     try {
       final success = await _repository.purchaseYearly();
@@ -59,7 +78,7 @@ class ProCubit extends Cubit<ProState> {
           status: success ? ProStatus.active : ProStatus.inactive,
         ),
       );
-    } catch (e) {
+    } on Object catch (e) {
       emit(
         state.copyWith(
           isPurchasing: false,
@@ -71,6 +90,13 @@ class ProCubit extends Cubit<ProState> {
   }
 
   Future<void> purchaseNoAds() async {
+    if (!state.isStoreAvailable) {
+      emit(state.copyWith(
+        status: ProStatus.error,
+        error: 'Play Store şu anda kullanılamıyor.',
+      ));
+      return;
+    }
     emit(state.copyWith(isPurchasing: true));
     try {
       final success = await _repository.purchaseNoAds();
@@ -80,7 +106,7 @@ class ProCubit extends Cubit<ProState> {
           isNoAds: success,
         ),
       );
-    } catch (e) {
+    } on Object catch (e) {
       emit(
         state.copyWith(
           isPurchasing: false,
@@ -105,7 +131,7 @@ class ProCubit extends Cubit<ProState> {
           status: isPro ? ProStatus.active : ProStatus.inactive,
         ),
       );
-    } catch (e) {
+    } on Object catch (_) {
       emit(state.copyWith(isPurchasing: false));
     }
   }

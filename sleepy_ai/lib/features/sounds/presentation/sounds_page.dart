@@ -5,7 +5,6 @@ import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/pro/cubit/pro_cubit.dart';
-import 'package:sleepy_ai/features/pro/cubit/pro_state.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_cubit.dart';
 import 'package:sleepy_ai/features/sounds/cubit/sounds_state.dart';
 import 'package:sleepy_ai/shared/models/app_models.dart';

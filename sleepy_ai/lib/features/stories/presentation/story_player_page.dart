@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import 'package:sleepy_ai/core/constants/app_colors.dart';
 import 'package:sleepy_ai/core/constants/app_sizes.dart';
 import 'package:sleepy_ai/features/stories/domain/story_models.dart';
 

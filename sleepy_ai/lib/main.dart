@@ -1,8 +1,11 @@
-﻿import 'package:flutter/material.dart';
+﻿import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:sleepy_ai/core/constants/app_constants.dart';
 import 'package:sleepy_ai/core/di/injection_container.dart';
@@ -49,6 +52,7 @@ Future<void> main() async {
   );
 
   await InjectionContainer.init();
+  unawaited(MobileAds.instance.initialize());
 
   // Uncomment when google-services.json is present:
   // await Firebase.initializeApp();
