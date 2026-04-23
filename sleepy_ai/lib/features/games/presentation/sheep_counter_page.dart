@@ -10,7 +10,7 @@ import 'package:sleepy_ai/shared/models/app_models.dart';
 // ── Sheep ─────────────────────────────────────────────────────────────────────
 
 class _Sheep {
-  _Sheep(math.Random rng, double w, double h)
+  _Sheep(math.Random rng, double w)
       : x = w + rng.nextDouble() * w * 0.6,
         lane = 0.45 + rng.nextDouble() * 0.25,
         speed = 28 + rng.nextDouble() * 22,
@@ -243,7 +243,7 @@ class _SheepCounterPageState extends State<SheepCounterPage>
     _gameAnim.addListener(_tick);
     // Pre-spawn a couple
     for (int i = 0; i < 3; i++) {
-      final s = _Sheep(_rng, _screenW, _screenH);
+      final s = _Sheep(_rng, _screenW);
       s.x -= i * (_screenW * 0.35);
       _sheep.add(s);
     }
@@ -277,7 +277,7 @@ class _SheepCounterPageState extends State<SheepCounterPage>
     // Spawn new sheep
     if (_sheep.isEmpty ||
         (_sheep.last.x < _screenW * 0.85 && _sheep.length < 5)) {
-      _sheep.add(_Sheep(_rng, _screenW, _screenH));
+      _sheep.add(_Sheep(_rng, _screenW));
     }
 
     setState(() {});
